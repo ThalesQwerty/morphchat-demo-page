@@ -1,0 +1,1 @@
+Finally, now apply your strategy to build the new page in the project.
