@@ -1,12 +1,5 @@
-// AI_GENERATED_CODE_START
-// [AI Generated] Data: 16/08/2025
-// Descrição: Created dummy responsive webpage with ChatWidget fixed at bottom right corner
-// Gerado por: Cursor AI
-// Versão: React 18.2.0, TypeScript 5.0.0
-// AI_GENERATED_CODE_END
-
 import React, { useState } from "react";
-import { ChatWidget } from "./lib/components/ChatWidget";
+import { useChatWidget } from "./lib/useChatWidget";
 
 // Theme definitions
 const themes = {
@@ -75,6 +68,15 @@ export const App: React.FC = () => {
         console.log("Message sent:", message);
         // Here you would typically send the message to your backend
     };
+
+    const { ChatWidgetComponent } = useChatWidget({
+        theme: themes[currentTheme],
+        onSendMessage: handleSendMessage,
+        logo: "Q",
+        title: "Eloquent AI",
+        introTitle: "Eloquent AI responds instantly",
+        introSubtitle: "Ask me anything",
+    });
 
     return (
         <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
@@ -319,14 +321,7 @@ export const App: React.FC = () => {
             </footer>
 
             {/* ChatWidget - Fixed at bottom right */}
-            <ChatWidget
-                theme={themes[currentTheme]}
-                onSendMessage={handleSendMessage}
-                logo="Q"
-                title="Eloquent AI"
-                introTitle="Eloquent AI responds instantly"
-                introSubtitle="Ask me anything"
-            />
+            {ChatWidgetComponent}
         </div>
     );
 };

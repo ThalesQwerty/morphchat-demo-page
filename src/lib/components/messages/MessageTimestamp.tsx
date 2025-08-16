@@ -1,13 +1,6 @@
-// AI_GENERATED_CODE_START
-// [AI Generated] Data: 16/08/2025
-// Descrição: MessageTimestamp component for chat widget
-// Gerado por: Cursor AI
-// Versão: React 18.2.0, TypeScript 5.0.0
-// AI_GENERATED_CODE_END
-
 import React from "react";
-import styles from "./ChatWidget.module.scss";
-import { Theme } from "./types";
+import styles from "./MessageTimestamp.module.scss";
+import { Theme } from "../types";
 
 interface MessageTimestampProps {
     username: string;

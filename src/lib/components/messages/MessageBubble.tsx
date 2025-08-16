@@ -1,13 +1,6 @@
-// AI_GENERATED_CODE_START
-// [AI Generated] Data: 16/08/2025
-// Descrição: MessageBubble component for chat widget
-// Gerado por: Cursor AI
-// Versão: React 18.2.0, TypeScript 5.0.0
-// AI_GENERATED_CODE_END
-
 import React from "react";
-import styles from "./ChatWidget.module.scss";
-import { Message, Theme } from "./types";
+import styles from "./MessageBubble.module.scss";
+import { Message, Theme } from "../types";
 import { MessageTimestamp } from "./MessageTimestamp";
 
 interface MessageBubbleProps {
@@ -46,23 +39,25 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
                         <div className={styles.messageIconSpacer} />
                     )
                 )}
-                <div
-                    className={`${styles.messageBubble} ${showTimestamp ? styles.lastInChain : ''}`}
-                    style={{
-                        background: isUser ? theme.messageUserBg : theme.messageBotBg,
-                        color: isUser ? theme.messageUserText : theme.messageBotText,
-                    }}
-                >
-                    {message.content}
+                <div className={styles.messageBubbleContainer}>
+                    <div
+                        className={`${styles.messageBubble} ${showTimestamp ? styles.lastInChain : ''}`}
+                        style={{
+                            background: isUser ? theme.messageUserBg : theme.messageBotBg,
+                            color: isUser ? theme.messageUserText : theme.messageBotText,
+                        }}
+                    >
+                        {message.content}
+                    </div>
+                    {showTimestamp && message.timestamp && message.username && (
+                        <MessageTimestamp
+                            username={message.username}
+                            timestamp={message.timestamp}
+                            theme={theme}
+                        />
+                    )}
                 </div>
             </div>
-            {showTimestamp && message.timestamp && message.username && (
-                <MessageTimestamp
-                    username={message.username}
-                    timestamp={message.timestamp}
-                    theme={theme}
-                />
-            )}
         </div>
     );
 };

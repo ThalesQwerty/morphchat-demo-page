@@ -1,13 +1,6 @@
-// AI_GENERATED_CODE_START
-// [AI Generated] Data: 16/08/2025
-// Descrição: ChatMessages component for chat widget
-// Gerado por: Cursor AI
-// Versão: React 18.2.0, TypeScript 5.0.0
-// AI_GENERATED_CODE_END
-
 import React, { useRef, useEffect, useCallback, useMemo } from "react";
-import styles from "./ChatWidget.module.scss";
-import { Message, Theme } from "./types";
+import styles from "./ChatMessages.module.scss";
+import { Message, Theme } from "../types";
 import { ChatIntro } from "./ChatIntro";
 import { MessageBubble } from "./MessageBubble";
 

@@ -1,0 +1,97 @@
+/* MessageBubble Component Styles */
+
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    gap: 4px;
+    margin-bottom: 8px;
+
+    &.user {
+        align-self: flex-end;
+        align-items: flex-end;
+    }
+
+    &.bot {
+        align-self: flex-start;
+        align-items: flex-start;
+    }
+
+    &.inChain {
+        margin-bottom: 1px;
+    }
+
+    &.firstInChain {
+        margin-top: 24px;
+    }
+
+    .messageContent {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        min-height: 24px;
+
+        .messageIconSpacer {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            visibility: hidden;
+        }
+
+        .messageIcon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .messageBubbleContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .messageBubble {
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+
+            .message.user & {
+                border-bottom-right-radius: 6px;
+            }
+
+            .message.bot & {
+                border-bottom-left-radius: 6px;
+            }
+
+            &.lastInChain {
+                .message.user & {
+                    border-bottom-right-radius: 4px;
+                }
+
+                .message.bot & {
+                    border-bottom-left-radius: 4px;
+                }
+            }
+        }
+    }
+
+    /* Bot message specific styles */
+    &.bot .messageContent {
+        align-items: flex-start;
+    }
+
+    /* User message specific styles */
+    &.user .messageContent {
+        flex-direction: row-reverse;
+    }
+}

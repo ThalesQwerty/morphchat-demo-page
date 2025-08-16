@@ -1,0 +1,29 @@
+/* ChatIntro Component Styles */
+
+.introMessage {
+    text-align: center;
+    margin-bottom: 20px;
+
+    .introLogo {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        margin: 0 auto 16px;
+    }
+
+    .introTitle {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .introSubtitle {
+        font-size: 14px;
+    }
+}

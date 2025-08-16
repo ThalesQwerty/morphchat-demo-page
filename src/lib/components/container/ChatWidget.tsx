@@ -1,15 +1,7 @@
-// AI_GENERATED_CODE_START
-// [AI Generated] Data: 16/08/2025
-// Descrição: Updated ChatWidget to be fixed at bottom right with show/hide functionality
-// Gerado por: Cursor AI
-// Versão: React 18.2.0, TypeScript 5.0.0
-// AI_GENERATED_CODE_END
-
-import React, { useState, useCallback, useEffect } from "react";
-import styles from "./ChatWidget.module.scss";
-import { Message, Theme } from "./types";
+import React, { useState, useCallback } from "react";
+import { Message, Theme } from "../types";
 import { ChatHeader } from "./ChatHeader";
-import { ChatMessages } from "./ChatMessages";
+import { ChatMessages } from "../messages/ChatMessages";
 import { ChatInput } from "./ChatInput";
 import { ChatFooter } from "./ChatFooter";
 
@@ -22,7 +14,7 @@ interface ChatWidgetProps {
     title?: string;
     introTitle?: string;
     introSubtitle?: string;
-    className?: string;
+    onClose?: () => void;
 }
 
 // Default theme
@@ -90,11 +82,9 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
     title = "Eloquent AI",
     introTitle = "Eloquent AI responds instantly",
     introSubtitle = "Ask me anything",
-    className = "",
+    onClose,
 }) => {
     const [localMessages, setLocalMessages] = useState<Message[]>(messages);
-    const [isOpen, setIsOpen] = useState(false);
-    const [showButton, setShowButton] = useState(true);
 
     const handleSendMessage = useCallback(
         (message: string) => {
@@ -115,73 +105,28 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
         [onSendMessage]
     );
 
-    const toggleChat = () => {
-        if (isOpen) {
-            setIsOpen(false);
-            // Hide button immediately when opening chat
-            setShowButton(false);
-        } else {
-            setIsOpen(true);
-            // Show button after a delay when closing chat
-            setTimeout(() => setShowButton(true), 300);
-        }
-    };
-
-    const handleClose = () => {
-        setIsOpen(false);
-        // Show button after a delay when closing chat
-        setTimeout(() => setShowButton(true), 300);
-    };
-
     return (
-        <div className={styles.chatWidgetContainer}>
-            {/* Chat Widget */}
-            <div
-                className={`${styles.chatWidget} ${className} ${isOpen ? styles.open : styles.closed}`}
-                style={{
-                    background: theme.backgroundColor,
-                    boxShadow: `0 20px 25px -5px ${theme.shadowColor}`,
-                    borderColor: theme.borderColor,
-                }}
-            >
-                <ChatHeader 
-                    logo={logo} 
-                    title={title} 
-                    theme={theme} 
-                    onClose={handleClose}
-                />
-                
-                <ChatMessages
-                    messages={localMessages}
-                    logo={logo}
-                    introTitle={introTitle}
-                    introSubtitle={introSubtitle}
-                    theme={theme}
-                />
-                
-                <ChatInput 
-                    onSendMessage={handleSendMessage} 
-                    theme={theme}
-                />
-                <ChatFooter logo={logo} theme={theme} />
-            </div>
-
-            {/* Floating Chat Button */}
-            {showButton && !isOpen && (
-                <button
-                    className={styles.chatButton}
-                    onClick={toggleChat}
-                    style={{
-                        background: theme.primaryColor,
-                        boxShadow: `0 4px 12px ${theme.shadowColor}`,
-                    }}
-                    aria-label="Open chat"
-                >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                </button>
-            )}
-        </div>
+        <>
+            <ChatHeader 
+                logo={logo} 
+                title={title} 
+                theme={theme} 
+                onClose={onClose}
+            />
+            
+            <ChatMessages
+                messages={localMessages}
+                logo={logo}
+                introTitle={introTitle}
+                introSubtitle={introSubtitle}
+                theme={theme}
+            />
+            
+            <ChatInput 
+                onSendMessage={handleSendMessage} 
+                theme={theme}
+            />
+            <ChatFooter logo={logo} theme={theme} />
+        </>
     );
 };
