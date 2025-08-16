@@ -1,10 +1,9 @@
 # Project Rules
 
-Use the formatting patterns defined in Prettier (.prettierrc.json) and ESLint (eslint.js).
+Use the formatting patterns defined in Prettier (.prettierrc.json) and ESLint (.eslint.js).
 
 Do not use "export default", unless explicitly requested.
-
-Do not create examples or documentation, unless requested by the user.
+Do not create examples or documentation, unless explicitly requested.
 
 Organize imports in the following order, separated by line breaks:
 1. node_modules
