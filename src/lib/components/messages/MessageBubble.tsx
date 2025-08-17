@@ -18,7 +18,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
     const { chain } = message;
 
     const isFromUser = message.from === "user";
-    const isUnsent = isFromUser && !message.read;
+    const isUnsent = isFromUser && !message.sent;
 
     const showTimestamp = chain === "last" || chain === "single";
     const showAuthorPhoto = chain === "last" || chain === "single";

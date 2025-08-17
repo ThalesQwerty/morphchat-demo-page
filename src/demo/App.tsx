@@ -3,6 +3,7 @@ import { Color } from "../lib/constants/Color";
 import { ThemeProvider, useAppTheme } from "./context/ThemeContext";
 import { ChatWidgetWrapper } from "./components/ChatWidgetWrapper";
 import { Icon } from "../lib/components/layout/Icon";
+import { useChatAction } from "../lib";
 import "./globals.scss";
 import styles from "./App.module.scss";
 
@@ -12,6 +13,58 @@ function AppContent() {
     const [isOnline, setIsOnline] = useState(true);
     const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
     const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
+
+    const changeTheme = useChatAction({
+        name: "change_theme",
+        description: "Change the theme of the chat widget",
+        parameters: {
+            theme: {
+                type: "string",
+                enum: Object.keys(Color)
+            }
+        },
+        function: (args) => {
+            console.log("Change theme", args);
+            const newColor = Color[args.theme as keyof typeof Color];
+            if (newColor) {
+                setColorTheme(newColor);
+                return `Theme changed to ${args.theme}`;
+            }
+            return `Invalid theme: ${args.theme}`;
+        }
+    });
+
+    const changeColorMode = useChatAction({
+        name: "change_color_mode",
+        description: "Change the color mode of the chat widget",
+        parameters: {
+            mode: {
+                type: "string",
+                enum: ["light", "dark", "auto"]
+            }
+        },
+        function: (args) => {
+            console.log("Change color mode", args);
+            setTheme(args.mode as "light" | "dark" | "auto");
+            return `Color mode changed to ${args.mode}`;
+        }
+    });
+
+    const changeCorner = useChatAction({
+        name: "change_corner",
+        description: "Change the corner position of the chat widget",
+        parameters: {
+            corner: {
+                type: "string",
+                enum: ["left", "right"]
+            }
+        },
+        function: (args) => {
+            console.log("Change corner", args);
+            setWidgetCorner(args.corner as "left" | "right");
+            return `Widget moved to ${args.corner} corner`;
+        }
+    });
 
 
     return (
@@ -322,6 +375,7 @@ function AppContent() {
                 isOnline={isOnline}
                 isMaintenanceMode={isMaintenanceMode}
                 chatbotPrompt={chatbotPrompt}
+                actions={[changeTheme, changeColorMode, changeCorner]}
             />
         </div>
     );

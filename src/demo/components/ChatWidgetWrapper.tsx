@@ -1,5 +1,6 @@
 import { useChatWidget } from "../../lib/hooks/useChatWidget";
 import { useAppTheme } from "../context/ThemeContext";
+import { WidgetAction } from "../../lib/types/WigetAction";
 
 interface ChatWidgetWrapperProps {
     corner?: "left" | "right";
@@ -7,6 +8,7 @@ interface ChatWidgetWrapperProps {
     isMaintenanceMode?: boolean;
     chatbotPrompt?: string;
     welcomeMessage?: string;
+    actions?: WidgetAction<any>[];
 }
 
 export function ChatWidgetWrapper({ 
@@ -14,7 +16,8 @@ export function ChatWidgetWrapper({
     isOnline = true, 
     isMaintenanceMode = false,
     chatbotPrompt = "You are a helpful AI assistant. Give short and concise answers.",
-    welcomeMessage = "Hello! I'm QwertyChat, your AI assistant. How can I help you today?"
+    welcomeMessage = "Hello! I'm QwertyChat, your AI assistant. How can I help you today?",
+    actions = []
 }: ChatWidgetWrapperProps) {
     const { resolvedTheme, colorTheme } = useAppTheme();
 
@@ -37,8 +40,9 @@ export function ChatWidgetWrapper({
             apiKey: import.meta.env.VITE_OPENAI_API_KEY || "",
             instructions: chatbotPrompt,
             welcomeMessage,
-            model: "gpt-4o-mini",
+            model: "gpt-4o-mini" as const,
             timeout: 30000,
+            actions
         },
     });
 

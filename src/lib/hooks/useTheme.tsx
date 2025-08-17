@@ -1,7 +1,6 @@
 import { useLayoutEffect } from "react";
 import { Theme } from "../types/Theme";
 import { kebabCase } from "lodash";
-import { Color } from "../constants/Color";
 
 export function useTheme(theme: Theme) {
     useLayoutEffect(() => {

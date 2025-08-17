@@ -6,6 +6,7 @@ export interface Message {
     timestamp?: Date;
     chain?: "first" | "middle" | "last" | "single";
     read?: boolean;
+    sent?: boolean;
 }
 
 export type ChainedMessage = Message & {

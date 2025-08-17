@@ -5,9 +5,11 @@ import { ChatModel } from "openai/resources";
 
 import { Theme } from "./Theme";
 import { Color } from "../constants/Color";
+import { WidgetAction } from "./WigetAction";
+import { TypeName } from "../bot/TypeName";
 
 
-export interface WidgetConfig {
+export interface WidgetConfig<P extends Record<string, TypeName> = any> {
     corner?: "right" | "left"; // default is "right"
     theme?: Color | Theme;
     mode?: "light" | "dark" | "auto"; // default is "auto"
@@ -19,6 +21,7 @@ export interface WidgetConfig {
         instructions?: string;
         model?: ChatModel;
         timeout?: number;
+        actions?: WidgetAction<P>[];
     };
     intro?: ReactNode | Partial<{
         title: string;

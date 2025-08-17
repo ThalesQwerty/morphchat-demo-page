@@ -1,8 +1,9 @@
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { ChainedMessage, Message } from "../types/Message";
 import { TimeUnit } from "../constants/TimeUnit";
 import { FilledWidgetConfig } from "../types/WidgetConfig";
 import { LLM } from "../bot/LLM";
+import { useActions } from "./useActions";
 
 export interface MessageHook { 
     messages: Message[];
@@ -19,30 +20,24 @@ export function useMessages(
 ): MessageHook {
     const { prompt, profile, events, status } = config;
 
-    const [messages, setMessages] = useState<Message[]>(prompt?.welcomeMessage ? [
-        {
-            id: Date.now().toString(),
-            from: "bot",
-            content: prompt.welcomeMessage,
-            username: profile?.name || "QwertyChat",
-            timestamp: new Date(),
-            read: false,
-        }
-    ] : []);
+    const { actions, handleToolCalls } = useActions(config);
 
-    const [isTyping, setIsTyping] = useState(false);
+    const [messages, setMessages] = useState<Message[]>([]);
+    const welcomeMessageAddedRef = useRef(false);
 
     const llm = useMemo(() => {
         if (!prompt) return null;
-
+        
         return new LLM(
             prompt.apiKey,
             prompt.instructions,
             prompt.model,
             prompt.timeout
         );
-    }, [prompt]);
+    }, []);
 
+    const [isTyping, setIsTyping] = useState(false);
+    
     const sendUserMessage = useCallback((message: string) => {
         const newMessage: Message = {
             id: Date.now().toString(),
@@ -50,15 +45,20 @@ export function useMessages(
             content: message,
             username: "You",
             timestamp: new Date(),
-            read: false
+            sent: false
         };
+
+        llm?.messages.push({
+            role: "user",
+            content: message
+        });
 
         setMessages(previous => [...previous, newMessage]);
         events?.onSendMessage?.(message);
     }, [events]);
     
     const receiveBotMessage = useCallback((message: string) => {
-        console.log("useMessages: isWidgetOpen =", status?.isOpen);
+        setIsTyping(false);
         setMessages(previous => [
             ...previous, {
                 id: Date.now().toString(),
@@ -69,13 +69,30 @@ export function useMessages(
                 read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
             }
         ]);
+
+        llm?.messages.push({
+            role: "assistant",
+            content: message
+        });
     }, [profile, status?.isOpen]);
 
-    function markMessagesAsSent() {
-        setMessages(previous => 
-            previous.map(message => ({ ...message, read: true }))
-        );
-    }
+    useEffect(() => {
+        if (prompt?.welcomeMessage && !welcomeMessageAddedRef.current) {
+            // Add welcome message to UI but not to LLM conversation
+            setIsTyping(false);
+            setMessages(previous => [
+                ...previous, {
+                    id: Date.now().toString(),
+                    from: "bot",
+                    content: prompt.welcomeMessage!,
+                    username: profile?.name || "QwertyChat",
+                    timestamp: new Date(),
+                    read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
+                }
+            ]);
+            welcomeMessageAddedRef.current = true;
+        }
+    }, [prompt?.welcomeMessage]);
 
     function markAllMessagesAsRead() {
         setMessages(previous => 
@@ -83,32 +100,40 @@ export function useMessages(
         );
     }
 
-    async function flushMessages() {
-        if (!messages.some(message => message.from === "user" && !message.read)) return;
+    function markAllMessagesAsSent() {
+        setMessages(previous => 
+            previous.map(message => ({ ...message, sent: true }))
+        );
+    }   
 
-        markMessagesAsSent();
+    async function flushMessages() {
+        if (!messages.some(message => message.from === "user" && !message.sent)) return;
+
+        markAllMessagesAsSent();
 
         if (!llm) return;
-        
-        llm.messages = [
-            { role: "system", content: llm.instructions },
-            ...messages.map(message => ({
-                role: message.from === "user" ? "user" as const : "assistant" as const,
-                content: message.content
-            }))
-        ];
 
         setIsTyping(true);
         events?.onTyping?.(true);
 
         try {
-            const response = await llm.submit();
-            receiveBotMessage(response);
+            const { response, toolCalls } = await llm.submit(actions);
+
+            if (!response && !toolCalls) throw new Error("No response or tool calls");
+
+            if (response) receiveBotMessage(response);
+            
+            if (toolCalls?.length) {
+                await handleToolCalls(toolCalls, llm);
+                const { response: newResponse } = 	await llm.submit();
+
+                if (newResponse) receiveBotMessage(newResponse);
+                else throw new Error("No response after tool calls");
+            }
         } catch (error) {
             console.error("Error sending message:", error);
             receiveBotMessage("Sorry, I'm having trouble responding right now. Please try again later.");
         } finally {
-            setIsTyping(false);
             events?.onTyping?.(false);
         }
     }

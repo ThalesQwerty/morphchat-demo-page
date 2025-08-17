@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { ChatModel, ChatCompletionMessageParam } from "openai/resources";
+import { ChatModel, ChatCompletionMessageParam, ChatCompletionTool, ChatCompletionMessageToolCall } from "openai/resources";
 import { Timeout } from "./Timeout";
 import { LLMError } from "./LLMError";
 
@@ -11,7 +11,7 @@ export class LLM {
 	private openai: OpenAI;
 
 	public messages: ChatCompletionMessageParam[] = [];
-    
+
 	constructor(
         public readonly apiKey: string,
 		public readonly instructions: string = this.DEFAULT_PROMPT,
@@ -29,24 +29,31 @@ export class LLM {
         });
 	}
 
-	async submit<T extends string = string>(): Promise<T> {
+	async submit(tools?: ChatCompletionTool[]) {
 		return Timeout(async () => {
 			const completion = await this.openai.chat.completions.create({
 				model: this.model,
 				messages: this.messages,
-				max_tokens: 3000
+				max_tokens: 3000,
+				tools
 			});
 
 			const response = completion.choices[0].message.content;
-
-            // TO-DO: add tool calls
-            // const toolCalls = completion.choices[0].message.tool_calls;
-
-			if (!response) throw LLMError.EmptyResponse();
-
-			this.messages.push({ role: "assistant", content: response });
-
-			return response as T;
+			const toolCalls = completion.choices[0].message.tool_calls;
+			
+			return {
+				response,
+				toolCalls: toolCalls as typeof toolCalls & { type: "function" }[]
+			}
 		}, this.timeout, LLMError.Timeout(this.timeout));
     }
+
+	async addToolResult(call: ChatCompletionMessageToolCall, result: unknown) {
+		this.messages.push({
+			role: "tool",
+			content: JSON.stringify(result),
+			tool_call_id: call.id
+		});
+		console.log(this.messages);
+	}
 } 

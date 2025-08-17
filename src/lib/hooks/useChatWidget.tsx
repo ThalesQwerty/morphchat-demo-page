@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 import { ChatWidgetContainer } from "../components/page/ChatWidgetContainer";
 import { FilledWidgetConfig, WidgetConfig } from "../types/WidgetConfig";
@@ -20,7 +20,7 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
     // Manage widget state
     const [isWidgetOpen, setIsWidgetOpen] = useState(!!config.status?.isOpen);
     
-    const filledConfig: FilledWidgetConfig = {
+    const filledConfig: FilledWidgetConfig = useMemo(() => ({
         corner: "right",
         mode: resolvedMode,
         intro: {
@@ -47,7 +47,11 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
             name: "QwertyChat",
             ...config.profile,
         },
-    };
+    }), [
+        config,
+        resolvedMode,
+        isWidgetOpen
+    ]);
 
     const messageHook = useMessages(filledConfig);
 
