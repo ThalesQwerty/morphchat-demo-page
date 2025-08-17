@@ -2,20 +2,20 @@
 
 .chatInput {
     padding: 16px 20px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--qwertychat-border);
 
     .inputContainer {
         display: flex;
         align-items: flex-end;
         gap: 8px;
-        border: 1px solid #e5e7eb;
+        border: 1px solid var(--qwertychat-border);
         border-radius: 24px;
         padding: 4px;
-        background: #ffffff;
+        background: var(--qwertychat-components-input-background, var(--qwertychat-background));
         transition: border-color 0.2s;
 
         &:focus-within {
-            border-color: var(--primary-color, #6366f1) !important;
+            border-color: var(--qwertychat-primary) !important;
         }
 
         .inputField {
@@ -34,6 +34,11 @@
             overflow-y: hidden;
             box-sizing: border-box;
             background: transparent;
+            color: var(--qwertychat-components-input-text, var(--qwertychat-text));
+
+            &::placeholder {
+                color: var(--qwertychat-components-input-placeholder, var(--qwertychat-text-light));
+            }
         }
 
         .sendButton {
@@ -41,17 +46,18 @@
             height: 32px;
             border: none;
             border-radius: 50%;
-            color: white;
+            color: var(--qwertychat-components-input-send-button-text, var(--qwertychat-contrast));
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: background-color 0.2s;
             flex-shrink: 0;
+            background: var(--qwertychat-components-input-send-button-background, var(--qwertychat-primary));
 
             /* Focus styles for accessibility */
             &:focus {
-                outline: 2px solid var(--primary-color, #6366f1);
+                outline: 2px solid var(--qwertychat-primary);
                 outline-offset: 2px;
             }
 

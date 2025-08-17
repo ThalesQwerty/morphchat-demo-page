@@ -1,196 +1,71 @@
 import React, { useState } from "react";
 import { useChatWidget } from "./lib/useChatWidget";
-
-// Theme definitions
-const themes = {
-    purple: {
-        primaryColor: "#6366f1",
-        secondaryColor: "#8b5cf6",
-        backgroundColor: "#ffffff",
-        textColor: "#1f2937",
-        textSecondary: "#6b7280",
-        messageUserBg: "#6366f1",
-        messageUserText: "#ffffff",
-        messageBotBg: "#f3f4f6",
-        messageBotText: "#1f2937",
-        inputBg: "#ffffff",
-        borderColor: "#e5e7eb",
-        shadowColor: "rgba(0, 0, 0, 0.1)",
-    },
-    blue: {
-        primaryColor: "#3b82f6",
-        secondaryColor: "#1d4ed8",
-        backgroundColor: "#ffffff",
-        textColor: "#1f2937",
-        textSecondary: "#6b7280",
-        messageUserBg: "#3b82f6",
-        messageUserText: "#ffffff",
-        messageBotBg: "#f3f4f6",
-        messageBotText: "#1f2937",
-        inputBg: "#ffffff",
-        borderColor: "#e5e7eb",
-        shadowColor: "rgba(0, 0, 0, 0.1)",
-    },
-    green: {
-        primaryColor: "#10b981",
-        secondaryColor: "#059669",
-        backgroundColor: "#ffffff",
-        textColor: "#1f2937",
-        textSecondary: "#6b7280",
-        messageUserBg: "#10b981",
-        messageUserText: "#ffffff",
-        messageBotBg: "#f3f4f6",
-        messageBotText: "#1f2937",
-        inputBg: "#ffffff",
-        borderColor: "#e5e7eb",
-        shadowColor: "rgba(0, 0, 0, 0.1)",
-    },
-    orange: {
-        primaryColor: "#f59e0b",
-        secondaryColor: "#d97706",
-        backgroundColor: "#ffffff",
-        textColor: "#1f2937",
-        textSecondary: "#6b7280",
-        messageUserBg: "#f59e0b",
-        messageUserText: "#ffffff",
-        messageBotBg: "#f3f4f6",
-        messageBotText: "#1f2937",
-        inputBg: "#ffffff",
-        borderColor: "#e5e7eb",
-        shadowColor: "rgba(0, 0, 0, 0.1)",
-    },
-};
+import { Color } from "./lib/types/Color";
+import "./globals.scss";
+import styles from "./App.module.scss";
 
 export const App: React.FC = () => {
-    const [currentTheme, setCurrentTheme] = useState<keyof typeof themes>("purple");
+    const [currentTheme, setCurrentTheme] = useState<Color>(Color.purple);
 
     const handleSendMessage = (message: string) => {
         console.log("Message sent:", message);
         // Here you would typically send the message to your backend
     };
 
-    const { ChatWidgetComponent } = useChatWidget({
-        theme: themes[currentTheme],
-        onSendMessage: handleSendMessage,
-        logo: "Q",
-        title: "Eloquent AI",
-        introTitle: "Eloquent AI responds instantly",
-        introSubtitle: "Ask me anything",
+    const { component: ChatWidgetComponent } = useChatWidget({
+        theme: currentTheme,
+        events: {
+            onSendMessage: handleSendMessage,
+        },
+        profile: {
+            name: "QwertyChat",
+        },
+        intro: {
+            title: "QwertyChat responds instantly",
+            subtitle: "Ask me anything",
+        },
     });
 
     return (
-        <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
-            {/* Theme Switcher */}
-            <div
-                style={{
-                    position: "fixed",
-                    top: "20px",
-                    right: "20px",
-                    display: "flex",
-                    gap: "10px",
-                    zIndex: 1001,
-                }}
-            >
-                {Object.keys(themes).map((themeName) => (
-                    <button
-                        key={themeName}
-                        onClick={() => setCurrentTheme(themeName as keyof typeof themes)}
-                        style={{
-                            padding: "8px 16px",
-                            border: "none",
-                            borderRadius: "8px",
-                            background: themes[themeName as keyof typeof themes].primaryColor,
-                            color: "white",
-                            cursor: "pointer",
-                            fontSize: "12px",
-                            fontWeight: "500",
-                        }}
-                    >
-                        {themeName}
-                    </button>
-                ))}
-            </div>
+        <div className={styles.appContainer}>
 
             {/* Header */}
-            <header
-                style={{
-                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    color: "white",
-                    padding: "1rem 2rem",
-                    boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-                }}
-            >
-                <nav
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        maxWidth: "1200px",
-                        margin: "0 auto",
-                    }}
-                >
-                    <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>QwertyChat Demo</div>
-                    <div style={{ display: "flex", gap: "2rem" }}>
-                        <a href="#home" style={{ color: "white", textDecoration: "none" }}>Home</a>
-                        <a href="#features" style={{ color: "white", textDecoration: "none" }}>Features</a>
-                        <a href="#about" style={{ color: "white", textDecoration: "none" }}>About</a>
-                        <a href="#contact" style={{ color: "white", textDecoration: "none" }}>Contact</a>
+            <header className={styles.header}>
+                <nav className={styles.nav}>
+                    <div className={styles.logo}>QwertyChat Demo</div>
+                    <div className={styles.navLinks}>
+                        <a href="#home" className={styles.navLink}>Home</a>
+                        <a href="#features" className={styles.navLink}>Features</a>
+                        <a href="#customization" className={styles.navLink}>Customize</a>
+                        <a href="#about" className={styles.navLink}>About</a>
+                        <a href="#contact" className={styles.navLink}>Contact</a>
                     </div>
                 </nav>
             </header>
 
             {/* Hero Section */}
-            <section
-                id="home"
-                style={{
-                    background: "linear-gradient(135deg, #fef3c7 0%, #e0e7ff 100%)",
-                    padding: "4rem 2rem",
-                    textAlign: "center",
-                }}
-            >
-                <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-                    <h1 style={{ fontSize: "3rem", marginBottom: "1rem", color: "#1f2937" }}>
+            <section id="home" className={styles.heroSection}>
+                <div className={styles.heroContent}>
+                    <h1 className={styles.heroTitle}>
                         Welcome to QwertyChat
                     </h1>
-                    <p style={{ fontSize: "1.2rem", color: "#6b7280", marginBottom: "2rem" }}>
+                    <p className={styles.heroSubtitle}>
                         Experience the future of customer support with our intelligent chat widget.
                         Get instant responses and seamless communication.
                     </p>
-                    <button
-                        style={{
-                            padding: "12px 24px",
-                            background: "#6366f1",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "8px",
-                            fontSize: "1rem",
-                            cursor: "pointer",
-                        }}
-                    >
+                    <button className={styles.ctaButton}>
                         Get Started
                     </button>
                 </div>
             </section>
 
             {/* Features Section */}
-            <section
-                id="features"
-                style={{
-                    padding: "4rem 2rem",
-                    background: "white",
-                }}
-            >
-                <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-                    <h2 style={{ textAlign: "center", fontSize: "2.5rem", marginBottom: "3rem", color: "#1f2937" }}>
+            <section id="features" className={styles.featuresSection}>
+                <div className={styles.featuresContainer}>
+                    <h2 className={styles.featuresTitle}>
                         Key Features
                     </h2>
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-                            gap: "2rem",
-                        }}
-                    >
+                    <div className={styles.featuresGrid}>
                         {[
                             {
                                 title: "Real-time Chat",
@@ -223,45 +98,68 @@ export const App: React.FC = () => {
                                 icon: "🕒",
                             },
                         ].map((feature, index) => (
-                            <div
-                                key={index}
-                                style={{
-                                    padding: "2rem",
-                                    border: "1px solid #e5e7eb",
-                                    borderRadius: "12px",
-                                    textAlign: "center",
-                                    background: "#f9fafb",
-                                }}
-                            >
-                                <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>{feature.icon}</div>
-                                <h3 style={{ fontSize: "1.5rem", marginBottom: "1rem", color: "#1f2937" }}>
+                            <div key={index} className={styles.featureCard}>
+                                <div className={styles.featureIcon}>{feature.icon}</div>
+                                <h3 className={styles.featureTitle}>
                                     {feature.title}
                                 </h3>
-                                <p style={{ color: "#6b7280", lineHeight: "1.6" }}>{feature.description}</p>
+                                <p className={styles.featureDescription}>{feature.description}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
+            {/* Customization Section */}
+            <section id="customization" className={styles.customizationSection}>
+                <div className={styles.customizationContainer}>
+                    <h2 className={styles.customizationTitle}>
+                        Customize Your Theme
+                    </h2>
+                    <p className={styles.customizationSubtitle}>
+                        Choose from our beautiful color palette to match your brand
+                    </p>
+                    
+                    <div className={styles.colorGrid}>
+                        {Object.keys(Color)
+                            .filter(colorName => !colorName.startsWith('gray') && colorName !== 'white' && colorName !== 'black')
+                            .map((colorName) => (
+                                <button
+                                    key={colorName}
+                                    onClick={() => setCurrentTheme(Color[colorName as keyof typeof Color])}
+                                    className={`${styles.colorButton} ${currentTheme === Color[colorName as keyof typeof Color] ? styles.colorButtonSelected : styles.colorButtonDefault}`}
+                                    style={{ background: Color[colorName as keyof typeof Color] }}
+                                    title={colorName}
+                                >
+                                    {currentTheme === Color[colorName as keyof typeof Color] && (
+                                        <div className={styles.checkmark}>
+                                            ✓
+                                        </div>
+                                    )}
+                                </button>
+                            ))}
+                    </div>
+                    
+                    <div className={styles.currentTheme}>
+                        <p>
+                            Current theme: <strong>{Object.keys(Color).find(key => Color[key as keyof typeof Color] === currentTheme)}</strong>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* About Section */}
-            <section
-                id="about"
-                style={{
-                    padding: "4rem 2rem",
-                    background: "#f9fafb",
-                }}
-            >
-                <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
-                    <h2 style={{ fontSize: "2.5rem", marginBottom: "2rem", color: "#1f2937" }}>
+            <section id="about" className={styles.aboutSection}>
+                <div className={styles.aboutContainer}>
+                    <h2 className={styles.aboutTitle}>
                         About QwertyChat
                     </h2>
-                    <p style={{ fontSize: "1.1rem", color: "#6b7280", lineHeight: "1.8", marginBottom: "2rem" }}>
+                    <p className={styles.aboutText}>
                         QwertyChat is a modern, intelligent chat widget designed to enhance customer support
                         and improve user engagement. Built with React and TypeScript, it provides a seamless
                         communication experience with customizable themes and responsive design.
                     </p>
-                    <p style={{ fontSize: "1.1rem", color: "#6b7280", lineHeight: "1.8" }}>
+                    <p className={styles.aboutText}>
                         Our mission is to make customer support more accessible, efficient, and user-friendly
                         through innovative technology and thoughtful design.
                     </p>
@@ -269,53 +167,34 @@ export const App: React.FC = () => {
             </section>
 
             {/* Contact Section */}
-            <section
-                id="contact"
-                style={{
-                    padding: "4rem 2rem",
-                    background: "white",
-                }}
-            >
-                <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
-                    <h2 style={{ fontSize: "2.5rem", marginBottom: "2rem", color: "#1f2937" }}>
+            <section id="contact" className={styles.contactSection}>
+                <div className={styles.contactContainer}>
+                    <h2 className={styles.contactTitle}>
                         Get in Touch
                     </h2>
-                    <p style={{ fontSize: "1.1rem", color: "#6b7280", marginBottom: "3rem" }}>
+                    <p className={styles.contactSubtitle}>
                         Ready to transform your customer support? Contact us to learn more about QwertyChat.
                     </p>
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                            gap: "2rem",
-                        }}
-                    >
-                        <div>
-                            <h3 style={{ color: "#1f2937", marginBottom: "0.5rem" }}>Email</h3>
-                            <p style={{ color: "#6b7280" }}>hello@qwertychat.com</p>
+                    <div className={styles.contactGrid}>
+                        <div className={styles.contactItem}>
+                            <h3>Email</h3>
+                            <p>hello@qwertychat.com</p>
                         </div>
-                        <div>
-                            <h3 style={{ color: "#1f2937", marginBottom: "0.5rem" }}>Phone</h3>
-                            <p style={{ color: "#6b7280" }}>+1 (555) 123-4567</p>
+                        <div className={styles.contactItem}>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
                         </div>
-                        <div>
-                            <h3 style={{ color: "#1f2937", marginBottom: "0.5rem" }}>Address</h3>
-                            <p style={{ color: "#6b7280" }}>123 Chat Street, Tech City</p>
+                        <div className={styles.contactItem}>
+                            <h3>Address</h3>
+                            <p>123 Chat Street, Tech City</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Footer */}
-            <footer
-                style={{
-                    background: "#1f2937",
-                    color: "white",
-                    padding: "2rem",
-                    textAlign: "center",
-                }}
-            >
-                <p style={{ margin: "0", color: "#9ca3af" }}>
+            <footer className={styles.footer}>
+                <p>
                     © 2024 QwertyChat. All rights reserved.
                 </p>
             </footer>

@@ -10,11 +10,39 @@
     &.user {
         align-self: flex-end;
         align-items: flex-end;
+
+        .messageBubble {
+            background: var(--qwertychat-components-message-user-background, var(--qwertychat-primary));
+            color: var(--qwertychat-components-message-user-text, var(--qwertychat-contrast));
+        }
+
+        .messageIcon {
+            background: var(--qwertychat-components-message-user-background, var(--qwertychat-primary));
+            color: var(--qwertychat-components-message-user-text, var(--qwertychat-contrast));
+        }
+
+        .messageBubbleContainer {
+            align-items: flex-end;
+        }
     }
 
     &.bot {
         align-self: flex-start;
         align-items: flex-start;
+
+        .messageBubble {
+            background: var(--qwertychat-components-message-bot-background, var(--qwertychat-secondary));
+            color: var(--qwertychat-components-message-bot-text, var(--qwertychat-text));
+        }
+
+        .messageIcon {
+            background: var(--qwertychat-components-message-bot-avatar-background, var(--qwertychat-primary));
+            color: var(--qwertychat-components-message-bot-avatar-text, var(--qwertychat-contrast));
+        }
+
+        .messageBubbleContainer {
+            align-items: flex-start;
+        }
     }
 
     &.inChain {
@@ -32,29 +60,38 @@
         min-height: 24px;
 
         .messageIconSpacer {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             flex-shrink: 0;
             visibility: hidden;
         }
 
         .messageIcon {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 12px;
             font-weight: bold;
+            font-size: 14px;
+            color: var(--qwertychat-components-message-bot-avatar-text, var(--qwertychat-contrast));
+            background: var(--qwertychat-components-message-bot-avatar-background, var(--qwertychat-primary));
             flex-shrink: 0;
+
+            .avatar {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
         }
 
         .messageBubbleContainer {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            flex: 1;
+            min-width: 0;
         }
 
         .messageBubble {

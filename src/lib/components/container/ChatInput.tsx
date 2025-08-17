@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./ChatInput.module.scss";
-import { Theme } from "../types";
+import { useWidgetContext } from "../../hooks/useWidgetContext";
 
 interface ChatInputProps {
-    onSendMessage: (message: string) => void;
-    theme: Theme;
     initialValue?: string;
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, theme, initialValue = "" }) => {
+export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
+    const { sendUserMessage } = useWidgetContext();
+
     const [inputValue, setInputValue] = useState(initialValue);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -26,23 +26,34 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, theme, init
         }
     }, []);
 
+    useEffect(() => {
+        autoResize();
+    }, [autoResize]);
 
+    const sendMessage = useCallback(() => {
+        const text = inputValue.trim();
+        if (!text) return;
+
+        sendUserMessage(text);
+        setInputValue("");  
+        autoResize();
+    }, [inputValue, autoResize, sendUserMessage]);
 
     const handleKeyDown = useCallback(
         (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
             if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
-                if (inputValue.trim()) {
-                    onSendMessage(inputValue.trim());
-                    setInputValue("");
-                    autoResize();
-                }
+                sendMessage();
             } else if (e.key === "Enter" && e.shiftKey) {
                 autoResize();
             }
         },
-        [inputValue, onSendMessage, autoResize]
+        [inputValue, autoResize, sendMessage]
     );
+
+    const handleSendClick = useCallback(() => {
+        sendMessage();
+    }, [inputValue, autoResize, sendMessage]);
 
     const handleInput = useCallback(
         (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -51,18 +62,6 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, theme, init
         },
         [autoResize]
     );
-
-    const handleSendClick = useCallback(() => {
-        if (inputValue.trim()) {
-            onSendMessage(inputValue.trim());
-            setInputValue("");
-            autoResize();
-        }
-    }, [inputValue, onSendMessage, autoResize]);
-
-    useEffect(() => {
-        autoResize();
-    }, [autoResize]);
 
     // Handle initialValue changes and auto-resize
     useEffect(() => {
@@ -76,19 +75,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, theme, init
     }, [initialValue, autoResize]);
 
     return (
-        <div
-            className={styles.chatInput}
-            style={{
-                borderTopColor: theme.borderColor,
-            }}
-        >
-            <div
-                className={styles.inputContainer}
-                style={{
-                    borderColor: theme.borderColor,
-                    background: theme.inputBg,
-                }}
-            >
+        <div className={styles.chatInput}>
+            <div className={styles.inputContainer}>
                 <textarea
                     ref={textareaRef}
                     className={styles.inputField}
@@ -101,15 +89,6 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, theme, init
                 <button
                     className={styles.sendButton}
                     onClick={handleSendClick}
-                    style={{
-                        background: theme.primaryColor,
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.background = theme.secondaryColor;
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.background = theme.primaryColor;
-                    }}
                 >
                     <svg
                         className={styles.sendIcon}

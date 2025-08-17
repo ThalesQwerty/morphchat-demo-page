@@ -1,44 +1,34 @@
-import React from "react";
 import styles from "./ChatIntro.module.scss";
-import { Theme } from "../types";
+import { useWidgetContext } from "../../hooks/useWidgetContext";
 
-interface ChatIntroProps {
-    logo: string;
-    title: string;
-    subtitle: string;
-    theme: Theme;
-}
+export const ChatIntro = () => {
+    const { intro, profile } = useWidgetContext();
 
-export const ChatIntro: React.FC<ChatIntroProps> = ({
-    logo,
-    title,
-    subtitle,
-    theme,
-}) => (
-    <div className={styles.introMessage}>
-        <div
-            className={styles.introLogo}
-            style={{
-                background: theme.primaryColor,
-            }}
-        >
-            {logo}
+    const profileAvatar = profile?.avatar;
+    const profileName = profile?.name || "QwertyChat";
+    const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
+
+    if (typeof intro !== "object" || !intro || (!("title" in intro) && !("subtitle" in intro))) {
+        return <div className={styles.introMessage}>
+            <>{intro}</>
+        </div>;
+    }
+
+    return (
+        <div className={styles.introMessage}>
+            <div className={styles.introLogo}>
+                {profileAvatar ? (
+                    <img src={profileAvatar} alt="Profile" className={styles.avatar} />
+                ) : (
+                    logo
+                )}
+            </div>
+            <div className={styles.introTitle}>
+                {intro.title}
+            </div>
+            <div className={styles.introSubtitle}>
+                {intro.subtitle}
+            </div>
         </div>
-        <div
-            className={styles.introTitle}
-            style={{
-                color: theme.textColor,
-            }}
-        >
-            {title}
-        </div>
-        <div
-            className={styles.introSubtitle}
-            style={{
-                color: theme.textSecondary,
-            }}
-        >
-            {subtitle}
-        </div>
-    </div>
-);
+    );
+};

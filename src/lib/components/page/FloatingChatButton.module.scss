@@ -3,12 +3,11 @@
 .chatButton {
     position: fixed;
     bottom: 20px;
-    right: 20px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     border: none;
-    color: white;
+    color: var(--qwertychat-components-chat-button-text, var(--qwertychat-contrast));
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -16,10 +15,19 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
     animation: growIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--qwertychat-components-chat-button-background, var(--qwertychat-primary));
+
+    &.right {
+        right: 20px;
+    }
+
+    &.left {
+        left: 20px;
+    }
 
     &:hover {
         transform: scale(1.1);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
     &:active {
@@ -31,8 +39,15 @@
         width: 56px;
         height: 56px;
         bottom: 16px;
-        right: 16px;
         z-index: 1002;
+
+        &.right {
+            right: 16px;
+        }
+
+        &.left {
+            left: 16px;
+        }
     }
 }
 

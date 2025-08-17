@@ -1,37 +1,26 @@
 import React from "react";
 import styles from "./ChatFooter.module.scss";
-import { Theme } from "../types";
+import { useWidgetContext } from "../../hooks/useWidgetContext";
 
-interface ChatFooterProps {
-    logo: string;
-    theme: Theme;
-}
+export const ChatFooter: React.FC = () => {
+    const { profile } = useWidgetContext();
+    
+    const profileAvatar = profile?.avatar;
+    const profileName = profile?.name || "QwertyChat";
+    const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
 
-export const ChatFooter: React.FC<ChatFooterProps> = ({
-    logo,
-    theme,
-}) => (
-    <div
-        className={styles.chatFooter}
-        style={{
-            borderTopColor: theme.borderColor,
-        }}
-    >
-        <div
-            className={styles.footerLogo}
-            style={{
-                background: theme.primaryColor,
-            }}
-        >
-            {logo}
+    return (
+    <div className={styles.chatFooter}>
+        <div className={styles.footerLogo}>
+            {profileAvatar ? (
+                <img src={profileAvatar} alt="Profile" className={styles.avatar} />
+            ) : (
+                logo
+            )}
         </div>
-        <div
-            className={styles.footerText}
-            style={{
-                color: theme.textSecondary,
-            }}
-        >
-            Powered by EloquentAI
+        <div className={styles.footerText}>
+            Powered by QwertyChat
         </div>
     </div>
-);
+    );
+};

@@ -1,60 +1,48 @@
 import React from "react";
 import styles from "./MessageBubble.module.scss";
-import { Message, Theme } from "../types";
 import { MessageTimestamp } from "./MessageTimestamp";
+import { useWidgetContext } from "../../hooks/useWidgetContext";
+import { ChainedMessage } from "../../types/Message";
 
 interface MessageBubbleProps {
-    message: Message;
-    theme: Theme;
-    showTimestamp?: boolean;
-    showAuthorPhoto?: boolean;
-    isInChain?: boolean;
-    isFirstInChain?: boolean;
+    message: ChainedMessage;
 }
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({
-    message,
-    theme,
-    showTimestamp = true,
-    showAuthorPhoto = true,
-    isInChain = false,
-    isFirstInChain = false,
+    message
 }) => {
-    const isUser = message.type === "user";
+    const { profile } = useWidgetContext();
+    const { chain } = message;
+
+    const isFromUser = message.from === "user";
+
+    const showTimestamp = chain === "last" || chain === "single";
+    const showAuthorPhoto = chain === "last" || chain === "middle";
+    const isInChain = chain !== "single";
+    const isFirstInChain = chain === "first" || chain === "single";
     
     return (
-        <div className={`${styles.message} ${styles[message.type]} ${isInChain ? styles.inChain : ''} ${isFirstInChain ? styles.firstInChain : ''}`}>
+        <div className={`${styles.message} ${styles[message.from]} ${isInChain ? styles.inChain : ''} ${isFirstInChain ? styles.firstInChain : ''}`}>
             <div className={styles.messageContent}>
-                {!isUser && (
+                {!isFromUser && (
                     showAuthorPhoto ? (
-                        <div
-                            className={styles.messageIcon}
-                            style={{
-                                background: theme.primaryColor,
-                            }}
-                        >
-                            Q
+                        <div className={styles.messageIcon}>
+                            {profile.avatar ? (
+                                <img src={profile.avatar} alt="Profile" className={styles.avatar} />
+                            ) : (
+                                profile.name ? profile.name.charAt(0).toUpperCase() : "Q"
+                            )}
                         </div>
                     ) : (
                         <div className={styles.messageIconSpacer} />
                     )
                 )}
                 <div className={styles.messageBubbleContainer}>
-                    <div
-                        className={`${styles.messageBubble} ${showTimestamp ? styles.lastInChain : ''}`}
-                        style={{
-                            background: isUser ? theme.messageUserBg : theme.messageBotBg,
-                            color: isUser ? theme.messageUserText : theme.messageBotText,
-                        }}
-                    >
+                    <div className={`${styles.messageBubble} ${showTimestamp ? styles.lastInChain : ''}`}>
                         {message.content}
                     </div>
-                    {showTimestamp && message.timestamp && message.username && (
-                        <MessageTimestamp
-                            username={message.username}
-                            timestamp={message.timestamp}
-                            theme={theme}
-                        />
+                    {showTimestamp && message.timestamp && (
+                        <MessageTimestamp message={message} />
                     )}
                 </div>
             </div>

@@ -1,44 +1,25 @@
 import React from "react";
 import styles from "./FloatingChatButton.module.scss";
-import { Theme } from "../types";
+import { useWidgetContext } from "../../hooks/useWidgetContext";
 
 interface FloatingChatButtonProps {
     onClick: () => void;
-    theme?: Theme;
     isVisible: boolean;
 }
 
-// Default theme for the button
-const defaultTheme: Theme = {
-    primaryColor: "#6366f1",
-    secondaryColor: "#8b5cf6",
-    backgroundColor: "#ffffff",
-    textColor: "#1f2937",
-    textSecondary: "#6b7280",
-    messageUserBg: "#6366f1",
-    messageUserText: "#ffffff",
-    messageBotBg: "#f3f4f6",
-    messageBotText: "#1f2937",
-    inputBg: "#ffffff",
-    borderColor: "#e5e7eb",
-    shadowColor: "rgba(0, 0, 0, 0.1)",
-};
-
 export const FloatingChatButton: React.FC<FloatingChatButtonProps> = ({
     onClick,
-    theme = defaultTheme,
     isVisible,
 }) => {
+    const { corner = "right" } = useWidgetContext();
     if (!isVisible) return null;
+
+    const buttonClass = `${styles.chatButton} ${corner === "left" ? styles.left : styles.right}`;
 
     return (
         <button
-            className={styles.chatButton}
+            className={buttonClass}
             onClick={onClick}
-            style={{
-                background: theme.primaryColor,
-                boxShadow: `0 4px 12px ${theme.shadowColor}`,
-            }}
             aria-label="Open chat"
         >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

@@ -1,52 +1,61 @@
-import React, { useCallback } from "react";
-import { ChatWidgetContainer } from "./components/page/ChatWidgetContainer";
-import { Theme } from "./components/types";
+import React from "react";
 
-interface UseChatWidgetOptions {
-    theme?: Theme;
-    logo?: string;
-    title?: string;
-    introTitle?: string;
-    introSubtitle?: string;
-    onSendMessage?: (message: string) => void;
-}
+import { ChatWidgetContainer } from "./components/page/ChatWidgetContainer";
+import { FilledWidgetConfig, WidgetConfig } from "./WidgetConfig";
+import { useTheme } from "./hooks/useTheme";
+import { defaultLightTheme } from "./constants/defaultThemes";
+import { WidgetProvider } from "./hooks/useWidgetContext";
+import { Color } from "./types/Color";
+import { useMessages } from "./hooks/useMessages";
 
 interface UseChatWidgetReturn {
-    ChatWidgetComponent: React.ReactElement;
+    component: React.ReactElement;
 }
 
-export function useChatWidget(options: UseChatWidgetOptions = {}): UseChatWidgetReturn {
-    const {
-        theme,
-        logo = "Q",
-        title = "Eloquent AI",
-        introTitle = "Eloquent AI responds instantly",
-        introSubtitle = "Ask me anything",
-        onSendMessage,
-    } = options;
-
-    const handleSendMessage = useCallback(
-        (message: string) => {
-            console.log("Message sent:", message);
-            if (onSendMessage) {
-                onSendMessage(message);
-            }
-        },
-        [onSendMessage]
+export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
+    const messageHook = useMessages(
+        config.messages, 
+        config.events?.onSendMessage
     );
+    
+    const filledConfig: FilledWidgetConfig = {
+        corner: "right",
+        mode: "light",
+        intro: {
+            title: "QwertyChat responds instantly",
+            subtitle: "Ask me anything",
+        },
+        events: {},
+        status: {
+            isOpen: false,
+            isTyping: false,
+        },
 
-    const ChatWidgetComponent = (
-        <ChatWidgetContainer
-            theme={theme}
-            onSendMessage={handleSendMessage}
-            logo={logo}
-            title={title}
-            introTitle={introTitle}
-            introSubtitle={introSubtitle}
-        />
+        ...config,
+
+        theme: typeof config.theme === "string" ? {
+            ...defaultLightTheme,
+            primary: config.theme ?? Color.purple,
+        } : config.theme ?? defaultLightTheme,
+        profile: {
+            name: "QwertyChat",
+            ...config.profile,
+        },
+        messages: messageHook.messages
+    };
+
+    useTheme(filledConfig.theme);
+
+    const component = (
+        <WidgetProvider value={{
+            ...filledConfig,
+            ...messageHook,
+        }}>
+            <ChatWidgetContainer />
+        </WidgetProvider>
     );
 
     return {
-        ChatWidgetComponent,
+        component,
     };
 }

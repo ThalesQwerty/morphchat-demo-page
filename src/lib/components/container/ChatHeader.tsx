@@ -1,49 +1,37 @@
 import React from "react";
 import styles from "./ChatHeader.module.scss";
-import { Theme } from "../types";
+import { useWidgetContext } from "../../hooks/useWidgetContext";
 
 interface ChatHeaderProps {
-    logo: string;
-    title: string;
-    theme: Theme;
     onClose?: () => void;
 }
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({
-    logo,
-    title,
-    theme,
     onClose,
-}) => (
-    <div
-        className={styles.chatHeader}
-        style={{
-            borderBottomColor: theme.borderColor,
-        }}
-    >
-        <div
-            className={styles.logo}
-            style={{
-                background: theme.primaryColor,
-            }}
-        >
-            {logo}
+}) => {
+    const { profile } = useWidgetContext();
+    
+    const profileAvatar = profile?.avatar;
+    const profileName = profile?.name || "QwertyChat";
+    const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
+    const title = profileName;
+
+    return (
+    <div className={styles.chatHeader}>
+        <div className={styles.logo}>
+            {profileAvatar ? (
+                <img src={profileAvatar} alt={title} className={styles.avatar} />
+            ) : (
+                logo
+            )}
         </div>
-        <div
-            className={styles.headerTitle}
-            style={{
-                color: theme.textColor,
-            }}
-        >
+        <div className={styles.headerTitle}>
             {title}
         </div>
         {onClose && (
             <button
                 className={styles.closeButton}
                 onClick={onClose}
-                style={{
-                    color: theme.textSecondary,
-                }}
                 aria-label="Close chat"
             >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -53,4 +41,5 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
             </button>
         )}
     </div>
-);
+    );
+};

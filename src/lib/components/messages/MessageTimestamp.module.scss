@@ -1,6 +1,16 @@
 /* MessageTimestamp Component Styles */
 
-.messageTimestamp {
+.timestamp {
     font-size: 11px;
     margin-top: 4px;
+    color: var(--qwertychat-text-light);
+    width: 100%;
+}
+
+.userTimestamp {
+    text-align: right;
+}
+
+.botTimestamp {
+    text-align: left;
 }
