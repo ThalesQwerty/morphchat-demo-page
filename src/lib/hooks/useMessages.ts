@@ -40,12 +40,12 @@ export function useMessages(
             const hasPrevious = prevMessage && 
                 prevMessage.from === message.from &&
                 prevMessage.timestamp && message.timestamp &&
-                (message.timestamp.getTime() - prevMessage.timestamp.getTime()) <= maxDeltaTime;
+                Math.abs(message.timestamp.getTime() - prevMessage.timestamp.getTime()) <= maxDeltaTime;
             
-            const hasNext = !nextMessage || 
-                nextMessage.from !== message.from ||
-                !message.timestamp || !nextMessage.timestamp ||
-                (nextMessage.timestamp.getTime() - message.timestamp.getTime()) > maxDeltaTime;
+            const hasNext = nextMessage && 
+                nextMessage.from === message.from &&
+                message.timestamp && nextMessage.timestamp &&
+                Math.abs(nextMessage.timestamp.getTime() - message.timestamp.getTime()) <= maxDeltaTime;
             
             let chain: ChainedMessage["chain"];
 
@@ -53,8 +53,8 @@ export function useMessages(
                 chain = "middle";
             } else if (hasPrevious && !hasNext) {
                 chain = "last";
-            } else if (hasPrevious && hasNext) {
-                chain = "middle";
+            } else if (!hasPrevious && hasNext) {
+                chain = "first";
             } else {
                 chain = "single";
             }
