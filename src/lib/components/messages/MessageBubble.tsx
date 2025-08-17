@@ -23,7 +23,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
     const isFirstInChain = chain === "first" || chain === "single";
     
     return (
-        <div className={`${styles.message} ${styles[message.from]} ${isInChain ? styles.inChain : ''} ${isFirstInChain ? styles.firstInChain : ''}`}>
+        <div className={`${styles.message} ${styles[message.from]} ${styles[message.chain]}`}>
             <div className={styles.messageContent}>
                 {!isFromUser && (
                     showAuthorPhoto ? (

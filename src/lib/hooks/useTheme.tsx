@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 import { Theme } from "../types/Theme";
 import { kebabCase } from "lodash";
+import { Color } from "../constants/Color";
 
 export function useTheme(theme: Theme) {
     useLayoutEffect(() => {
@@ -23,7 +24,11 @@ function applyThemeRecursively(element: HTMLElement, obj: any, prefix: string = 
         const cssVar = prefix ? `${prefix}-${key}` : key;
         
         if (typeof value === "string") {
-            element.style.setProperty("--" + kebabCase(cssVar), value);
+            const varName = "--" + kebabCase(cssVar);
+            element.style.setProperty(varName, value);
+
+            element.style.setProperty(varName + "-hover", `color-mix(in srgb, ${value}, black 10%)`);
+            element.style.setProperty(varName + "-active", `color-mix(in srgb, ${value}, black 20%)`);
         } else if (typeof value === "object" && value !== null) {
             applyThemeRecursively(element, value, cssVar.replace("--", ""));
         }

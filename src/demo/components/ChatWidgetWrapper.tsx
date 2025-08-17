@@ -1,7 +1,11 @@
 import { useChatWidget } from "../../lib/hooks/useChatWidget";
 import { useAppTheme } from "../context/ThemeContext";
 
-export function ChatWidgetWrapper() {
+interface ChatWidgetWrapperProps {
+    corner?: "left" | "right";
+}
+
+export function ChatWidgetWrapper({ corner = "right" }: ChatWidgetWrapperProps) {
     const { resolvedTheme, colorTheme } = useAppTheme();
 
     const handleSendMessage = (message: string) => {
@@ -12,6 +16,7 @@ export function ChatWidgetWrapper() {
     const { component: ChatWidgetComponent } = useChatWidget({
         theme: colorTheme,
         mode: resolvedTheme,
+        corner,
         events: {
             onSendMessage: handleSendMessage,
         },

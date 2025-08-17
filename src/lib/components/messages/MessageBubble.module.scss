@@ -45,13 +45,24 @@
         }
     }
 
-    &.inChain {
+    &.first {
+        margin-top: 24px;
         margin-bottom: 1px;
     }
 
-    &.firstInChain {
-        margin-top: 24px;
+    &.middle {
+        margin-bottom: 1px;
     }
+
+    &.last {
+
+    }
+
+    &.single {
+        margin-top: 24px;
+        margin-bottom: 1px;
+    }
+
 
     .messageContent {
         display: flex;

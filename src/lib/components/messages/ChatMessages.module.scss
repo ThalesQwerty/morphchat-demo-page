@@ -18,11 +18,11 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #e5e7eb;
+        background: var(--qwertychat-secondary);
         border-radius: 2px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: #6b7280;
+        background: var(--qwertychat-secondary-hover);
     }
 }
