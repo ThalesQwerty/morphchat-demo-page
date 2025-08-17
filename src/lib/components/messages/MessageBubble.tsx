@@ -17,7 +17,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
     const isFromUser = message.from === "user";
 
     const showTimestamp = chain === "last" || chain === "single";
-    const showAuthorPhoto = chain === "last" || chain === "middle";
+    const showAuthorPhoto = chain === "last" || chain === "single";
     const isInChain = chain !== "single";
     const isFirstInChain = chain === "first" || chain === "single";
     
