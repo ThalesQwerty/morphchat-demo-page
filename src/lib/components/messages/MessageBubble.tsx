@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./MessageBubble.module.scss";
 import { MessageTimestamp } from "./MessageTimestamp";
+import { UserAvatar } from "./UserAvatar";
 import { useWidgetContext } from "../../hooks/useWidgetContext";
 import { ChainedMessage } from "../../types/Message";
 
@@ -27,11 +28,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
                 {!isFromUser && (
                     showAuthorPhoto ? (
                         <div className={styles.messageIcon}>
-                            {profile.avatar ? (
-                                <img src={profile.avatar} alt="Profile" className={styles.avatar} />
-                            ) : (
-                                profile.name ? profile.name.charAt(0).toUpperCase() : "Q"
-                            )}
+                            <UserAvatar profile={profile} />
                         </div>
                     ) : (
                         <div className={styles.messageIconSpacer} />
