@@ -41,7 +41,7 @@ export function useMessages(
             content: message,
             username: "You",
             timestamp: new Date(),
-            sent: false, // User messages start as unsent
+            read: false
         };
 
         setMessages(previous => [...previous, newMessage]);
@@ -55,7 +55,7 @@ export function useMessages(
             content: message,
             username: "QwertyChat",
             timestamp: new Date(),
-            sent: true,
+            read: true,
         };
 
         setMessages(previous => [...previous, newMessage]);
@@ -63,12 +63,12 @@ export function useMessages(
 
     function markMessagesAsSent() {
         setMessages(previous => 
-            previous.map(message => ({ ...message, sent: true }))
+            previous.map(message => ({ ...message, read: true }))
         );
     }
 
     async function flushMessages() {
-        if (!messages.some(message => message.from === "user" && !message.sent)) return;
+        if (!messages.some(message => message.from === "user" && !message.read)) return;
 
         markMessagesAsSent();
 
