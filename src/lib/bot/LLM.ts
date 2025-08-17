@@ -40,6 +40,8 @@ export class LLM {
 
 			const response = completion.choices[0].message.content;
 			const toolCalls = completion.choices[0].message.tool_calls;
+
+			this.messages.push({ role: "assistant", content: response, tool_calls: toolCalls });
 			
 			return {
 				response,

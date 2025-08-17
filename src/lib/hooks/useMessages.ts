@@ -57,7 +57,7 @@ export function useMessages(
         events?.onSendMessage?.(message);
     }, [events]);
     
-    const receiveBotMessage = useCallback((message: string) => {
+    const receiveBotMessage = useCallback((message: string, alreadyInLLM?: "already_in_llm") => {
         setIsTyping(false);
         setMessages(previous => [
             ...previous, {
@@ -70,10 +70,12 @@ export function useMessages(
             }
         ]);
 
-        llm?.messages.push({
-            role: "assistant",
-            content: message
-        });
+        if (!alreadyInLLM) {
+            llm?.messages.push({
+                role: "assistant",
+                content: message
+            });
+        }
     }, [profile, status?.isOpen]);
 
     useEffect(() => {
@@ -121,13 +123,13 @@ export function useMessages(
 
             if (!response && !toolCalls) throw new Error("No response or tool calls");
 
-            if (response) receiveBotMessage(response);
+            if (response) receiveBotMessage(response, "already_in_llm");
             
             if (toolCalls?.length) {
                 await handleToolCalls(toolCalls, llm);
                 const { response: newResponse } = 	await llm.submit();
 
-                if (newResponse) receiveBotMessage(newResponse);
+                if (newResponse) receiveBotMessage(newResponse, "already_in_llm");
                 else throw new Error("No response after tool calls");
             }
         } catch (error) {
