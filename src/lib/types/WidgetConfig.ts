@@ -1,14 +1,14 @@
 // temporary file for context
 
 import { ReactNode } from "react";
-import { Message } from "./types/Message";
-import { Theme } from "./types/Theme";
-import { Color } from "./types/Color";
+import { Message } from "./Message";
+import { Theme } from "./Theme";
+import { Color } from "../constants/Color";
 
 export interface WidgetConfig {
     corner?: "right" | "left"; // default is "right"
     theme?: Color | Theme;
-    mode?: "light" | "dark"; // default is "light"
+    mode?: "light" | "dark" | "auto"; // default is "auto"
     // if intro is a ReactNode, it will be used as is
     // if intro is an object, load the default intro component with the given title and subtitle
     intro?: ReactNode | Partial<{

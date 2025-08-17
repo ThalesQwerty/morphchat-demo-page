@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { ChainedMessage, Message } from "../types/Message";
 import { demoMessages } from "../constants/mock";
 import { TimeUnit } from "../constants/TimeUnit";
-import { FilledWidgetConfig } from "../WidgetConfig";
+import { FilledWidgetConfig } from "../types/WidgetConfig";
 
 export interface MessageHook { 
     messages: Message[];

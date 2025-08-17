@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode } from "react";
-import { FilledWidgetConfig } from "../WidgetConfig"; 
+import { FilledWidgetConfig } from "../types/WidgetConfig"; 
 import { MessageHook } from "./useMessages";
 
 type WidgetContextType = FilledWidgetConfig & MessageHook;

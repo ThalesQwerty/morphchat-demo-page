@@ -1,12 +1,13 @@
 import React from "react";
 
-import { ChatWidgetContainer } from "./components/page/ChatWidgetContainer";
-import { FilledWidgetConfig, WidgetConfig } from "./WidgetConfig";
-import { useTheme } from "./hooks/useTheme";
-import { defaultLightTheme } from "./constants/defaultThemes";
-import { WidgetProvider } from "./hooks/useWidgetContext";
-import { Color } from "./types/Color";
-import { useMessages } from "./hooks/useMessages";
+import { ChatWidgetContainer } from "../components/page/ChatWidgetContainer";
+import { FilledWidgetConfig, WidgetConfig } from "../types/WidgetConfig";
+import { useTheme } from "./useTheme";
+import { defaultDarkTheme, defaultLightTheme } from "../constants/defaultThemes";
+import { WidgetProvider } from "./useWidgetContext";
+import { Color } from "../constants/Color";
+import { useMessages } from "./useMessages";
+import { useSystemColorMode } from "./useSystemColorMode";
 
 interface UseChatWidgetReturn {
     component: React.ReactElement;
@@ -17,10 +18,13 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         config.messages, 
         config.events?.onSendMessage
     );
+
+    const systemTheme = useSystemColorMode();
+    const resolvedMode = config.mode === "auto" ? systemTheme : (config.mode || "auto");
     
     const filledConfig: FilledWidgetConfig = {
         corner: "right",
-        mode: "light",
+        mode: resolvedMode,
         intro: {
             title: "QwertyChat responds instantly",
             subtitle: "Ask me anything",
@@ -34,7 +38,7 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         ...config,
 
         theme: typeof config.theme === "string" ? {
-            ...defaultLightTheme,
+            ...(resolvedMode === "light" ? defaultLightTheme : defaultDarkTheme),
             primary: config.theme ?? Color.purple,
         } : config.theme ?? defaultLightTheme,
         profile: {

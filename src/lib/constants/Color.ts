@@ -21,7 +21,6 @@ export enum Color {
     pink = "#ec4899",
     slate = "#64748b",
     
-
     gray100 = "#f3f4f6",
     gray200 = "#e5e7eb",
     gray300 = "#d1d5db",

@@ -1,30 +1,13 @@
-import React, { useState } from "react";
-import { useChatWidget } from "./lib/useChatWidget";
-import { Color } from "./lib/types/Color";
+import React from "react";
+import { Color } from "../lib/constants/Color";
+import { ThemeProvider, useAppTheme } from "./context/ThemeContext";
+import { ThemeToggle } from "./components/ThemeToggle";
+import { ChatWidgetWrapper } from "./components/ChatWidgetWrapper";
 import "./globals.scss";
 import styles from "./App.module.scss";
 
-export const App: React.FC = () => {
-    const [currentTheme, setCurrentTheme] = useState<Color>(Color.purple);
-
-    const handleSendMessage = (message: string) => {
-        console.log("Message sent:", message);
-        // Here you would typically send the message to your backend
-    };
-
-    const { component: ChatWidgetComponent } = useChatWidget({
-        theme: currentTheme,
-        events: {
-            onSendMessage: handleSendMessage,
-        },
-        profile: {
-            name: "QwertyChat",
-        },
-        intro: {
-            title: "QwertyChat responds instantly",
-            subtitle: "Ask me anything",
-        },
-    });
+function AppContent() {
+    const { colorTheme, setColorTheme } = useAppTheme();
 
     return (
         <div className={styles.appContainer}>
@@ -39,6 +22,7 @@ export const App: React.FC = () => {
                         <a href="#customization" className={styles.navLink}>Customize</a>
                         <a href="#about" className={styles.navLink}>About</a>
                         <a href="#contact" className={styles.navLink}>Contact</a>
+                        <ThemeToggle />
                     </div>
                 </nav>
             </header>
@@ -126,12 +110,12 @@ export const App: React.FC = () => {
                             .map((colorName) => (
                                 <button
                                     key={colorName}
-                                    onClick={() => setCurrentTheme(Color[colorName as keyof typeof Color])}
-                                    className={`${styles.colorButton} ${currentTheme === Color[colorName as keyof typeof Color] ? styles.colorButtonSelected : styles.colorButtonDefault}`}
+                                    onClick={() => setColorTheme(Color[colorName as keyof typeof Color])}
+                                    className={`${styles.colorButton} ${colorTheme === Color[colorName as keyof typeof Color] ? styles.colorButtonSelected : styles.colorButtonDefault}`}
                                     style={{ background: Color[colorName as keyof typeof Color] }}
                                     title={colorName}
                                 >
-                                    {currentTheme === Color[colorName as keyof typeof Color] && (
+                                    {colorTheme === Color[colorName as keyof typeof Color] && (
                                         <div className={styles.checkmark}>
                                             ✓
                                         </div>
@@ -142,7 +126,7 @@ export const App: React.FC = () => {
                     
                     <div className={styles.currentTheme}>
                         <p>
-                            Current theme: <strong>{Object.keys(Color).find(key => Color[key as keyof typeof Color] === currentTheme)}</strong>
+                            Current theme: <strong>{Object.keys(Color).find(key => Color[key as keyof typeof Color] === colorTheme)}</strong>
                         </p>
                     </div>
                 </div>
@@ -200,7 +184,15 @@ export const App: React.FC = () => {
             </footer>
 
             {/* ChatWidget - Fixed at bottom right */}
-            {ChatWidgetComponent}
+            <ChatWidgetWrapper />
         </div>
+    );
+}
+
+export const App: React.FC = () => {
+    return (
+        <ThemeProvider>
+            <AppContent />
+        </ThemeProvider>
     );
 };

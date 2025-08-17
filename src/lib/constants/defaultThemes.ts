@@ -1,10 +1,10 @@
 import { Theme } from "../types/Theme";
-import { Color } from "../types/Color";
+import { Color } from "./Color";
 
 export const defaultLightTheme = {
     primary: Color.purple,
     secondary: Color.gray200,
-    background: Color.white,
+    background: Color.gray100,
     contrast: Color.white,
     text: Color.gray800,
     textLight: Color.gray500,
@@ -13,24 +13,25 @@ export const defaultLightTheme = {
     components: {
         footer: {
             background: Color.gray100,
-            text: Color.gray500,
         }
     }
 } as const satisfies Theme;
 
 export const defaultDarkTheme = {
     primary: Color.purple,
-    secondary: Color.gray100,
-    background: Color.white,
+    secondary: Color.gray700,
+    background: Color.gray800,
     contrast: Color.white,
-    text: Color.gray900,
-    textLight: Color.gray500,
-    border: Color.gray200,
+    text: Color.gray100,
+    textLight: Color.gray300,
+    border: Color.gray800,
 
     components: {
         footer: {
             background: Color.gray900,
-            text: Color.gray200,
+        },
+        input: {
+            background: Color.gray700,
         }
     }
 } as const satisfies Theme;

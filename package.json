@@ -29,10 +29,12 @@
 	},
 	"homepage": "https://github.com/ThalesQwerty/qwertychat#readme",
 	"dependencies": {
+		"lodash": "^4.17.21",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
+		"@types/lodash": "^4.17.20",
 		"@types/react": "^18.2.0",
 		"@types/react-dom": "^18.2.0",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",

@@ -1,8 +1,8 @@
 import React from "react";
-import { ChatHeader } from "./ChatHeader";
-import { ChatMessages } from "../messages/ChatMessages";
-import { ChatInput } from "./ChatInput";
-import { ChatFooter } from "./ChatFooter";
+import { ChatHeader } from "./container/ChatHeader";
+import { ChatMessages } from "./messages/ChatMessages";
+import { ChatInput } from "./container/ChatInput";
+import { ChatFooter } from "./container/ChatFooter";
 
 interface ChatWidgetProps {
     onClose?: () => void;

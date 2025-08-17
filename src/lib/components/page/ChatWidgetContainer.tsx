@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ChatWidgetContainer.module.scss";
-import { ChatWidget } from "../container/ChatWidget";
+import { ChatWidget } from "../ChatWidget";
 import { FloatingChatButton } from "./FloatingChatButton";
 import { useWidgetContext } from "../../hooks/useWidgetContext";
 
@@ -40,7 +40,7 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
             onOpen?.();
         } else {
             // Show button after a delay when closing chat
-            setTimeout(() => setShowButton(true), 300);
+            setTimeout(() => setShowButton(true), 200);
             onClose?.();
         }
         
@@ -50,7 +50,7 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
     const handleClose = () => {
         setIsOpen(false);
         // Show button after a delay when closing chat
-        setTimeout(() => setShowButton(true), 300);
+        setTimeout(() => setShowButton(true), 200);
         onClose?.();
     };
 

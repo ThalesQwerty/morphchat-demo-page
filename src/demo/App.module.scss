@@ -6,6 +6,15 @@
     overflow-x: hidden;
     min-height: 100vh;
     width: 100%;
+    background-color: #ffffff;
+    color: #1f2937;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode styles */
+:global(.theme-dark) .appContainer {
+    background-color: #111827;
+    color: #f9fafb;
 }
 
 /* Header */
@@ -48,6 +57,7 @@
     background: linear-gradient(135deg, #fef3c7 0%, #e0e7ff 100%);
     padding: 4rem 2rem;
     text-align: center;
+    transition: background 0.3s ease;
 
     .heroContent {
         max-width: 800px;
@@ -57,12 +67,14 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             color: #1f2937;
+            transition: color 0.3s ease;
         }
 
         .heroSubtitle {
             font-size: 1.2rem;
             color: #6b7280;
             margin-bottom: 2rem;
+            transition: color 0.3s ease;
         }
 
         .ctaButton {
@@ -82,10 +94,26 @@
     }
 }
 
+/* Dark mode hero section */
+:global(.theme-dark) .heroSection {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+
+    .heroContent {
+        .heroTitle {
+            color: #f9fafb;
+        }
+
+        .heroSubtitle {
+            color: #d1d5db;
+        }
+    }
+}
+
 /* Features Section */
 .featuresSection {
     padding: 4rem 2rem;
     background: white;
+    transition: background-color 0.3s ease;
 
     .featuresContainer {
         max-width: 1200px;
@@ -96,6 +124,7 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             color: #1f2937;
+            transition: color 0.3s ease;
         }
 
         .featuresGrid {
@@ -109,7 +138,7 @@
                 border-radius: 12px;
                 text-align: center;
                 background: #f9fafb;
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
                 
                 &:hover {
                     transform: translateY(-2px);
@@ -125,11 +154,43 @@
                     font-size: 1.5rem;
                     margin-bottom: 1rem;
                     color: #1f2937;
+                    transition: color 0.3s ease;
                 }
 
                 .featureDescription {
                     color: #6b7280;
                     line-height: 1.6;
+                    transition: color 0.3s ease;
+                }
+            }
+        }
+    }
+}
+
+/* Dark mode features section */
+:global(.theme-dark) .featuresSection {
+    background: #1f2937;
+
+    .featuresContainer {
+        .featuresTitle {
+            color: #f9fafb;
+        }
+
+        .featuresGrid {
+            .featureCard {
+                background: #374151;
+                border-color: #4b5563;
+
+                &:hover {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                }
+
+                .featureTitle {
+                    color: #f9fafb;
+                }
+
+                .featureDescription {
+                    color: #d1d5db;
                 }
             }
         }
@@ -140,6 +201,7 @@
 .customizationSection {
     padding: 4rem 2rem;
     background: #f9fafb;
+    transition: background-color 0.3s ease;
 
     .customizationContainer {
         max-width: 1200px;
@@ -150,6 +212,7 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: #1f2937;
+            transition: color 0.3s ease;
         }
 
         .customizationSubtitle {
@@ -157,6 +220,7 @@
             font-size: 1.1rem;
             color: #6b7280;
             margin-bottom: 3rem;
+            transition: color 0.3s ease;
         }
 
                     .colorGrid {
@@ -220,9 +284,36 @@
             p {
                 color: #6b7280;
                 font-size: 0.9rem;
+                transition: color 0.3s ease;
                 
                 strong {
                     color: #1f2937;
+                    transition: color 0.3s ease;
+                }
+            }
+        }
+    }
+}
+
+/* Dark mode customization section */
+:global(.theme-dark) .customizationSection {
+    background: #374151;
+
+    .customizationContainer {
+        .customizationTitle {
+            color: #f9fafb;
+        }
+
+        .customizationSubtitle {
+            color: #d1d5db;
+        }
+
+        .currentTheme {
+            p {
+                color: #9ca3af;
+                
+                strong {
+                    color: #f9fafb;
                 }
             }
         }
@@ -233,6 +324,7 @@
 .aboutSection {
     padding: 4rem 2rem;
     background: white;
+    transition: background-color 0.3s ease;
 
     .aboutContainer {
         max-width: 800px;
@@ -243,6 +335,7 @@
             font-size: 2.5rem;
             margin-bottom: 2rem;
             color: #1f2937;
+            transition: color 0.3s ease;
         }
 
         .aboutText {
@@ -250,6 +343,7 @@
             color: #6b7280;
             line-height: 1.8;
             margin-bottom: 2rem;
+            transition: color 0.3s ease;
             
             &:last-child {
                 margin-bottom: 0;
@@ -258,10 +352,26 @@
     }
 }
 
+/* Dark mode about section */
+:global(.theme-dark) .aboutSection {
+    background: #1f2937;
+
+    .aboutContainer {
+        .aboutTitle {
+            color: #f9fafb;
+        }
+
+        .aboutText {
+            color: #d1d5db;
+        }
+    }
+}
+
 /* Contact Section */
 .contactSection {
     padding: 4rem 2rem;
     background: white;
+    transition: background-color 0.3s ease;
 
     .contactContainer {
         max-width: 600px;
@@ -272,12 +382,14 @@
             font-size: 2.5rem;
             margin-bottom: 2rem;
             color: #1f2937;
+            transition: color 0.3s ease;
         }
 
         .contactSubtitle {
             font-size: 1.1rem;
             color: #6b7280;
             margin-bottom: 3rem;
+            transition: color 0.3s ease;
         }
 
         .contactGrid {
@@ -289,10 +401,39 @@
                 h3 {
                     color: #1f2937;
                     margin-bottom: 0.5rem;
+                    transition: color 0.3s ease;
                 }
                 
                 p {
                     color: #6b7280;
+                    transition: color 0.3s ease;
+                }
+            }
+        }
+    }
+}
+
+/* Dark mode contact section */
+:global(.theme-dark) .contactSection {
+    background: #1f2937;
+
+    .contactContainer {
+        .contactTitle {
+            color: #f9fafb;
+        }
+
+        .contactSubtitle {
+            color: #d1d5db;
+        }
+
+        .contactGrid {
+            .contactItem {
+                h3 {
+                    color: #f9fafb;
+                }
+                
+                p {
+                    color: #d1d5db;
                 }
             }
         }

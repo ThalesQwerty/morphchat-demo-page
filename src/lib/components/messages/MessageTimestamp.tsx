@@ -21,7 +21,7 @@ export const MessageTimestamp: React.FC<MessageTimestampProps> = ({
 
     return (
         <div className={timestampClass}>
-            {message.username} - {formatDate(message.timestamp ?? new Date())}
+            {message.username} · {formatDate(message.timestamp ?? new Date())}
         </div>
     );
 };

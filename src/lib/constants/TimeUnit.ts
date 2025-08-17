@@ -1,9 +1,9 @@
 export enum TimeUnit {
     seconds = 1000,
-    minutes = 60 * 1000,
-    hours = 60 * 60 * 1000,
-    days = 24 * 60 * 60 * 1000,
-    weeks = 7 * 24 * 60 * 60 * 1000,
-    months = 30 * 24 * 60 * 60 * 1000,
-    years = 365.25 * 24 * 60 * 60 * 1000,
+    minutes = 60 * TimeUnit.seconds,
+    hours = 60 * TimeUnit.minutes,
+    days = 24 * TimeUnit.hours,
+    weeks = 7 * TimeUnit.days,
+    months = 30 * TimeUnit.days,
+    years = 365.25 * TimeUnit.days,
 }
