@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Color } from "../lib/constants/Color";
 import { ThemeProvider, useAppTheme } from "./context/ThemeContext";
-import { ThemeToggle } from "./components/ThemeToggle";
 import { ChatWidgetWrapper } from "./components/ChatWidgetWrapper";
+import { Icon } from "../lib/components/layout/Icon";
 import "./globals.scss";
 import styles from "./App.module.scss";
 
 function AppContent() {
     const { colorTheme, setColorTheme, theme, setTheme } = useAppTheme();
     const [widgetCorner, setWidgetCorner] = useState<"left" | "right">("right");
+    const [isOnline, setIsOnline] = useState(true);
+    const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
+    const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
 
     return (
         <div className={styles.appContainer}>
@@ -21,9 +24,9 @@ function AppContent() {
                         <a href="#home" className={styles.navLink}>Home</a>
                         <a href="#features" className={styles.navLink}>Features</a>
                         <a href="#customization" className={styles.navLink}>Customize</a>
+                        <a href="#functionality" className={styles.navLink}>Functionality</a>
                         <a href="#about" className={styles.navLink}>About</a>
                         <a href="#contact" className={styles.navLink}>Contact</a>
-                        <ThemeToggle />
                     </div>
                 </nav>
             </header>
@@ -55,36 +58,38 @@ function AppContent() {
                             {
                                 title: "Real-time Chat",
                                 description: "Instant messaging with AI-powered responses for immediate customer support.",
-                                icon: "💬",
+                                icon: "ChatCircle",
                             },
                             {
                                 title: "Multi-theme Support",
                                 description: "Customizable themes to match your brand identity and design preferences.",
-                                icon: "🎨",
+                                icon: "Palette",
                             },
                             {
                                 title: "Responsive Design",
                                 description: "Works seamlessly across all devices and screen sizes.",
-                                icon: "📱",
+                                icon: "DeviceMobile",
                             },
                             {
                                 title: "Easy Integration",
                                 description: "Simple setup process with minimal code changes required.",
-                                icon: "⚡",
+                                icon: "Lightning",
                             },
                             {
                                 title: "Analytics Dashboard",
                                 description: "Track conversations and gain insights into customer interactions.",
-                                icon: "📊",
+                                icon: "ChartBar",
                             },
                             {
                                 title: "24/7 Availability",
                                 description: "Always available to provide support when your customers need it most.",
-                                icon: "🕒",
+                                icon: "Clock",
                             },
                         ].map((feature, index) => (
                             <div key={index} className={styles.featureCard}>
-                                <div className={styles.featureIcon}>{feature.icon}</div>
+                                <div className={styles.featureIcon}>
+                                    <Icon name={feature.icon as any} size={48} />
+                                </div>
                                 <h3 className={styles.featureTitle}>
                                     {feature.title}
                                 </h3>
@@ -118,7 +123,7 @@ function AppContent() {
                                 >
                                     {colorTheme === Color[colorName as keyof typeof Color] && (
                                         <div className={styles.checkmark}>
-                                            ✓
+                                            <Icon name="Check" size={24} color="white" />
                                         </div>
                                     )}
                                 </button>
@@ -168,6 +173,89 @@ function AppContent() {
                                         {corner.charAt(0).toUpperCase() + corner.slice(1)}
                                     </button>
                                 ))}
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </section>
+
+            {/* Functionality Section */}
+            <section id="functionality" className={styles.functionalitySection}>
+                <div className={styles.functionalityContainer}>
+                    <h2 className={styles.functionalityTitle}>
+                        Chatbot Functionality
+                    </h2>
+                    <p className={styles.functionalitySubtitle}>
+                        Configure the chatbot behavior and connection settings
+                    </p>
+
+                    {/* Chatbot Prompt Editor - Full Width */}
+                    <div className={styles.promptSection}>
+                        <h3 className={styles.promptSectionTitle}>
+                            <Icon name="ChatCircle" size={24} />
+                            Chatbot Instructions
+                        </h3>
+                        <p className={styles.promptSectionDescription}>
+                            Edit the chatbot's behavior and personality in real-time
+                        </p>
+                        <div className={styles.promptEditor}>
+                            <textarea
+                                value={chatbotPrompt}
+                                onChange={(e) => setChatbotPrompt(e.target.value)}
+                                placeholder="Enter chatbot instructions..."
+                                className={styles.promptTextarea}
+                                rows={6}
+                            />
+                            <div className={styles.promptInfo}>
+                                <Icon name="Info" size={14} />
+                                <span>Changes apply to new conversations</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Status Controls - Row Layout */}
+                    <div className={styles.statusControlsGrid}>
+                        {/* Connection Status */}
+                        <div className={styles.statusControlCard}>
+                            <h3 className={styles.statusControlTitle}>
+                                <Icon name="PowerIcon" size={20} />
+                                Connection Status
+                            </h3>
+                            <p className={styles.statusControlDescription}>
+                                The chat only answers when the widget is online
+                            </p>
+                            <div className={styles.statusButtons}>
+                                <button
+                                    onClick={() => setIsOnline(!isOnline)}
+                                    className={`${styles.statusButton} ${isOnline ? styles.statusButtonSelected : styles.statusButtonDefault}`}
+                                >
+                                    <Icon name="PowerIcon" size={16} />
+                                    {isOnline ? 'Online' : 'Offline'}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Maintenance Mode */}
+                        <div className={styles.statusControlCard}>
+                            <h3 className={styles.statusControlTitle}>
+                                <Icon name="Wrench" size={20} />
+                                Maintenance Mode
+                            </h3>
+                            <p className={styles.statusControlDescription}>
+                                You cannot send messages when the widget is in maintenance mode
+                            </p>
+                            <div className={styles.maintenanceButtons}>
+                                <button
+                                    onClick={() => setIsMaintenanceMode(!isMaintenanceMode)}
+                                    className={`${styles.maintenanceButton} ${isMaintenanceMode ? styles.maintenanceButtonSelected : styles.maintenanceButtonDefault}`}
+                                >
+                                    <Icon name="Wrench" size={16} />
+                                    {isMaintenanceMode ? 'Maintenance Mode ON' : 'Maintenance Mode OFF'}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -226,7 +314,12 @@ function AppContent() {
             </footer>
 
             {/* ChatWidget - Fixed at bottom right */}
-            <ChatWidgetWrapper corner={widgetCorner} />
+            <ChatWidgetWrapper 
+                corner={widgetCorner} 
+                isOnline={isOnline}
+                isMaintenanceMode={isMaintenanceMode}
+                chatbotPrompt={chatbotPrompt}
+            />
         </div>
     );
 }

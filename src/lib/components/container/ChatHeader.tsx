@@ -9,12 +9,13 @@ interface ChatHeaderProps {
 export const ChatHeader: React.FC<ChatHeaderProps> = ({
     onClose,
 }) => {
-    const { profile } = useWidgetContext();
+    const { profile, status } = useWidgetContext();
     
     const profileAvatar = profile?.avatar;
     const profileName = profile?.name || "QwertyChat";
     const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
     const title = profileName;
+    const isOnline = status?.isOnline ?? true;
 
     return (
     <div className={styles.chatHeader}>
@@ -27,6 +28,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
         </div>
         <div className={styles.headerTitle}>
             {title}
+            <div className={`${styles.statusDot} ${isOnline ? styles.online : styles.offline}`} />
         </div>
         {onClose && (
             <button

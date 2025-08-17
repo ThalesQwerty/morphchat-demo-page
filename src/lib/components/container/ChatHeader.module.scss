@@ -37,6 +37,24 @@
     font-size: 16px;
     color: var(--qwertychat-text);
     line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.online {
+        background: var(--qwertychat-primary);
+    }
+
+    &.offline {
+        background: var(--qwertychat-secondary);
+    }
 }
 
 .closeButton {

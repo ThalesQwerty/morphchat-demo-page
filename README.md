@@ -1,21 +1,36 @@
-# React TypeScript Boilerplate
+# QwertyChat - Intelligent Chat Widget
 
-A simple and clean React TypeScript boilerplate for starting new projects.
+A modern, intelligent chat widget built with React and TypeScript, featuring AI-powered responses and customizable themes.
 
 ## Features
 
-- 🚀 **TypeScript First** - Full TypeScript support with strict configuration
-- ⚡ **Fast Development** - Vite dev server with hot reload on localhost:3000
-- 🎯 **Clean Structure** - Simple and organized project structure
-- 🔧 **ESLint** - Code linting and formatting
-- 💅 **Prettier** - Code formatting with 4 spaces and double quotes
-- 📦 **Build Ready** - Production build configuration with Vite
+- 🤖 **AI-Powered Responses** - Integrated with OpenAI's GPT models for intelligent conversations
+- 🎨 **Customizable Themes** - Multiple color themes and dark/light mode support
+- 📱 **Responsive Design** - Works seamlessly across all devices and screen sizes
+- ⚡ **Real-time Chat** - Instant messaging with typing indicators and message status
+- 🔧 **Easy Integration** - Simple setup process with minimal code changes required
+- 🎯 **TypeScript First** - Full TypeScript support with strict configuration
+- 💅 **Modern UI** - Clean, professional design with smooth animations
 
 ## Installation
 
 ```bash
 npm install
 ```
+
+## OpenAI API Configuration
+
+To enable AI-powered responses, you need to configure your OpenAI API key:
+
+1. Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Create a `.env` file in the root directory
+3. Add your API key:
+
+```env
+VITE_OPENAI_API_KEY=your-openai-api-key-here
+```
+
+**Note:** The API key is required for the LLM functionality to work. Without it, the chat will only show demo messages.
 
 ## Development
 
@@ -49,9 +64,17 @@ npm run format:check
 
 ```
 src/
-├── App.tsx          # Main App component
-├── main.tsx         # React entry point
-└── index.ts         # Library exports (if needed)
+├── demo/                    # Demo application
+│   ├── App.tsx             # Main demo app
+│   ├── components/         # Demo-specific components
+│   └── context/           # Theme context
+├── lib/                    # QwertyChat library
+│   ├── components/        # Chat widget components
+│   ├── hooks/            # Custom React hooks
+│   ├── types/            # TypeScript type definitions
+│   ├── constants/        # Constants and themes
+│   └── bot/              # LLM integration
+└── main.tsx              # React entry point
 ```
 
 ## Configuration Files

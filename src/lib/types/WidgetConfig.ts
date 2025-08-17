@@ -1,9 +1,12 @@
 // temporary file for context
 
 import { ReactNode } from "react";
+import { ChatModel } from "openai/resources";
+
 import { Message } from "./Message";
 import { Theme } from "./Theme";
 import { Color } from "../constants/Color";
+
 
 export interface WidgetConfig {
     corner?: "right" | "left"; // default is "right"
@@ -11,6 +14,12 @@ export interface WidgetConfig {
     mode?: "light" | "dark" | "auto"; // default is "auto"
     // if intro is a ReactNode, it will be used as is
     // if intro is an object, load the default intro component with the given title and subtitle
+    prompt?: {
+        apiKey: string;
+        instructions?: string;
+        model?: ChatModel;
+        timeout?: number;
+    };
     intro?: ReactNode | Partial<{
         title: string;
         subtitle: string;
@@ -30,15 +39,17 @@ export interface WidgetConfig {
     }>;
     messages?: Message[];
     status?: Partial<{
+        maintenanceMode: boolean;
+        isOnline: boolean;
         isOpen: boolean;
-        isTyping: boolean;
     }>;
 };
 
-export type FilledWidgetConfig = Required<WidgetConfig> & {
+export type FilledWidgetConfig = Omit<Required<WidgetConfig>, 'prompt'> & {
     theme: Theme;
     profile: {
         name: string;
         avatar?: string;
-    }
+    };
+    prompt?: WidgetConfig['prompt'];
 };

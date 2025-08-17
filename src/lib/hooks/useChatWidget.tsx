@@ -16,7 +16,9 @@ interface UseChatWidgetReturn {
 export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
     const messageHook = useMessages(
         config.messages, 
-        config.events?.onSendMessage
+        config.events?.onSendMessage,
+        config.status?.isOnline,
+        config.prompt
     );
 
     const systemTheme = useSystemColorMode();
@@ -32,7 +34,8 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         events: {},
         status: {
             isOpen: false,
-            isTyping: false,
+            isOnline: true, // default to online
+            maintenanceMode: false, // default to not in maintenance
         },
 
         ...config,

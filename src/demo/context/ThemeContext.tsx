@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { Color } from "../../lib/constants/Color";
 
 export type AppTheme = "light" | "dark" | "auto";
@@ -62,7 +62,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
                 ? (mediaQuery.matches ? "dark" : "light")
                 : theme;
             
-            console.log(`Theme changed: ${theme} -> ${newResolvedTheme}`);
             setResolvedTheme(newResolvedTheme);
         };
 
@@ -96,8 +95,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         
         // Set data attribute for CSS targeting
         root.setAttribute("data-theme", resolvedTheme);
-        
-        console.log(`Applied theme class: theme-${resolvedTheme}`);
     }, [resolvedTheme]);
 
     const value = {

@@ -16,14 +16,13 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
     const { chain } = message;
 
     const isFromUser = message.from === "user";
+    const isUnsent = isFromUser && !message.sent;
 
     const showTimestamp = chain === "last" || chain === "single";
     const showAuthorPhoto = chain === "last" || chain === "single";
-    const isInChain = chain !== "single";
-    const isFirstInChain = chain === "first" || chain === "single";
     
     return (
-        <div className={`${styles.message} ${styles[message.from]} ${styles[message.chain]}`}>
+        <div className={`${styles.message} ${styles[message.from]} ${styles[message.chain]} ${isUnsent ? styles.unsent : ''}`}>
             <div className={styles.messageContent}>
                 {!isFromUser && (
                     showAuthorPhoto ? (

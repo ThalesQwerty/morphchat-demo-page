@@ -8,6 +8,7 @@ export const demoMessages: Message[] = [
         content: "Hi there, would you be able to add a driver to my car insurance, please?",
         username: "You",
         timestamp: new Date(Date.now() - 8 * 60 * 1000), // 8 minutes ago
+        sent: true,
     },
     {
         id: "2",
@@ -15,6 +16,7 @@ export const demoMessages: Message[] = [
         content: "Of course, I can help you add a named driver to your SD&P cover, John.",
         username: "QwertyChat",
         timestamp: new Date(Date.now() - 7 * 60 * 1000), // 7 minutes ago
+        sent: true,
     },
     {
         id: "3",
@@ -22,6 +24,7 @@ export const demoMessages: Message[] = [
         content: "Would you like to proceed now?",
         username: "QwertyChat",
         timestamp: new Date(Date.now() - 6 * 60 * 1000), // 6 minutes ago
+        sent: true,
     },
     {
         id: "4",
@@ -29,6 +32,7 @@ export const demoMessages: Message[] = [
         content: "That's great. I'm getting married and want to get this sorted before our honeymoon.",
         username: "You",
         timestamp: new Date(Date.now() - 5 * 60 * 1000), // 5 minutes ago
+        sent: true,
     },
     {
         id: "5",
@@ -36,5 +40,6 @@ export const demoMessages: Message[] = [
         content: "Congratulations! That's wonderful news. Let me take care of this for you right away.",
         username: "QwertyChat",
         timestamp: new Date(Date.now() - 4 * 60 * 1000), // 4 minutes ago
+        sent: true,
     },
 ];

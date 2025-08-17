@@ -7,10 +7,13 @@ interface ChatInputProps {
 }
 
 export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
-    const { sendUserMessage } = useWidgetContext();
+    const { sendUserMessage, profile, status } = useWidgetContext();
 
     const [inputValue, setInputValue] = useState(initialValue);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    const isMaintenanceMode = status?.maintenanceMode ?? false;
+    const botName = profile?.name || "QwertyChat";
 
     const autoResize = useCallback(() => {
         if (textareaRef.current) {
@@ -32,12 +35,12 @@ export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
 
     const sendMessage = useCallback(() => {
         const text = inputValue.trim();
-        if (!text) return;
+        if (!text || isMaintenanceMode) return;
 
         sendUserMessage(text);
         setInputValue("");  
         autoResize();
-    }, [inputValue, autoResize, sendUserMessage]);
+    }, [inputValue, autoResize, sendUserMessage, isMaintenanceMode]);
 
     const handleKeyDown = useCallback(
         (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -57,10 +60,11 @@ export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
 
     const handleInput = useCallback(
         (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            if (isMaintenanceMode) return;
             setInputValue(e.target.value);
             autoResize();
         },
-        [autoResize]
+        [autoResize, isMaintenanceMode]
     );
 
     // Handle initialValue changes and auto-resize
@@ -74,6 +78,18 @@ export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
         }
     }, [initialValue, autoResize]);
 
+    if (isMaintenanceMode) {
+        return (
+            <div className={styles.chatInput}>
+                <div className={`${styles.inputContainer} ${styles.maintenanceMode}`}>
+                    <div className={styles.maintenanceMessage}>
+                        {botName} is currently in maintenance.
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className={styles.chatInput}>
             <div className={styles.inputContainer}>
@@ -85,10 +101,12 @@ export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
                     onKeyDown={handleKeyDown}
                     placeholder="Type a message..."
                     rows={1}
+                    disabled={isMaintenanceMode}
                 />
                 <button
                     className={styles.sendButton}
                     onClick={handleSendClick}
+                    disabled={isMaintenanceMode}
                 >
                     <svg
                         className={styles.sendIcon}
