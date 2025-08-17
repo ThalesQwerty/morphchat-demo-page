@@ -3,7 +3,6 @@
 import { ReactNode } from "react";
 import { ChatModel } from "openai/resources";
 
-import { Message } from "./Message";
 import { Theme } from "./Theme";
 import { Color } from "../constants/Color";
 
@@ -45,11 +44,12 @@ export interface WidgetConfig {
     }>;
 };
 
-export type FilledWidgetConfig = Omit<Required<WidgetConfig>, 'prompt'> & {
+export type FilledWidgetConfig = Omit<Required<WidgetConfig>, "prompt"> & {
     theme: Theme;
     profile: {
         name: string;
         avatar?: string;
     };
-    prompt?: WidgetConfig['prompt'];
+    status: Required<WidgetConfig["status"]>;
+    prompt?: WidgetConfig["prompt"];
 };

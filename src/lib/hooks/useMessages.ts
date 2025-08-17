@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { ChainedMessage, Message } from "../types/Message";
 import { TimeUnit } from "../constants/TimeUnit";
 import { FilledWidgetConfig } from "../types/WidgetConfig";
@@ -15,11 +15,10 @@ export interface MessageHook {
 }
 
 export function useMessages(
-    onSendMessage?: FilledWidgetConfig["events"]["onSendMessage"],
-    isOnline?: boolean,
-    prompt?: FilledWidgetConfig["prompt"],
-    profile?: FilledWidgetConfig["profile"]
+    config: FilledWidgetConfig,
 ): MessageHook {
+    const { prompt, profile, events, status } = config;
+
     const [messages, setMessages] = useState<Message[]>(prompt?.welcomeMessage ? [
         {
             id: Date.now().toString(),
@@ -44,7 +43,7 @@ export function useMessages(
         );
     }, [prompt]);
 
-    function sendUserMessage(message: string) {
+    const sendUserMessage = useCallback((message: string) => {
         const newMessage: Message = {
             id: Date.now().toString(),
             from: "user",
@@ -55,21 +54,22 @@ export function useMessages(
         };
 
         setMessages(previous => [...previous, newMessage]);
-        onSendMessage?.(message);
-    }
+        events?.onSendMessage?.(message);
+    }, [events]);
     
-    function receiveBotMessage(message: string) {
-        const newMessage: Message = {
-            id: Date.now().toString(),
-            from: "bot",
-            content: message,
-            username: profile?.name || "QwertyChat",
-            timestamp: new Date(),
-            read: false,
-        };
-
-        setMessages(previous => [...previous, newMessage]);
-    }
+    const receiveBotMessage = useCallback((message: string) => {
+        console.log("useMessages: isWidgetOpen =", status?.isOpen);
+        setMessages(previous => [
+            ...previous, {
+                id: Date.now().toString(),
+                from: "bot",
+                content: message,
+                username: profile?.name || "QwertyChat",
+                timestamp: new Date(),
+                read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
+            }
+        ]);
+    }, [profile, status?.isOpen]);
 
     function markMessagesAsSent() {
         setMessages(previous => 
@@ -96,30 +96,30 @@ export function useMessages(
                 role: message.from === "user" ? "user" as const : "assistant" as const,
                 content: message.content
             }))
-        ]
+        ];
+
+        setIsTyping(true);
+        events?.onTyping?.(true);
 
         try {
-            setIsTyping(true);
             const response = await llm.submit();
-
             receiveBotMessage(response);
         } catch (error) {
-            console.error("LLM request failed:", error);
+            console.error("Error sending message:", error);
             receiveBotMessage("Sorry, I'm having trouble responding right now. Please try again later.");
         } finally {
             setIsTyping(false);
+            events?.onTyping?.(false);
         }
     }
 
     useEffect(() => {
-        if (!isOnline) return;
-
         const interval = setInterval(() => {
             flushMessages();
         }, 250);
 
         return () => clearInterval(interval);
-    }, [isOnline, messages]);
+    }, [messages]);
 
     const chainedMessages = useMemo(() => {
         return messages.reduce((acc, message, index) => {

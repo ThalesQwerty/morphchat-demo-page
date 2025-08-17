@@ -2,7 +2,9 @@ import React, { createContext, useContext, ReactNode } from "react";
 import { FilledWidgetConfig } from "../types/WidgetConfig"; 
 import { MessageHook } from "./useMessages";
 
-type WidgetContextType = FilledWidgetConfig & MessageHook;
+type WidgetContextType = FilledWidgetConfig & MessageHook & {
+    setIsWidgetOpen: (isOpen: boolean) => void;
+};
 
 const WidgetContext = createContext<WidgetContextType | undefined>(undefined);
 

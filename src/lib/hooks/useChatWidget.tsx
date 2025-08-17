@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ChatWidgetContainer } from "../components/page/ChatWidgetContainer";
 import { FilledWidgetConfig, WidgetConfig } from "../types/WidgetConfig";
@@ -17,6 +17,9 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
     const systemTheme = useSystemColorMode();
     const resolvedMode = config.mode === "auto" ? systemTheme : (config.mode || "auto");
     
+    // Manage widget state
+    const [isWidgetOpen, setIsWidgetOpen] = useState(!!config.status?.isOpen);
+    
     const filledConfig: FilledWidgetConfig = {
         corner: "right",
         mode: resolvedMode,
@@ -25,13 +28,16 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
             subtitle: "Ask me anything",
         },
         events: {},
-        status: {
-            isOpen: false,
-            isOnline: true, // default to online
-            maintenanceMode: false, // default to not in maintenance
-        },
 
         ...config,
+
+        // Override status.isOpen with local state to ensure it's always correct
+        status: {
+            isOnline: true, // default to online
+            maintenanceMode: false, // default to not in maintenance
+            ...config.status,
+            isOpen: isWidgetOpen, // Use local state
+        },
 
         theme: typeof config.theme === "string" ? {
             ...(resolvedMode === "light" ? defaultLightTheme : defaultDarkTheme),
@@ -43,12 +49,7 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         },
     };
 
-    const messageHook = useMessages(
-        config.events?.onSendMessage,
-        config.status?.isOnline,
-        config.prompt,
-        filledConfig.profile
-    );
+    const messageHook = useMessages(filledConfig);
 
     useTheme(filledConfig.theme);
 
@@ -56,6 +57,7 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         <WidgetProvider value={{
             ...filledConfig,
             ...messageHook,
+            setIsWidgetOpen,
         }}>
             <ChatWidgetContainer />
         </WidgetProvider>

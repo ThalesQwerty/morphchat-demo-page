@@ -30,7 +30,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
         <>
             <ChatHeader onClose={onClose} />
             
-            <ChatMessages onInputInteraction={handleInputInteraction} />
+            <ChatMessages />
             
             <ChatInput onInputInteraction={handleInputInteraction} />
             <ChatFooter />

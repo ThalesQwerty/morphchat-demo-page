@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./ChatInput.module.scss";
 import { useWidgetContext } from "../../hooks/useWidgetContext";
+import { Icon } from "../layout/Icon";
 
 interface ChatInputProps {
     initialValue?: string;
@@ -100,7 +101,9 @@ export const ChatInput: React.FC<ChatInputProps> = ({
             <div className={styles.chatInput}>
                 <div className={`${styles.inputContainer} ${styles.maintenanceMode}`}>
                     <div className={styles.maintenanceMessage}>
-                        {botName} is currently in maintenance.
+                        <Icon name="Warning" size={16} />
+                        <span>{botName} is currently in maintenance.</span>
+                        <Icon name="Warning" size={16} />
                     </div>
                 </div>
             </div>

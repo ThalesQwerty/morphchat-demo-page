@@ -17,11 +17,11 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
         status,
         setMessages,
         messages,
+        setIsWidgetOpen,
     } = useWidgetContext();
 
     // Extract event handlers
-    const { onOpen, onClose, onToggle } = events || {};
-    const [isOpen, setIsOpen] = useState(status?.isOpen ?? false);
+    const { onOpen, onClose, onToggle } = events || {}; 
 
     // Mark all messages as read
     const markAllMessagesAsRead = useCallback(() => {
@@ -37,13 +37,18 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
     // Update internal state when status prop changes
     useEffect(() => {
         if (status?.isOpen !== undefined) {
-            setIsOpen(status.isOpen);
+            setIsWidgetOpen(status.isOpen);
         }
     }, [status?.isOpen]);
 
+    // Update context when local state changes
+    useEffect(() => {
+        setIsWidgetOpen(status.isOpen);
+    }, [status.isOpen, setIsWidgetOpen]);
+
     const toggleChat = () => {
-        const newIsOpen = !isOpen;
-        setIsOpen(newIsOpen);
+        const newIsOpen = !status.isOpen;
+        setIsWidgetOpen(newIsOpen);
         
         if (newIsOpen) {
             onOpen?.();
@@ -59,13 +64,13 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
     const handleClose = () => {
         // Mark messages as read when closing (simplified approach)
         markAllMessagesAsRead();
-        setIsOpen(false);
+        setIsWidgetOpen(false);
         onClose?.();
     };
 
     // Determine container class based on corner and chat state
     const containerClass = styles.chatWidgetContainer;
-    const chatWidgetClass = `${styles.chatWidget} ${className} ${isOpen ? styles.open : styles.closed} ${corner === "left" ? styles.left : styles.right}`;
+    const chatWidgetClass = `${styles.chatWidget} ${className} ${status.isOpen ? styles.open : styles.closed} ${corner === "left" ? styles.left : styles.right}`;
 
     return (
         <div className={containerClass}>
@@ -78,7 +83,7 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
             <div className={styles.floatingButtonWrapper}>
                 <FloatingChatButton
                     onClick={toggleChat}
-                    isVisible={!isOpen}
+                    isVisible={!status.isOpen}
                 />
             </div>
         </div>
