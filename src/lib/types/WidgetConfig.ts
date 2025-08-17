@@ -16,6 +16,7 @@ export interface WidgetConfig {
     // if intro is an object, load the default intro component with the given title and subtitle
     prompt?: {
         apiKey: string;
+        welcomeMessage?: string;
         instructions?: string;
         model?: ChatModel;
         timeout?: number;
@@ -37,7 +38,6 @@ export interface WidgetConfig {
         onSendMessage: (message: string) => void;
         onTyping: (isTyping: boolean) => void;
     }>;
-    messages?: Message[];
     status?: Partial<{
         maintenanceMode: boolean;
         isOnline: boolean;

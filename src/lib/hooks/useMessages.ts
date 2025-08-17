@@ -1,6 +1,5 @@
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { ChainedMessage, Message } from "../types/Message";
-import { demoMessages } from "../constants/mock";
 import { TimeUnit } from "../constants/TimeUnit";
 import { FilledWidgetConfig } from "../types/WidgetConfig";
 import { LLM } from "../bot/LLM";
@@ -16,12 +15,22 @@ export interface MessageHook {
 }
 
 export function useMessages(
-    initialMessages: Message[] = demoMessages, 
     onSendMessage?: FilledWidgetConfig["events"]["onSendMessage"],
     isOnline?: boolean,
-    prompt?: FilledWidgetConfig["prompt"]
+    prompt?: FilledWidgetConfig["prompt"],
+    profile?: FilledWidgetConfig["profile"]
 ): MessageHook {
-    const [messages, setMessages] = useState(initialMessages);
+    const [messages, setMessages] = useState<Message[]>(prompt?.welcomeMessage ? [
+        {
+            id: Date.now().toString(),
+            from: "bot",
+            content: prompt.welcomeMessage,
+            username: profile?.name || "QwertyChat",
+            timestamp: new Date(),
+            read: false,
+        }
+    ] : []);
+
     const [isTyping, setIsTyping] = useState(false);
 
     const llm = useMemo(() => {
@@ -42,7 +51,7 @@ export function useMessages(
             content: message,
             username: "You",
             timestamp: new Date(),
-            read: true // User messages are always read
+            read: false
         };
 
         setMessages(previous => [...previous, newMessage]);
@@ -54,9 +63,9 @@ export function useMessages(
             id: Date.now().toString(),
             from: "bot",
             content: message,
-            username: "QwertyChat",
+            username: profile?.name || "QwertyChat",
             timestamp: new Date(),
-            read: false, // Bot messages start as unread
+            read: false,
         };
 
         setMessages(previous => [...previous, newMessage]);

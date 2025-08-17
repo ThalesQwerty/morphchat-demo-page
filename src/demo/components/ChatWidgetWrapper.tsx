@@ -6,13 +6,15 @@ interface ChatWidgetWrapperProps {
     isOnline?: boolean;
     isMaintenanceMode?: boolean;
     chatbotPrompt?: string;
+    welcomeMessage?: string;
 }
 
 export function ChatWidgetWrapper({ 
     corner = "right", 
     isOnline = true, 
     isMaintenanceMode = false,
-    chatbotPrompt = "You are a helpful AI assistant. Give short and concise answers."
+    chatbotPrompt = "You are a helpful AI assistant. Give short and concise answers.",
+    welcomeMessage = "Hello! I'm QwertyChat, your AI assistant. How can I help you today?"
 }: ChatWidgetWrapperProps) {
     const { resolvedTheme, colorTheme } = useAppTheme();
 
@@ -34,6 +36,7 @@ export function ChatWidgetWrapper({
         prompt: {
             apiKey: import.meta.env.VITE_OPENAI_API_KEY || "",
             instructions: chatbotPrompt,
+            welcomeMessage,
             model: "gpt-4o-mini",
             timeout: 30000,
         },

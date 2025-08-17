@@ -14,13 +14,6 @@ interface UseChatWidgetReturn {
 }
 
 export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
-    const messageHook = useMessages(
-        config.messages, 
-        config.events?.onSendMessage,
-        config.status?.isOnline,
-        config.prompt
-    );
-
     const systemTheme = useSystemColorMode();
     const resolvedMode = config.mode === "auto" ? systemTheme : (config.mode || "auto");
     
@@ -48,8 +41,14 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
             name: "QwertyChat",
             ...config.profile,
         },
-        messages: messageHook.messages
     };
+
+    const messageHook = useMessages(
+        config.events?.onSendMessage,
+        config.status?.isOnline,
+        config.prompt,
+        filledConfig.profile
+    );
 
     useTheme(filledConfig.theme);
 

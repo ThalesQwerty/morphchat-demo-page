@@ -13,6 +13,7 @@ function AppContent() {
     const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
     const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
 
+
     return (
         <div className={styles.appContainer}>
 
@@ -216,6 +217,8 @@ function AppContent() {
                             </div>
                         </div>
                     </div>
+
+
 
                     {/* Status Controls - Row Layout */}
                     <div className={styles.statusControlsGrid}>
