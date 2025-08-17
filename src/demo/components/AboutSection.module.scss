@@ -1,0 +1,68 @@
+.aboutSection {
+    padding: 4rem 2rem;
+    background: white;
+    transition: background-color 0.3s ease;
+
+    .aboutContainer {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+
+        .aboutTitle {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1f2937;
+            transition: color 0.3s ease;
+        }
+
+        .aboutText {
+            font-size: 1.1rem;
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+/* Dark mode about section */
+:global(.theme-dark) .aboutSection {
+    background: #1f2937;
+
+    .aboutContainer {
+        .aboutTitle {
+            color: #f9fafb;
+        }
+
+        .aboutText {
+            color: #d1d5db;
+        }
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .aboutSection {
+        .aboutContainer {
+            .aboutTitle {
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutSection {
+        padding: 2rem 1rem;
+
+        .aboutContainer {
+            .aboutTitle {
+                font-size: 1.75rem;
+            }
+        }
+    }
+}

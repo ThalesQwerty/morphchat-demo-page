@@ -1,0 +1,78 @@
+.heroSection {
+    background: linear-gradient(135deg, #fef3c7 0%, #e0e7ff 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    transition: background 0.3s ease;
+
+    .heroContent {
+        max-width: 800px;
+        margin: 0 auto;
+
+        .heroTitle {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            transition: color 0.3s ease;
+        }
+
+        .heroSubtitle {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .ctaButton {
+            padding: 12px 24px;
+            background: var(--qwertychat-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            
+            &:hover {
+                background: var(--qwertychat-primary-hover);
+            }
+        }
+    }
+}
+
+/* Dark mode hero section */
+:global(.theme-dark) .heroSection {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+
+    .heroContent {
+        .heroTitle {
+            color: #f9fafb;
+        }
+
+        .heroSubtitle {
+            color: #d1d5db;
+        }
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .heroSection {
+        .heroContent {
+            .heroTitle {
+                font-size: 2.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .heroSection {
+        padding: 2rem 1rem;
+
+        .heroContent {
+            .heroTitle {
+                font-size: 2rem;
+            }
+        }
+    }
+}

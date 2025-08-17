@@ -1,0 +1,321 @@
+.customizationSection {
+    padding: 4rem 2rem;
+    background: #f9fafb;
+    transition: background-color 0.3s ease;
+
+    .customizationContainer {
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .customizationTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            transition: color 0.3s ease;
+        }
+
+        .customizationSubtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            transition: color 0.3s ease;
+        }
+
+        .colorGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            
+            /* Mobile Responsive */
+            @media (max-width: 768px) {
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+                gap: 0.75rem;
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            
+            @media (max-width: 480px) {
+                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+                gap: 0.5rem;
+            }
+
+            .colorButton {
+                aspect-ratio: 1;
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                position: relative;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                
+                &:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+                }
+            }
+
+            .colorButtonSelected {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+
+            .colorButtonDefault {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .checkmark {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-size: 1.5rem;
+                font-weight: bold;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        .currentTheme {
+            text-align: center;
+            margin-top: 2rem;
+            
+            p {
+                color: #6b7280;
+                font-size: 0.9rem;
+                transition: color 0.3s ease;
+                
+                strong {
+                    color: #1f2937;
+                    transition: color 0.3s ease;
+                }
+            }
+        }
+
+        /* Control Sections Container */
+        .controlSectionsContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            
+            /* Mobile Responsive */
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Control Sections */
+        .controlSection {
+            text-align: center;
+
+            .controlTitle {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                color: #1f2937;
+                transition: color 0.3s ease;
+            }
+
+            .controlSubtitle {
+                font-size: 1rem;
+                color: #6b7280;
+                margin-bottom: 1.5rem;
+                transition: color 0.3s ease;
+            }
+
+            .modeButtons,
+            .cornerButtons,
+            .statusButtons,
+            .maintenanceButtons {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+
+                .modeButton,
+                .cornerButton,
+                .statusButton,
+                .maintenanceButton {
+                    padding: 12px 24px;
+                    border: 2px solid #e5e7eb;
+                    border-radius: 8px;
+                    background: white;
+                    color: #374151;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    min-width: 140px;
+                    justify-content: center;
+                    
+                    &:hover {
+                        border-color: #d1d5db;
+                        background: #f9fafb;
+                    }
+                }
+
+                .modeButtonSelected,
+                .cornerButtonSelected {
+                    border-color: var(--qwertychat-primary);
+                    background: var(--qwertychat-primary);
+                    color: white;
+                    
+                    &:hover {
+                        background: var(--qwertychat-primary-hover);
+                        border-color: var(--qwertychat-primary-hover);
+                    }
+                }
+
+                .statusButtonSelected,
+                .maintenanceButtonSelected {
+                    border-color: var(--qwertychat-primary);
+                    background: var(--qwertychat-primary);
+                    color: white;
+                    
+                    &:hover {
+                        background: var(--qwertychat-primary-hover);
+                        border-color: var(--qwertychat-primary-hover);
+                    }
+                }
+
+                .modeButtonDefault,
+                .cornerButtonDefault {
+                    &:hover {
+                        border-color: var(--qwertychat-primary);
+                        color: var(--qwertychat-primary);
+                    }
+                }
+
+                .statusButtonDefault,
+                .maintenanceButtonDefault {
+                    &:hover {
+                        border-color: var(--qwertychat-primary);
+                        color: var(--qwertychat-primary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Dark mode customization section */
+:global(.theme-dark) .customizationSection {
+    background: #374151;
+
+    .customizationContainer {
+        .customizationTitle {
+            color: #f9fafb;
+        }
+
+        .customizationSubtitle {
+            color: #d1d5db;
+        }
+
+        .currentTheme {
+            p {
+                color: #9ca3af;
+                
+                strong {
+                    color: #f9fafb;
+                }
+            }
+        }
+
+        .controlSection {
+            .controlTitle {
+                color: #f9fafb;
+            }
+
+            .controlSubtitle {
+                color: #d1d5db;
+            }
+
+            .modeButtons,
+            .cornerButtons,
+            .statusButtons,
+            .maintenanceButtons {
+                .modeButton,
+                .cornerButton,
+                .statusButton,
+                .maintenanceButton {
+                    border-color: #4b5563;
+                    background: #374151;
+                    color: #d1d5db;
+                    
+                    &:hover {
+                        border-color: #6b7280;
+                        background: #4b5563;
+                    }
+                }
+
+                .modeButtonSelected,
+                .cornerButtonSelected {
+                    border-color: var(--qwertychat-primary);
+                    background: var(--qwertychat-primary);
+                    color: white;
+                    
+                    &:hover {
+                        background: var(--qwertychat-primary-hover);
+                        border-color: var(--qwertychat-primary-hover);
+                    }
+                }
+
+                .statusButtonSelected,
+                .maintenanceButtonSelected {
+                    border-color: var(--qwertychat-primary);
+                    background: var(--qwertychat-primary);
+                    color: white;
+                    
+                    &:hover {
+                        background: var(--qwertychat-primary-hover);
+                        border-color: var(--qwertychat-primary-hover);
+                    }
+                }
+
+                .modeButtonDefault,
+                .cornerButtonDefault {
+                    &:hover {
+                        border-color: var(--qwertychat-primary);
+                        color: var(--qwertychat-primary);
+                    }
+                }
+
+                .statusButtonDefault,
+                .maintenanceButtonDefault {
+                    &:hover {
+                        border-color: var(--qwertychat-primary);
+                        color: var(--qwertychat-primary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .customizationSection {
+        .customizationContainer {
+            .customizationTitle {
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .customizationSection {
+        padding: 2rem 1rem;
+
+        .customizationContainer {
+            .customizationTitle {
+                font-size: 1.75rem;
+            }
+        }
+    }
+}

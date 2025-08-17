@@ -1,0 +1,21 @@
+import React from "react";
+import styles from "./HeroSection.module.scss";
+
+export function HeroSection() {
+    return (
+        <section id="home" className={styles.heroSection}>
+            <div className={styles.heroContent}>
+                <h1 className={styles.heroTitle}>
+                    Welcome to QwertyChat
+                </h1>
+                <p className={styles.heroSubtitle}>
+                    Experience the future of customer support with our intelligent chat widget.
+                    Get instant responses and seamless communication.
+                </p>
+                <button className={styles.ctaButton}>
+                    Get Started
+                </button>
+            </div>
+        </section>
+    );
+}

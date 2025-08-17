@@ -1,0 +1,300 @@
+.functionalitySection {
+    padding: 4rem 2rem;
+    background: white;
+    transition: background-color 0.3s ease;
+
+    .functionalityContainer {
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .functionalityTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            transition: color 0.3s ease;
+        }
+
+        .functionalitySubtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            transition: color 0.3s ease;
+        }
+
+        /* Prompt Section - Full Width */
+        .promptSection {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #f9fafb;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+            .promptSectionTitle {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+                color: #1f2937;
+                transition: color 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .promptSectionDescription {
+                color: #6b7280;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                transition: color 0.3s ease;
+            }
+
+            .promptEditor {
+                .promptTextarea {
+                    width: 100%;
+                    padding: 16px;
+                    border: 2px solid #e5e7eb;
+                    border-radius: 8px;
+                    background: white;
+                    color: #374151;
+                    font-size: 0.95rem;
+                    font-family: inherit;
+                    resize: vertical;
+                    min-height: 120px;
+                    transition: border-color 0.2s ease;
+                    
+                    &:focus {
+                        outline: none;
+                        border-color: var(--qwertychat-primary);
+                    }
+                    
+                    &::placeholder {
+                        color: #9ca3af;
+                    }
+                }
+
+                .promptInfo {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin-top: 0.75rem;
+                    color: #6b7280;
+                    font-size: 0.85rem;
+                    transition: color 0.3s ease;
+                }
+            }
+        }
+
+        /* Status Controls Grid */
+        .statusControlsGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+
+            .statusControlCard {
+                padding: 2rem;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                background: #f9fafb;
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+                
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+
+                .statusControlTitle {
+                    font-size: 1.25rem;
+                    margin-bottom: 0.75rem;
+                    color: #1f2937;
+                    transition: color 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .statusControlDescription {
+                    color: #6b7280;
+                    line-height: 1.6;
+                    margin-bottom: 1.5rem;
+                    transition: color 0.3s ease;
+                }
+
+                .statusButtons,
+                .maintenanceButtons {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+
+                    .statusButton,
+                    .maintenanceButton {
+                        padding: 12px 24px;
+                        border: 2px solid #e5e7eb;
+                        border-radius: 8px;
+                        background: white;
+                        color: #374151;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        min-width: 140px;
+                        justify-content: center;
+                        
+                        &:hover {
+                            border-color: #d1d5db;
+                            background: #f9fafb;
+                        }
+                    }
+
+                    .statusButtonSelected,
+                    .maintenanceButtonSelected {
+                        border-color: var(--qwertychat-primary);
+                        background: var(--qwertychat-primary);
+                        color: white;
+                        
+                        &:hover {
+                            background: var(--qwertychat-primary-hover);
+                            border-color: var(--qwertychat-primary-hover);
+                        }
+                    }
+
+                    .statusButtonDefault,
+                    .maintenanceButtonDefault {
+                        &:hover {
+                            border-color: var(--qwertychat-primary);
+                            color: var(--qwertychat-primary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Dark mode functionality section */
+:global(.theme-dark) .functionalitySection {
+    background: #1f2937;
+
+    .functionalityContainer {
+        .functionalityTitle {
+            color: #f9fafb;
+        }
+
+        .functionalitySubtitle {
+            color: #d1d5db;
+        }
+
+        .promptSection {
+            background: #374151;
+            border-color: #4b5563;
+
+            .promptSectionTitle {
+                color: #f9fafb;
+            }
+
+            .promptSectionDescription {
+                color: #d1d5db;
+            }
+
+            .promptEditor {
+                .promptTextarea {
+                    border-color: #4b5563;
+                    background: #374151;
+                    color: #d1d5db;
+                    
+                    &:focus {
+                        border-color: var(--qwertychat-primary);
+                    }
+                    
+                    &::placeholder {
+                        color: #9ca3af;
+                    }
+                }
+
+                .promptInfo {
+                    color: #9ca3af;
+                }
+            }
+        }
+
+        .statusControlsGrid {
+            .statusControlCard {
+                background: #374151;
+                border-color: #4b5563;
+
+                &:hover {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                }
+
+                .statusControlTitle {
+                    color: #f9fafb;
+                }
+
+                .statusControlDescription {
+                    color: #d1d5db;
+                }
+
+                .statusButtons,
+                .maintenanceButtons {
+                    .statusButton,
+                    .maintenanceButton {
+                        border-color: #4b5563;
+                        background: #374151;
+                        color: #d1d5db;
+                        
+                        &:hover {
+                            border-color: #6b7280;
+                            background: #4b5563;
+                        }
+                    }
+
+                    .statusButtonSelected,
+                    .maintenanceButtonSelected {
+                        border-color: var(--qwertychat-primary);
+                        background: var(--qwertychat-primary);
+                        color: white;
+                        
+                        &:hover {
+                            background: var(--qwertychat-primary-hover);
+                            border-color: var(--qwertychat-primary-hover);
+                        }
+                    }
+
+                    .statusButtonDefault,
+                    .maintenanceButtonDefault {
+                        &:hover {
+                            border-color: var(--qwertychat-primary);
+                            color: var(--qwertychat-primary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .functionalitySection {
+        .functionalityContainer {
+            .functionalityTitle {
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .functionalitySection {
+        padding: 2rem 1rem;
+
+        .functionalityContainer {
+            .functionalityTitle {
+                font-size: 1.75rem;
+            }
+        }
+    }
+}

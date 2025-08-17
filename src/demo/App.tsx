@@ -1,382 +1,68 @@
-import React, { useState } from "react";
-import { Color } from "../lib/constants/Color";
-import { ThemeProvider, useAppTheme } from "./context/ThemeContext";
-import { ChatWidgetWrapper } from "./components/ChatWidgetWrapper";
-import { Icon } from "../lib/components/layout/Icon";
-import { useChatAction } from "../lib";
+import React from "react";
+
 import "./globals.scss";
 import styles from "./App.module.scss";
 
+import { ThemeProvider, useAppTheme } from "./context/ThemeContext";
+import { DemoProvider, useDemoContext } from "./context/DemoContext";
+import { Header } from "./components/Header";
+import { HeroSection } from "./components/HeroSection";
+import { FeaturesSection } from "./components/FeaturesSection";
+import { CustomizationSection } from "./components/CustomizationSection";
+import { FunctionalitySection } from "./components/FunctionalitySection";
+import { AboutSection } from "./components/AboutSection";
+import { ContactSection } from "./components/ContactSection";
+import { Footer } from "./components/Footer";
+import { useChatWidget } from "../lib/hooks/useChatWidget";
+
 function AppContent() {
-    const { colorTheme, setColorTheme, theme, setTheme } = useAppTheme();
-    const [widgetCorner, setWidgetCorner] = useState<"left" | "right">("right");
-    const [isOnline, setIsOnline] = useState(true);
-    const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
-    const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
+    const { resolvedTheme, colorTheme } = useAppTheme();
 
-    const changeTheme = useChatAction({
-        name: "change_theme",
-        description: "Change the theme of the chat widget",
-        parameters: {
-            theme: {
-                type: "string",
-                enum: Object.keys(Color)
-            }
+    const { 
+        widgetCorner: corner, 
+        isOnline, 
+        isMaintenanceMode, 
+        chatbotPrompt,
+        actions
+    } = useDemoContext();
+
+    const { component: ChatWidgetComponent } = useChatWidget({
+        theme: colorTheme,
+        mode: resolvedTheme,
+        corner,
+        profile: {
+            name: "QwertyChat",
         },
-        function: (args) => {
-            console.log("Change theme", args);
-            const newColor = Color[args.theme as keyof typeof Color];
-            if (newColor) {
-                setColorTheme(newColor);
-                return `Theme changed to ${args.theme}`;
-            }
-            return `Invalid theme: ${args.theme}`;
-        }
-    });
-
-    const changeColorMode = useChatAction({
-        name: "change_color_mode",
-        description: "Change the color mode of the chat widget",
-        parameters: {
-            mode: {
-                type: "string",
-                enum: ["light", "dark", "auto"]
-            }
+        intro: {
+            title: "QwertyChat responds instantly",
+            subtitle: "Ask me anything",
         },
-        function: (args) => {
-            console.log("Change color mode", args);
-            setTheme(args.mode as "light" | "dark" | "auto");
-            return `Color mode changed to ${args.mode}`;
-        }
-    });
-
-    const changeCorner = useChatAction({
-        name: "change_corner",
-        description: "Change the corner position of the chat widget",
-        parameters: {
-            corner: {
-                type: "string",
-                enum: ["left", "right"]
-            }
+        status: {
+            isOnline,
+            maintenanceMode: isMaintenanceMode,
         },
-        function: (args) => {
-            console.log("Change corner", args);
-            setWidgetCorner(args.corner as "left" | "right");
-            return `Widget moved to ${args.corner} corner`;
-        }
+        prompt: {
+            apiKey: import.meta.env.VITE_OPENAI_API_KEY || "",
+            instructions: chatbotPrompt,
+            welcomeMessage: "Hello! I'm QwertyChat, your AI assistant. How can I help you today?",
+            model: "gpt-4o-mini" as const,
+            timeout: 30000,
+            actions
+        },
     });
-
-
+    
     return (
         <div className={styles.appContainer}>
+            <Header />
+            <HeroSection />
+            <FeaturesSection />
+            <CustomizationSection />
+            <FunctionalitySection />
+            <AboutSection />
+            <ContactSection />
+            <Footer />
 
-            {/* Header */}
-            <header className={styles.header}>
-                <nav className={styles.nav}>
-                    <div className={styles.logo}>QwertyChat Demo</div>
-                    <div className={styles.navLinks}>
-                        <a href="#home" className={styles.navLink}>Home</a>
-                        <a href="#features" className={styles.navLink}>Features</a>
-                        <a href="#customization" className={styles.navLink}>Customize</a>
-                        <a href="#functionality" className={styles.navLink}>Functionality</a>
-                        <a href="#about" className={styles.navLink}>About</a>
-                        <a href="#contact" className={styles.navLink}>Contact</a>
-                    </div>
-                </nav>
-            </header>
-
-            {/* Hero Section */}
-            <section id="home" className={styles.heroSection}>
-                <div className={styles.heroContent}>
-                    <h1 className={styles.heroTitle}>
-                        Welcome to QwertyChat
-                    </h1>
-                    <p className={styles.heroSubtitle}>
-                        Experience the future of customer support with our intelligent chat widget.
-                        Get instant responses and seamless communication.
-                    </p>
-                    <button className={styles.ctaButton}>
-                        Get Started
-                    </button>
-                </div>
-            </section>
-
-            {/* Features Section */}
-            <section id="features" className={styles.featuresSection}>
-                <div className={styles.featuresContainer}>
-                    <h2 className={styles.featuresTitle}>
-                        Key Features
-                    </h2>
-                    <div className={styles.featuresGrid}>
-                        {[
-                            {
-                                title: "Real-time Chat",
-                                description: "Instant messaging with AI-powered responses for immediate customer support.",
-                                icon: "ChatCircle",
-                            },
-                            {
-                                title: "Multi-theme Support",
-                                description: "Customizable themes to match your brand identity and design preferences.",
-                                icon: "Palette",
-                            },
-                            {
-                                title: "Responsive Design",
-                                description: "Works seamlessly across all devices and screen sizes.",
-                                icon: "DeviceMobile",
-                            },
-                            {
-                                title: "Easy Integration",
-                                description: "Simple setup process with minimal code changes required.",
-                                icon: "Lightning",
-                            },
-                            {
-                                title: "Analytics Dashboard",
-                                description: "Track conversations and gain insights into customer interactions.",
-                                icon: "ChartBar",
-                            },
-                            {
-                                title: "24/7 Availability",
-                                description: "Always available to provide support when your customers need it most.",
-                                icon: "Clock",
-                            },
-                        ].map((feature, index) => (
-                            <div key={index} className={styles.featureCard}>
-                                <div className={styles.featureIcon}>
-                                    <Icon name={feature.icon as any} size={48} />
-                                </div>
-                                <h3 className={styles.featureTitle}>
-                                    {feature.title}
-                                </h3>
-                                <p className={styles.featureDescription}>{feature.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Customization Section */}
-            <section id="customization" className={styles.customizationSection}>
-                <div className={styles.customizationContainer}>
-                    <h2 className={styles.customizationTitle}>
-                        Customize Your Theme
-                    </h2>
-                    <p className={styles.customizationSubtitle}>
-                        Choose from our beautiful color palette to match your brand
-                    </p>
-                    
-                    <div className={styles.colorGrid}>
-                        {Object.keys(Color)
-                            .filter(colorName => !colorName.startsWith('gray') && colorName !== 'white' && colorName !== 'black')
-                            .map((colorName) => (
-                                <button
-                                    key={colorName}
-                                    onClick={() => setColorTheme(Color[colorName as keyof typeof Color])}
-                                    className={`${styles.colorButton} ${colorTheme === Color[colorName as keyof typeof Color] ? styles.colorButtonSelected : styles.colorButtonDefault}`}
-                                    style={{ background: Color[colorName as keyof typeof Color] }}
-                                    title={colorName}
-                                >
-                                    {colorTheme === Color[colorName as keyof typeof Color] && (
-                                        <div className={styles.checkmark}>
-                                            <Icon name="Check" size={24} color="white" />
-                                        </div>
-                                    )}
-                                </button>
-                            ))}
-                    </div>
-                    
-                    <div className={styles.currentTheme}>
-                        <p>
-                            Current theme: <strong>{Object.keys(Color).find(key => Color[key as keyof typeof Color] === colorTheme)}</strong>
-                        </p>
-                    </div>
-
-                    {/* Control Sections Container */}
-                    <div className={styles.controlSectionsContainer}>
-                        {/* Color Mode Switch */}
-                        <div className={styles.controlSection}>
-                            <h3 className={styles.controlTitle}>Color Mode</h3>
-                            <p className={styles.controlSubtitle}>
-                                Choose your preferred color scheme
-                            </p>
-                            <div className={styles.modeButtons}>
-                                {(["light", "dark", "auto"] as const).map((mode) => (
-                                    <button
-                                        key={mode}
-                                        onClick={() => setTheme(mode)}
-                                        className={`${styles.modeButton} ${theme === mode ? styles.modeButtonSelected : styles.modeButtonDefault}`}
-                                    >
-                                        {mode.charAt(0).toUpperCase() + mode.slice(1)}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Widget Corner Position Switch */}
-                        <div className={styles.controlSection}>
-                            <h3 className={styles.controlTitle}>Widget Position</h3>
-                            <p className={styles.controlSubtitle}>
-                                Choose which corner the chat widget will appear in
-                            </p>
-                            <div className={styles.cornerButtons}>
-                                {(["left", "right"] as const).map((corner) => (
-                                    <button
-                                        key={corner}
-                                        onClick={() => setWidgetCorner(corner)}
-                                        className={`${styles.cornerButton} ${widgetCorner === corner ? styles.cornerButtonSelected : styles.cornerButtonDefault}`}
-                                    >
-                                        {corner.charAt(0).toUpperCase() + corner.slice(1)}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-                </div>
-            </section>
-
-            {/* Functionality Section */}
-            <section id="functionality" className={styles.functionalitySection}>
-                <div className={styles.functionalityContainer}>
-                    <h2 className={styles.functionalityTitle}>
-                        Chatbot Functionality
-                    </h2>
-                    <p className={styles.functionalitySubtitle}>
-                        Configure the chatbot behavior and connection settings
-                    </p>
-
-                    {/* Chatbot Prompt Editor - Full Width */}
-                    <div className={styles.promptSection}>
-                        <h3 className={styles.promptSectionTitle}>
-                            <Icon name="ChatCircle" size={24} />
-                            Chatbot Instructions
-                        </h3>
-                        <p className={styles.promptSectionDescription}>
-                            Edit the chatbot's behavior and personality in real-time
-                        </p>
-                        <div className={styles.promptEditor}>
-                            <textarea
-                                value={chatbotPrompt}
-                                onChange={(e) => setChatbotPrompt(e.target.value)}
-                                placeholder="Enter chatbot instructions..."
-                                className={styles.promptTextarea}
-                                rows={6}
-                            />
-                            <div className={styles.promptInfo}>
-                                <Icon name="Info" size={14} />
-                                <span>Changes apply to new conversations</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    {/* Status Controls - Row Layout */}
-                    <div className={styles.statusControlsGrid}>
-                        {/* Connection Status */}
-                        <div className={styles.statusControlCard}>
-                            <h3 className={styles.statusControlTitle}>
-                                <Icon name="PowerIcon" size={20} />
-                                Connection Status
-                            </h3>
-                            <p className={styles.statusControlDescription}>
-                                The chat only answers when the widget is online
-                            </p>
-                            <div className={styles.statusButtons}>
-                                <button
-                                    onClick={() => setIsOnline(!isOnline)}
-                                    className={`${styles.statusButton} ${isOnline ? styles.statusButtonSelected : styles.statusButtonDefault}`}
-                                >
-                                    <Icon name="PowerIcon" size={16} />
-                                    {isOnline ? 'Online' : 'Offline'}
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Maintenance Mode */}
-                        <div className={styles.statusControlCard}>
-                            <h3 className={styles.statusControlTitle}>
-                                <Icon name="Wrench" size={20} />
-                                Maintenance Mode
-                            </h3>
-                            <p className={styles.statusControlDescription}>
-                                You cannot send messages when the widget is in maintenance mode
-                            </p>
-                            <div className={styles.maintenanceButtons}>
-                                <button
-                                    onClick={() => setIsMaintenanceMode(!isMaintenanceMode)}
-                                    className={`${styles.maintenanceButton} ${isMaintenanceMode ? styles.maintenanceButtonSelected : styles.maintenanceButtonDefault}`}
-                                >
-                                    <Icon name="Wrench" size={16} />
-                                    {isMaintenanceMode ? 'Maintenance Mode ON' : 'Maintenance Mode OFF'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* About Section */}
-            <section id="about" className={styles.aboutSection}>
-                <div className={styles.aboutContainer}>
-                    <h2 className={styles.aboutTitle}>
-                        About QwertyChat
-                    </h2>
-                    <p className={styles.aboutText}>
-                        QwertyChat is a modern, intelligent chat widget designed to enhance customer support
-                        and improve user engagement. Built with React and TypeScript, it provides a seamless
-                        communication experience with customizable themes and responsive design.
-                    </p>
-                    <p className={styles.aboutText}>
-                        Our mission is to make customer support more accessible, efficient, and user-friendly
-                        through innovative technology and thoughtful design.
-                    </p>
-                </div>
-            </section>
-
-            {/* Contact Section */}
-            <section id="contact" className={styles.contactSection}>
-                <div className={styles.contactContainer}>
-                    <h2 className={styles.contactTitle}>
-                        Get in Touch
-                    </h2>
-                    <p className={styles.contactSubtitle}>
-                        Ready to transform your customer support? Contact us to learn more about QwertyChat.
-                    </p>
-                    <div className={styles.contactGrid}>
-                        <div className={styles.contactItem}>
-                            <h3>Email</h3>
-                            <p>hello@qwertychat.com</p>
-                        </div>
-                        <div className={styles.contactItem}>
-                            <h3>Phone</h3>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                        <div className={styles.contactItem}>
-                            <h3>Address</h3>
-                            <p>123 Chat Street, Tech City</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Footer */}
-            <footer className={styles.footer}>
-                <p>
-                    © 2024 QwertyChat. All rights reserved.
-                </p>
-            </footer>
-
-            {/* ChatWidget - Fixed at bottom right */}
-            <ChatWidgetWrapper 
-                corner={widgetCorner} 
-                isOnline={isOnline}
-                isMaintenanceMode={isMaintenanceMode}
-                chatbotPrompt={chatbotPrompt}
-                actions={[changeTheme, changeColorMode, changeCorner]}
-            />
+            { ChatWidgetComponent }
         </div>
     );
 }
@@ -384,7 +70,9 @@ function AppContent() {
 export const App: React.FC = () => {
     return (
         <ThemeProvider>
-            <AppContent />
+            <DemoProvider>
+                <AppContent />
+            </DemoProvider>
         </ThemeProvider>
     );
 };
