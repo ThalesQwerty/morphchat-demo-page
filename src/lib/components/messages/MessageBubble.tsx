@@ -7,10 +7,12 @@ import { ChainedMessage } from "../../types/Message";
 
 interface MessageBubbleProps {
     message: ChainedMessage;
+    "data-message-id"?: string;
 }
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({
-    message
+    message,
+    "data-message-id": dataMessageId
 }) => {
     const { profile } = useWidgetContext();
     const { chain } = message;
@@ -22,7 +24,10 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
     const showAuthorPhoto = chain === "last" || chain === "single";
     
     return (
-        <div className={`${styles.message} ${styles[message.from]} ${styles[message.chain]} ${isUnsent ? styles.unsent : ''}`}>
+        <div 
+            className={`${styles.message} ${styles[message.from]} ${styles[message.chain]} ${isUnsent ? styles.unsent : ''}`}
+            data-message-id={dataMessageId}
+        >
             <div className={styles.messageContent}>
                 {!isFromUser && (
                     showAuthorPhoto ? (

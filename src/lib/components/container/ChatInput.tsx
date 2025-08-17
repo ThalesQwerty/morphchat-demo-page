@@ -4,9 +4,13 @@ import { useWidgetContext } from "../../hooks/useWidgetContext";
 
 interface ChatInputProps {
     initialValue?: string;
+    onInputInteraction?: () => void;
 }
 
-export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
+export const ChatInput: React.FC<ChatInputProps> = ({ 
+    initialValue = "",
+    onInputInteraction
+}) => {
     const { sendUserMessage, profile, status } = useWidgetContext();
 
     const [inputValue, setInputValue] = useState(initialValue);
@@ -67,6 +71,19 @@ export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
         [autoResize, isMaintenanceMode]
     );
 
+    const handleInputFocus = useCallback(() => {
+        onInputInteraction?.();
+    }, [onInputInteraction]);
+
+    const handleInputClick = useCallback(() => {
+        onInputInteraction?.();
+    }, [onInputInteraction]);
+
+    const handleSendButtonClick = useCallback(() => {
+        onInputInteraction?.();
+        handleSendClick();
+    }, [onInputInteraction, handleSendClick]);
+
     // Handle initialValue changes and auto-resize
     useEffect(() => {
         if (initialValue) {
@@ -99,13 +116,15 @@ export const ChatInput: React.FC<ChatInputProps> = ({ initialValue = "" }) => {
                     value={inputValue}
                     onChange={handleInput}
                     onKeyDown={handleKeyDown}
+                    onFocus={handleInputFocus}
+                    onClick={handleInputClick}
                     placeholder="Type a message..."
                     rows={1}
                     disabled={isMaintenanceMode}
                 />
                 <button
                     className={styles.sendButton}
-                    onClick={handleSendClick}
+                    onClick={handleSendButtonClick}
                     disabled={isMaintenanceMode}
                 >
                     <svg

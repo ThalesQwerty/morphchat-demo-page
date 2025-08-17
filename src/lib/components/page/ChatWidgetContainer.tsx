@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./ChatWidgetContainer.module.scss";
 import { ChatWidget } from "../ChatWidget";
 import { FloatingChatButton } from "./FloatingChatButton";
@@ -15,18 +15,29 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
         corner,
         events,
         status,
+        setMessages,
+        messages,
     } = useWidgetContext();
 
     // Extract event handlers
     const { onOpen, onClose, onToggle } = events || {};
-    const [isOpen, setIsOpen] = useState(status?.isOpen || false);
-    const [showButton, setShowButton] = useState(!status?.isOpen);
+    const [isOpen, setIsOpen] = useState(status?.isOpen ?? false);
+
+    // Mark all messages as read
+    const markAllMessagesAsRead = useCallback(() => {
+        const updatedMessages = messages.map(message => {
+            if (message.from === "bot" && !message.read) {
+                return { ...message, read: true };
+            }
+            return message;
+        });
+        setMessages(updatedMessages);
+    }, [messages, setMessages]);
 
     // Update internal state when status prop changes
     useEffect(() => {
         if (status?.isOpen !== undefined) {
             setIsOpen(status.isOpen);
-            setShowButton(!status.isOpen);
         }
     }, [status?.isOpen]);
 
@@ -35,12 +46,10 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
         setIsOpen(newIsOpen);
         
         if (newIsOpen) {
-            // Hide button immediately when opening chat
-            setShowButton(false);
             onOpen?.();
         } else {
-            // Show button after a delay when closing chat
-            setTimeout(() => setShowButton(true), 200);
+            // Mark messages as read when closing (simplified approach)
+            markAllMessagesAsRead();
             onClose?.();
         }
         
@@ -48,9 +57,9 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
     };
 
     const handleClose = () => {
+        // Mark messages as read when closing (simplified approach)
+        markAllMessagesAsRead();
         setIsOpen(false);
-        // Show button after a delay when closing chat
-        setTimeout(() => setShowButton(true), 200);
         onClose?.();
     };
 
@@ -69,7 +78,7 @@ export const ChatWidgetContainer: React.FC<ChatWidgetContainerProps> = ({
             <div className={styles.floatingButtonWrapper}>
                 <FloatingChatButton
                     onClick={toggleChat}
-                    isVisible={showButton && !isOpen}
+                    isVisible={!isOpen}
                 />
             </div>
         </div>

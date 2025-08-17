@@ -7,15 +7,15 @@
     height: 60px;
     border-radius: 50%;
     border: none;
-    color: var(--qwertychat-components-chat-button-text, var(--qwertychat-contrast));
+    color: var(--qwertychat-contrast);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
-    animation: growIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--qwertychat-components-chat-button-background, var(--qwertychat-primary));
+    animation: growIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &.right {
         right: 20px;
@@ -49,6 +49,39 @@
             left: 16px;
         }
     }
+}
+
+/* Icon container for badge positioning */
+.iconContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Unread badge styles */
+.unreadBadge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--qwertychat-contrast);
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: badgeAppear 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.unreadCount {
+    color: var(--qwertychat-primary);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    user-select: none;
 }
 
 /* Keyframes for animations */
@@ -87,6 +120,17 @@
 }
 
 @keyframes growIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes badgeAppear {
     from {
         transform: scale(0);
         opacity: 0;

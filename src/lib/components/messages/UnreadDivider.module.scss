@@ -1,0 +1,23 @@
+.unreadDivider {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    padding: 0 16px;
+}
+
+.dividerLine {
+    flex: 1;
+    height: 1px;
+    background: var(--qwertychat-primary);
+    opacity: 0.6;
+}
+
+.unreadText {
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--qwertychat-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}

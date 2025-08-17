@@ -2,7 +2,7 @@
 
 .chatMessages {
     flex: 1;
-    padding: 20px;
+    padding: 20px 4px 20px 16px; /* Further reduced padding: right 4px, left 16px */
     overflow-y: auto;
     display: flex;
     flex-direction: column;

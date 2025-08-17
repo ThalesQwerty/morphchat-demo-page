@@ -12,6 +12,7 @@ export interface MessageHook {
     chainedMessages: ChainedMessage[];
     flushMessages: () => void;
     isTyping: boolean;
+    markAllMessagesAsRead: () => void;
 }
 
 export function useMessages(
@@ -41,7 +42,7 @@ export function useMessages(
             content: message,
             username: "You",
             timestamp: new Date(),
-            read: false
+            read: true // User messages are always read
         };
 
         setMessages(previous => [...previous, newMessage]);
@@ -55,13 +56,19 @@ export function useMessages(
             content: message,
             username: "QwertyChat",
             timestamp: new Date(),
-            read: true,
+            read: false, // Bot messages start as unread
         };
 
         setMessages(previous => [...previous, newMessage]);
     }
 
     function markMessagesAsSent() {
+        setMessages(previous => 
+            previous.map(message => ({ ...message, read: true }))
+        );
+    }
+
+    function markAllMessagesAsRead() {
         setMessages(previous => 
             previous.map(message => ({ ...message, read: true }))
         );
@@ -150,5 +157,6 @@ export function useMessages(
         chainedMessages,
         flushMessages,
         isTyping,
+        markAllMessagesAsRead,
     };
 }

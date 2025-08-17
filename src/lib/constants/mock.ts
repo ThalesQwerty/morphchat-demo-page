@@ -40,6 +40,22 @@ export const demoMessages: Message[] = [
         content: "Congratulations! That's wonderful news. Let me take care of this for you right away.",
         username: "QwertyChat",
         timestamp: new Date(Date.now() - 4 * 60 * 1000), // 4 minutes ago
-        read: true,
+        read: false,
+    },
+    {
+        id: "6",
+        from: "bot",
+        content: "I'll need some information about the additional driver. What's their full name and date of birth?",
+        username: "QwertyChat",
+        timestamp: new Date(Date.now() - 3 * 60 * 1000), // 3 minutes ago
+        read: false,
+    },
+    {
+        id: "7",
+        from: "bot",
+        content: "Also, do they have any driving convictions or claims in the last 5 years?",
+        username: "QwertyChat",
+        timestamp: new Date(Date.now() - 2 * 60 * 1000), // 2 minutes ago
+        read: false,
     },
 ];
