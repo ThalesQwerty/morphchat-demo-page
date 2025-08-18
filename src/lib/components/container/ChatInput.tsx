@@ -130,13 +130,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
                     onClick={handleSendButtonClick}
                     disabled={isMaintenanceMode}
                 >
-                    <svg
-                        className={styles.sendIcon}
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
-                        <path d="M12 2L4 10h6v12h4V10h6L12 2z" />
-                    </svg>
+                    <Icon name="ArrowUp" size={16} />
                 </button>
             </div>
         </div>

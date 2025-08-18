@@ -47,7 +47,7 @@ VITE_OPENAI_API_KEY=your-openai-api-key-here
 ## 🚀 Quick Start
 
 ```tsx
-import { useChatWidget } from "./lib/hooks/useChatWidget";
+import { useChatWidget } from "morphchat";
 
 function App() {
     const { component: ChatWidget } = useChatWidget({
@@ -73,8 +73,7 @@ function App() {
 ## ⚙️ Advanced Configuration
 
 ```tsx
-import { useChatWidget } from "./lib/hooks/useChatWidget";
-import { Color } from "./lib/constants/Color";
+import { useChatWidget, Color } from "morphchat";
 
 function App() {
     const { component: ChatWidget } = useChatWidget({
@@ -139,28 +138,7 @@ MorphChat supports custom actions that can be triggered by the AI. This powerful
 ### Creating Actions
 
 ```tsx
-import { useChatAction } from "./lib/hooks/useChatAction";
-import { Color } from "./lib/constants/Color";
-
-// Theme change action
-const changeTheme = useChatAction({
-    name: "change_theme",
-    description: "Change the theme of the chat widget",
-    parameters: {
-        theme: {
-            type: "string",
-            enum: Object.keys(Color),
-            required: true,
-        },
-    },
-    function: (args) => {
-        // Update theme logic here
-        return `Theme changed to ${args.theme}`;
-    },
-    metadata: {
-        icon: "Palette",
-    },
-});
+import { useChatAction, Color } from "morphchat"
 
 // E-commerce integration example
 const addToCart = useChatAction({
@@ -179,6 +157,8 @@ const addToCart = useChatAction({
     function: (args) => {
         // Integrate with your shopping cart system
         cart.addItem(args.productId, args.quantity || 1);
+
+        // This feedback is used by the LLM to produce an answer to the user
         return `Added ${args.quantity || 1} item(s) to your cart!`;
     },
 });
@@ -190,7 +170,7 @@ const addToCart = useChatAction({
 const { component: ChatWidget } = useChatWidget({
     prompt: {
         apiKey: import.meta.env.VITE_OPENAI_API_KEY || "",
-        actions: [changeTheme, addToCart],
+        actions: [addToCart], //... you can list other actions as well
         // ... other prompt settings
     },
 });

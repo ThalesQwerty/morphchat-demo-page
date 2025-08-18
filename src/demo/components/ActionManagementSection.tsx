@@ -1,4 +1,4 @@
-import { Icon } from "../../lib/components/layout/Icon";
+import { Icon } from "../../lib";
 import { useDemoContext } from "../context/DemoContext";
 import { Card } from "./Card";
 import styles from "./ActionManagementSection.module.scss";

@@ -1,4 +1,4 @@
-import { Icon } from "../../lib/components/layout/Icon";
+import { Icon } from "../../lib";
 import { ProfileCard } from "./ProfileCard";
 import styles from "./ProfileManagementSection.module.scss";
 

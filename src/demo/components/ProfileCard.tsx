@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Icon } from "../../lib/components/layout/Icon";
+import { Icon } from "../../lib";
 import { useDemoContext } from "../context/DemoContext";
 import { convertImageToBase64, validateImageFile, getImageFileError } from "../utils/imageUtils";
 import { Button } from "./Button";

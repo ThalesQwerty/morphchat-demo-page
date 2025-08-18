@@ -1,5 +1,4 @@
-import { Color } from "../../lib/constants/Color";
-import { Icon } from "../../lib/components/layout/Icon";
+import { Color, Icon } from "../../lib";
 import { useAppTheme } from "../context/ThemeContext";
 import { useDemoContext } from "../context/DemoContext";
 import { Button } from "./Button";

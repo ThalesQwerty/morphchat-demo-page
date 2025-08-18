@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { Color } from "../../lib/constants/Color";
+import { Color } from "../../lib";
 
 export type AppTheme = "light" | "dark" | "auto";
 

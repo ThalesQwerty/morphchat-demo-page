@@ -7,10 +7,11 @@ import { Theme } from "./Theme";
 import { Color } from "../constants/Color";
 import { WidgetAction } from "./WidgetAction";
 import { TypeName } from "../bot/TypeName";
+import { Corner } from "./Corner";
 
 
 export interface WidgetConfig<P extends Record<string, TypeName> = any> {
-    corner?: "right" | "left"; // default is "right"
+    corner?: Corner; // default is "right"
     theme?: Color | Theme;
     mode?: "light" | "dark" | "auto"; // default is "auto"
     // if intro is a ReactNode, it will be used as is

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDemoContext } from "../context/DemoContext";
-import { Icon } from "../../lib/components/layout/Icon";
+import { Icon } from "../../lib";
 import styles from "./Header.module.scss";
 
 export function Header() {

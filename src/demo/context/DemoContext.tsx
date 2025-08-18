@@ -1,14 +1,12 @@
 import { createContext, useContext, useState, ReactNode, useRef } from "react";
-import { useChatAction } from "../../lib";
-import { Color } from "../../lib/constants/Color";
+import { useChatAction, Color, Corner, IconName } from "../../lib";
 import { useAppTheme } from "./ThemeContext";
-import { WidgetAction } from "../../lib/types/WidgetAction";
-import { IconName } from "../../lib/components/layout/Icon";
+import { WidgetAction } from "../../lib";
 
 interface DemoContextType {
     // Widget state
-    widgetCorner: "left" | "right";
-    setWidgetCorner: (corner: "left" | "right") => void;
+    widgetCorner: Corner;
+    setWidgetCorner: (corner: Corner) => void;
     isOnline: boolean;
     setIsOnline: (online: boolean) => void;
     isMaintenanceMode: boolean;
@@ -59,27 +57,42 @@ interface DemoProviderProps {
     children: ReactNode;
 }
 
+const initialValues = {
+    widgetCorner: "right" as "left" | "right",
+    isOnline: true,
+    isMaintenanceMode: false,
+    chatbotPrompt: "You are a helpful AI assistant. Give short and concise answers.",
+    introTitle: "Hello! I'm your AI assistant",
+    introSubtitle: "How can I help you today? Ask me anything",
+    botName: "MorphChat",
+    userName: "You",
+    botAvatar: null,
+    userAvatar: null,
+    botShowAvatar: true,
+    userShowAvatar: false,
+};
+
 export function DemoProvider({ children }: DemoProviderProps) {
     // Get theme context
     const { setColorTheme, setTheme } = useAppTheme();
     
     // Widget state
-    const [widgetCorner, setWidgetCorner] = useState<"left" | "right">("right");
-    const [isOnline, setIsOnline] = useState(true);
-    const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
-    const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
+    const [widgetCorner, setWidgetCorner] = useState<"left" | "right">(initialValues.widgetCorner);
+    const [isOnline, setIsOnline] = useState(initialValues.isOnline);
+    const [isMaintenanceMode, setIsMaintenanceMode] = useState(initialValues.isMaintenanceMode);
+    const [chatbotPrompt, setChatbotPrompt] = useState(initialValues.chatbotPrompt);
 
     // Intro state
-    const [introTitle, setIntroTitle] = useState("Welcome to MorphChat");
-    const [introSubtitle, setIntroSubtitle] = useState("Your AI assistant for all your needs.");
+    const [introTitle, setIntroTitle] = useState(initialValues.introTitle);
+    const [introSubtitle, setIntroSubtitle] = useState(initialValues.introSubtitle);
 
     // Profile state
-    const [botName, setBotName] = useState("MorphChat");
-    const [botAvatar, setBotAvatar] = useState<string | null>(null);
-    const [botShowAvatar, setBotShowAvatar] = useState(true);
-    const [userName, setUserName] = useState("You");
-    const [userAvatar, setUserAvatar] = useState<string | null>(null);
-    const [userShowAvatar, setUserShowAvatar] = useState(false);
+    const [botName, setBotName] = useState(initialValues.botName);
+    const [botAvatar, setBotAvatar] = useState<string | null>(initialValues.botAvatar);
+    const [botShowAvatar, setBotShowAvatar] = useState(initialValues.botShowAvatar);
+    const [userName, setUserName] = useState(initialValues.userName);
+    const [userAvatar, setUserAvatar] = useState<string | null>(initialValues.userAvatar);
+    const [userShowAvatar, setUserShowAvatar] = useState(initialValues.userShowAvatar);
 
     // Chat actions
     const changeTheme = useChatAction({
@@ -179,25 +192,25 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setActions([changeTheme, changeColorMode, changeCorner]);
         
         // Reset other state if needed
-        setWidgetCorner("right");
-        setIsOnline(true);
-        setIsMaintenanceMode(false);
-        setChatbotPrompt("You are a helpful AI assistant. Give short and concise answers.");
-        setIntroTitle("Welcome to MorphChat");
-        setIntroSubtitle("Your AI assistant for all your needs.");
+        setWidgetCorner(initialValues.widgetCorner);
+        setIsOnline(initialValues.isOnline);
+        setIsMaintenanceMode(initialValues.isMaintenanceMode);
+        setChatbotPrompt(initialValues.chatbotPrompt);
+        setIntroTitle(initialValues.introTitle);
+        setIntroSubtitle(initialValues.introSubtitle);
         
         // Reset profile names
-        setBotName("MorphChat");
-        setBotAvatar(null);
-        setBotShowAvatar(true);
-        setUserName("You");
-        setUserAvatar(null);
-        setUserShowAvatar(false);
+        setBotName(initialValues.botName);
+        setBotAvatar(initialValues.botAvatar);
+        setBotShowAvatar(initialValues.botShowAvatar);
+        setUserName(initialValues.userName);
+        setUserAvatar(initialValues.userAvatar);
+        setUserShowAvatar(initialValues.userShowAvatar);
     };
 
     // Open GitHub function
     const openGithub = () => {
-        window.open("https://github.com", "_blank");
+        window.open("https://github.com/ThalesQwerty/morphchat", "_blank");
     };
 
     const value: DemoContextType = {

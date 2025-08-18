@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "../../lib/components/layout/Icon";
+import { Icon, Corner } from "../../lib";
 import styles from "./Button.module.scss";
 
 export interface ButtonProps {
@@ -11,7 +11,7 @@ export interface ButtonProps {
     icon?: {
         name: string;
         size?: number;
-        position?: "left" | "right";
+        position?: Corner;
     };
     className?: string;
     type?: "button" | "submit" | "reset";
@@ -35,7 +35,7 @@ export function Button({
         className
     ].filter(Boolean).join(" ");
 
-    const renderIcon = (iconName: string, iconSize: number, position: "left" | "right") => {
+    const renderIcon = (iconName: string, iconSize: number, position: Corner) => {
         return (
             <Icon 
                 name={iconName as any} 

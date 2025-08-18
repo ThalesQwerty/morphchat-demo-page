@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "./Button";
 import { Card } from "./Card";
-import { Icon, IconName } from "../../lib/components/layout/Icon";
+import { Icon, IconName } from "../../lib";
 import styles from "./ConfirmationDialog.module.scss";
 
 interface ConfirmationDialogProps {

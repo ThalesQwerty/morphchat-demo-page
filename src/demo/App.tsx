@@ -14,7 +14,7 @@ import { ActionManagementSection } from "./components/ActionManagementSection";
 import { ProfileManagementSection } from "./components/ProfileManagementSection";
 import { AboutSection } from "./components/AboutSection";
 import { Footer } from "./components/Footer";
-import { useChatWidget } from "../lib/hooks/useChatWidget";
+import { useChatWidget } from "../lib";
 
 function AppContent() {
     const { resolvedTheme, colorTheme } = useAppTheme();
