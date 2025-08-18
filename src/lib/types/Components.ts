@@ -39,9 +39,9 @@ export type Components = RecursivePartial<{
 }>;
 
 /**
- * For each component listed in the interface structure, you should create a CSS variable in snake case format, with the prefix "qwertychat-"
+ * For each component listed in the interface structure, you should create a CSS variable in snake case format, with the prefix "morphchat-"
  * 
- * For example, the background color of the user message should be "var(--qwertychat-message-user-background)"
+ * For example, the background color of the user message should be "var(--morphchat-message-user-background)"
  * 
  * These variables will be used to style the components
  */

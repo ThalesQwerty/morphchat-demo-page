@@ -14,7 +14,7 @@ export const demoMessages: Message[] = [
         id: "2",
         from: "bot",
         content: "Of course, I can help you add a named driver to your SD&P cover, John.",
-        username: "QwertyChat",
+        username: "MorphChat",
         timestamp: new Date(Date.now() - 7 * 60 * 1000), // 7 minutes ago
         read: true,
     },
@@ -22,7 +22,7 @@ export const demoMessages: Message[] = [
         id: "3",
         from: "bot",
         content: "Would you like to proceed now?",
-        username: "QwertyChat",
+        username: "MorphChat",
         timestamp: new Date(Date.now() - 6 * 60 * 1000), // 6 minutes ago
         read: true,
     },
@@ -38,7 +38,7 @@ export const demoMessages: Message[] = [
         id: "5",
         from: "bot",
         content: "Congratulations! That's wonderful news. Let me take care of this for you right away.",
-        username: "QwertyChat",
+        username: "MorphChat",
         timestamp: new Date(Date.now() - 4 * 60 * 1000), // 4 minutes ago
         read: false,
     },
@@ -46,7 +46,7 @@ export const demoMessages: Message[] = [
         id: "6",
         from: "bot",
         content: "I'll need some information about the additional driver. What's their full name and date of birth?",
-        username: "QwertyChat",
+        username: "MorphChat",
         timestamp: new Date(Date.now() - 3 * 60 * 1000), // 3 minutes ago
         read: false,
     },
@@ -54,7 +54,7 @@ export const demoMessages: Message[] = [
         id: "7",
         from: "bot",
         content: "Also, do they have any driving convictions or claims in the last 5 years?",
-        username: "QwertyChat",
+        username: "MorphChat",
         timestamp: new Date(Date.now() - 2 * 60 * 1000), // 2 minutes ago
         read: false,
     },

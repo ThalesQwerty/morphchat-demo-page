@@ -2,10 +2,10 @@
 
 .chatWidgetContainer {
     position: relative;
-    z-index: var(--qwertychat-z-modal);
+    z-index: var(--morphchat-z-modal);
 
     /* Mobile Responsive */
-    @media (max-width: var(--qwertychat-bp-sm)) {
+    @media (max-width: var(--morphchat-bp-sm)) {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -24,30 +24,30 @@
 
 .chatWidget {
     position: fixed;
-    bottom: var(--qwertychat-spacing-2xl);
-    width: var(--qwertychat-widget-width);
-    height: var(--qwertychat-widget-height);
+    bottom: var(--morphchat-spacing-2xl);
+    width: var(--morphchat-widget-width);
+    height: var(--morphchat-widget-height);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-radius: var(--qwertychat-radius-lg);
+    border-radius: var(--morphchat-radius-lg);
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--qwertychat-border);
-    transition: all var(--qwertychat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
-    background: var(--qwertychat-background);
+    border: 1px solid var(--morphchat-border);
+    transition: all var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--morphchat-background);
 
     &.right {
-        right: var(--qwertychat-spacing-2xl);
+        right: var(--morphchat-spacing-2xl);
     }
 
     &.left {
-        left: var(--qwertychat-spacing-2xl);
+        left: var(--morphchat-spacing-2xl);
     }
 
     /* Mobile Responsive */
-    @media (max-width: var(--qwertychat-bp-sm)) {
-        width: var(--qwertychat-widget-width-mobile) !important;
-        height: var(--qwertychat-widget-height-mobile) !important;
+    @media (max-width: var(--morphchat-bp-sm)) {
+        width: var(--morphchat-widget-width-mobile) !important;
+        height: var(--morphchat-widget-height-mobile) !important;
         border-radius: 0 !important; /* Full screen on mobile, no border radius */
         bottom: 0 !important;
         right: 0 !important;
@@ -73,6 +73,6 @@
 
     /* Smooth transitions for all elements */
     * {
-        transition: background-color var(--qwertychat-transition-normal) ease, border-color var(--qwertychat-transition-normal) ease, color var(--qwertychat-transition-normal) ease;
+        transition: background-color var(--morphchat-transition-normal) ease, border-color var(--morphchat-transition-normal) ease, color var(--morphchat-transition-normal) ease;
     }
 }

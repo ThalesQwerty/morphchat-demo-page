@@ -5,7 +5,7 @@ export function Footer() {
     return (
         <footer className={styles.footer}>
             <p>
-                © 2024 QwertyChat. All rights reserved.
+                © 2024 MorphChat. All rights reserved.
             </p>
         </footer>
     );

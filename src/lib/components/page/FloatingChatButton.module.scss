@@ -2,27 +2,27 @@
 
 .chatButton {
     position: fixed;
-    bottom: var(--qwertychat-spacing-2xl);
-    width: var(--qwertychat-avatar-xl);
-    height: var(--qwertychat-avatar-xl);
-    border-radius: var(--qwertychat-radius-full);
+    bottom: var(--morphchat-spacing-2xl);
+    width: var(--morphchat-avatar-xl);
+    height: var(--morphchat-avatar-xl);
+    border-radius: var(--morphchat-radius-full);
     border: none;
-    color: var(--qwertychat-contrast);
+    color: var(--morphchat-contrast);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--qwertychat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: var(--qwertychat-z-fixed);
-    background: var(--qwertychat-components-chat-button-background, var(--qwertychat-primary));
-    animation: growIn var(--qwertychat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: var(--morphchat-z-fixed);
+    background: var(--morphchat-components-chat-button-background, var(--morphchat-primary));
+    animation: growIn var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
 
     &.right {
-        right: var(--qwertychat-spacing-2xl);
+        right: var(--morphchat-spacing-2xl);
     }
 
     &.left {
-        left: var(--qwertychat-spacing-2xl);
+        left: var(--morphchat-spacing-2xl);
     }
 
     &:hover {
@@ -35,18 +35,18 @@
     }
 
     /* Mobile Responsive */
-    @media (max-width: var(--qwertychat-bp-sm)) {
-        width: var(--qwertychat-avatar-xl); /* Adjusted to match desktop for now, can be smaller */
-        height: var(--qwertychat-avatar-xl); /* Adjusted to match desktop for now, can be smaller */
-        bottom: var(--qwertychat-spacing-xl);
-        z-index: var(--qwertychat-z-fixed);
+    @media (max-width: var(--morphchat-bp-sm)) {
+        width: var(--morphchat-avatar-xl); /* Adjusted to match desktop for now, can be smaller */
+        height: var(--morphchat-avatar-xl); /* Adjusted to match desktop for now, can be smaller */
+        bottom: var(--morphchat-spacing-xl);
+        z-index: var(--morphchat-z-fixed);
 
         &.right {
-            right: var(--qwertychat-spacing-xl);
+            right: var(--morphchat-spacing-xl);
         }
 
         &.left {
-            left: var(--qwertychat-spacing-xl);
+            left: var(--morphchat-spacing-xl);
         }
     }
 }
@@ -62,24 +62,24 @@
 /* Unread badge styles */
 .unreadBadge {
     position: absolute;
-    top: calc(-1 * var(--qwertychat-spacing-md));
-    right: calc(-1 * var(--qwertychat-spacing-md));
-    background: var(--qwertychat-contrast);
-    border-radius: var(--qwertychat-radius-full);
-    min-width: var(--qwertychat-avatar-sm);
-    height: var(--qwertychat-avatar-sm);
+    top: calc(-1 * var(--morphchat-spacing-md));
+    right: calc(-1 * var(--morphchat-spacing-md));
+    background: var(--morphchat-contrast);
+    border-radius: var(--morphchat-radius-full);
+    min-width: var(--morphchat-avatar-sm);
+    height: var(--morphchat-avatar-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: badgeAppear var(--qwertychat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    animation: badgeAppear var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .unreadCount {
-    color: var(--qwertychat-primary);
-    font-size: var(--qwertychat-text-xs);
+    color: var(--morphchat-primary);
+    font-size: var(--morphchat-text-xs);
     font-weight: 700;
-    line-height: var(--qwertychat-leading-tight);
+    line-height: var(--morphchat-leading-tight);
     text-align: center;
     user-select: none;
 }

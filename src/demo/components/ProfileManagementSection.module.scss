@@ -92,14 +92,14 @@
                             transition: color 0.3s ease;
 
                             &:hover {
-                                color: var(--qwertychat-primary);
+                                color: var(--morphchat-primary);
                             }
                         }
 
                         .avatarToggleCheckbox {
                             width: 18px;
                             height: 18px;
-                            accent-color: var(--qwertychat-primary);
+                            accent-color: var(--morphchat-primary);
                             cursor: pointer;
                             transition: transform 0.2s ease;
 

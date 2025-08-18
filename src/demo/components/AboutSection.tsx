@@ -6,10 +6,10 @@ export function AboutSection() {
         <section id="about" className={styles.aboutSection}>
             <div className={styles.aboutContainer}>
                 <h2 className={styles.aboutTitle}>
-                    About QwertyChat
+                    About MorphChat
                 </h2>
                 <p className={styles.aboutText}>
-                    QwertyChat is a modern, intelligent chat widget designed to enhance customer support
+                    MorphChat is a modern, intelligent chat widget designed to enhance customer support
                     and improve user engagement. Built with React and TypeScript, it provides a seamless
                     communication experience with customizable themes and responsive design.
                 </p>

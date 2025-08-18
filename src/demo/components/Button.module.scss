@@ -20,7 +20,7 @@
     }
 
     &:focus {
-        outline: 2px solid var(--qwertychat-primary);
+        outline: 2px solid var(--morphchat-primary);
         outline-offset: 2px;
     }
 }
@@ -61,13 +61,13 @@
 }
 
 .primary {
-    background: var(--qwertychat-primary);
+    background: var(--morphchat-primary);
     color: white;
-    border-color: var(--qwertychat-primary);
+    border-color: var(--morphchat-primary);
 
     &:hover:not(:disabled) {
-        background: var(--qwertychat-primary-hover);
-        border-color: var(--qwertychat-primary-hover);
+        background: var(--morphchat-primary-hover);
+        border-color: var(--morphchat-primary-hover);
     }
 
     &:active:not(:disabled) {

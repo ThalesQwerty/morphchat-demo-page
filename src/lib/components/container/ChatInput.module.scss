@@ -1,99 +1,99 @@
 /* ChatInput Component Styles */
 
 .chatInput {
-    padding: var(--qwertychat-spacing-xl) var(--qwertychat-spacing-2xl);
-    border-top: 1px solid var(--qwertychat-border);
+    padding: var(--morphchat-spacing-xl) var(--morphchat-spacing-2xl);
+    border-top: 1px solid var(--morphchat-border);
 
     .inputContainer {
         display: flex;
         align-items: flex-end;
-        gap: var(--qwertychat-spacing-base);
-        border: 1px solid var(--qwertychat-border);
-        border-radius: var(--qwertychat-radius-3xl);
-        padding: var(--qwertychat-spacing-sm);
-        background: var(--qwertychat-components-input-background, var(--qwertychat-background));
-        transition: border-color var(--qwertychat-transition-normal);
+        gap: var(--morphchat-spacing-base);
+        border: 1px solid var(--morphchat-border);
+        border-radius: var(--morphchat-radius-3xl);
+        padding: var(--morphchat-spacing-sm);
+        background: var(--morphchat-components-input-background, var(--morphchat-background));
+        transition: border-color var(--morphchat-transition-normal);
 
         &:focus-within {
-            border-color: var(--qwertychat-primary) !important;
+            border-color: var(--morphchat-primary) !important;
         }
 
         &.maintenanceMode {
             border: none;
-            background: var(--qwertychat-components-input-background-disabled, var(--qwertychat-background));
+            background: var(--morphchat-components-input-background-disabled, var(--morphchat-background));
             cursor: not-allowed;
             opacity: 0.7;
         }
 
         .maintenanceMessage {
             flex: 1;
-            padding: var(--qwertychat-spacing-base) var(--qwertychat-spacing-lg);
-            color: var(--qwertychat-text-light);
-            font-size: var(--qwertychat-text-md);
+            padding: var(--morphchat-spacing-base) var(--morphchat-spacing-lg);
+            color: var(--morphchat-text-light);
+            font-size: var(--morphchat-text-md);
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: var(--qwertychat-spacing-base);
+            gap: var(--morphchat-spacing-base);
         }
 
         .inputField {
             flex: 1;
-            min-height: var(--qwertychat-input-min-height);
-            max-height: var(--qwertychat-input-max-height);
-            padding: var(--qwertychat-spacing-md) var(--qwertychat-spacing-lg);
+            min-height: var(--morphchat-input-min-height);
+            max-height: var(--morphchat-input-max-height);
+            padding: var(--morphchat-spacing-md) var(--morphchat-spacing-lg);
             border: none;
-            border-radius: var(--qwertychat-radius-2xl);
-            font-size: var(--qwertychat-text-md);
+            border-radius: var(--morphchat-radius-2xl);
+            font-size: var(--morphchat-text-md);
             outline: none;
-            transition: height var(--qwertychat-transition-normal) ease;
+            transition: height var(--morphchat-transition-normal) ease;
             resize: none;
             font-family: inherit;
-            line-height: var(--qwertychat-leading-normal);
+            line-height: var(--morphchat-leading-normal);
             overflow-y: hidden;
             box-sizing: border-box;
             background: transparent;
-            color: var(--qwertychat-components-input-text, var(--qwertychat-text));
+            color: var(--morphchat-components-input-text, var(--morphchat-text));
 
             &:disabled {
-                color: var(--qwertychat-text-light);
+                color: var(--morphchat-text-light);
                 cursor: not-allowed;
             }
 
             &::placeholder {
-                color: var(--qwertychat-components-input-placeholder, var(--qwertychat-text-light));
+                color: var(--morphchat-components-input-placeholder, var(--morphchat-text-light));
             }
         }
 
         .sendButton {
-            width: var(--qwertychat-avatar-md);
-            height: var(--qwertychat-avatar-md);
+            width: var(--morphchat-avatar-md);
+            height: var(--morphchat-avatar-md);
             border: none;
-            border-radius: var(--qwertychat-radius-full);
-            color: var(--qwertychat-components-input-send-button-text, var(--qwertychat-contrast));
+            border-radius: var(--morphchat-radius-full);
+            color: var(--morphchat-components-input-send-button-text, var(--morphchat-contrast));
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color var(--qwertychat-transition-normal);
+            transition: background-color var(--morphchat-transition-normal);
             flex-shrink: 0;
-            background: var(--qwertychat-components-input-send-button-background, var(--qwertychat-primary));
+            background: var(--morphchat-components-input-send-button-background, var(--morphchat-primary));
 
             &:disabled {
-                background: var(--qwertychat-text-light);
+                background: var(--morphchat-text-light);
                 cursor: not-allowed;
                 opacity: 0.5;
             }
 
             /* Focus styles for accessibility */
             &:focus {
-                outline: 2px solid var(--qwertychat-primary);
+                outline: 2px solid var(--morphchat-primary);
                 outline-offset: 2px;
             }
 
             .sendIcon {
-                width: var(--qwertychat-icon-md);
-                height: var(--qwertychat-icon-md);
+                width: var(--morphchat-icon-md);
+                height: var(--morphchat-icon-md);
             }
         }
     }

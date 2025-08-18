@@ -5,7 +5,7 @@ export const ChatIntro = () => {
     const { intro, botProfile } = useWidgetContext();
 
     const profileAvatar = botProfile?.avatar;
-    const profileName = botProfile?.name || "QwertyChat";
+    const profileName = botProfile?.name || "MorphChat";
     const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
 
     if (typeof intro !== "object" || !intro || (!("title" in intro) && !("subtitle" in intro))) {

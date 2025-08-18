@@ -7,13 +7,13 @@ export function useTheme(theme: Theme) {
         const root = document.documentElement;
 
         const existingProperties = Array.from(root.style)
-            .filter(property => property.startsWith("--qwertychat"));
+            .filter(property => property.startsWith("--morphchat"));
 
         existingProperties.forEach(property => {
             root.style.removeProperty(property);
         });
 
-        applyThemeRecursively(root, theme, "qwertychat");
+        applyThemeRecursively(root, theme, "morphchat");
     }, [theme]);
 }
 

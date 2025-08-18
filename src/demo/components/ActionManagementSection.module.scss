@@ -34,12 +34,12 @@
 
                 &.actionEnabled {
                     // Custom styling for enabled actions
-                    border-color: var(--qwertychat-primary) !important;
+                    border-color: var(--morphchat-primary) !important;
                     background: var(--demo-background-light) !important;
                     box-shadow: 0 1px 3px var(--demo-shadow-primary) !important;
 
                     &:hover {
-                        border-color: var(--qwertychat-primary-hover) !important;
+                        border-color: var(--morphchat-primary-hover) !important;
                         box-shadow: 0 2px 8px var(--demo-shadow-primary) !important;
                         background: var(--demo-background-light) !important;
                     }
@@ -67,7 +67,7 @@
                         margin-right: var(--demo-spacing-base);
                         width: 20px;
                         height: 20px;
-                        accent-color: var(--qwertychat-primary);
+                        accent-color: var(--morphchat-primary);
                         cursor: pointer;
                         transition: var(--demo-transition-normal);
 
@@ -84,7 +84,7 @@
                         justify-content: center;
                         width: 56px;
                         height: 56px;
-                        background: var(--qwertychat-primary);
+                        background: var(--morphchat-primary);
                         border-radius: var(--demo-radius-full);
                         flex-shrink: 0;
                     }
@@ -165,11 +165,11 @@
 
                 &.actionEnabled {
                     background: var(--demo-shadow-primary-light) !important;
-                    border-color: var(--qwertychat-primary) !important;
+                    border-color: var(--morphchat-primary) !important;
                     box-shadow: 0 1px 3px var(--demo-shadow-primary) !important;
 
                     &:hover {
-                        border-color: var(--qwertychat-primary-hover) !important;
+                        border-color: var(--morphchat-primary-hover) !important;
                         background: var(--demo-shadow-primary-light) !important;
                     }
                 }
@@ -189,7 +189,7 @@
                 .actionContent {
                     .actionIcon {
                         color: white;
-                        background: var(--qwertychat-primary);
+                        background: var(--morphchat-primary);
                     }
 
                     .actionText {

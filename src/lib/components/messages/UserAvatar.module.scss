@@ -1,31 +1,31 @@
 .avatar {
-    width: var(--qwertychat-avatar-md);
-    height: var(--qwertychat-avatar-md);
-    border-radius: var(--qwertychat-radius-full);
+    width: var(--morphchat-avatar-md);
+    height: var(--morphchat-avatar-md);
+    border-radius: var(--morphchat-radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: var(--qwertychat-text-md);
+    font-size: var(--morphchat-text-md);
     flex-shrink: 0;
     overflow: hidden;
 
     // Bot variant (default)
     &.bot {
-        color: var(--qwertychat-components-message-bot-avatar-text, var(--qwertychat-contrast));
-        background: var(--qwertychat-components-message-bot-avatar-background, var(--qwertychat-primary));
+        color: var(--morphchat-components-message-bot-avatar-text, var(--morphchat-contrast));
+        background: var(--morphchat-components-message-bot-avatar-background, var(--morphchat-primary));
     }
 
     // User variant
     &.user {
-        color: var(--qwertychat-components-message-user-avatar-text, var(--qwertychat-text));
-        background: var(--qwertychat-components-message-user-avatar-background, var(--qwertychat-secondary));
+        color: var(--morphchat-components-message-user-avatar-text, var(--morphchat-text));
+        background: var(--morphchat-components-message-user-avatar-background, var(--morphchat-secondary));
     }
 
     .avatarImage {
         width: 100%;
         height: 100%;
-        border-radius: var(--qwertychat-radius-full);
+        border-radius: var(--morphchat-radius-full);
         object-fit: cover;
     }
 }

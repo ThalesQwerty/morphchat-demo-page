@@ -24,7 +24,7 @@
     }
 
     &.active {
-        border-color: var(--qwertychat-primary);
+        border-color: var(--morphchat-primary);
         background: rgba(99, 102, 241, 0.1);
     }
 }
@@ -39,7 +39,7 @@
         }
 
         &.active {
-            border-color: var(--qwertychat-primary);
+            border-color: var(--morphchat-primary);
             background: rgba(139, 92, 246, 0.2);
         }
     }

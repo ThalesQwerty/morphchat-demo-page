@@ -30,7 +30,7 @@
 
         .ctaButton {
             padding: 12px 24px;
-            background: var(--qwertychat-primary);
+            background: var(--morphchat-primary);
             color: white;
             border: none;
             border-radius: 8px;
@@ -39,7 +39,7 @@
             transition: background-color 0.2s ease;
             
             &:hover {
-                background: var(--qwertychat-primary-hover);
+                background: var(--morphchat-primary-hover);
             }
         }
     }

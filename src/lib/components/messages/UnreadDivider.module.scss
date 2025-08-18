@@ -1,22 +1,22 @@
 .unreadDivider {
     display: flex;
     align-items: center;
-    margin: var(--qwertychat-spacing-xl) 0;
-    padding: 0 var(--qwertychat-spacing-xl);
+    margin: var(--morphchat-spacing-xl) 0;
+    padding: 0 var(--morphchat-spacing-xl);
 }
 
 .dividerLine {
     flex: 1;
     height: 1px;
-    background: var(--qwertychat-primary);
+    background: var(--morphchat-primary);
     opacity: 0.6;
 }
 
 .unreadText {
-    padding: 0 var(--qwertychat-spacing-lg);
-    font-size: var(--qwertychat-text-base);
+    padding: 0 var(--morphchat-spacing-lg);
+    font-size: var(--morphchat-text-base);
     font-weight: 600;
-    color: var(--qwertychat-primary);
+    color: var(--morphchat-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap;

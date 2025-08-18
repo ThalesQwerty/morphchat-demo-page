@@ -14,7 +14,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
     const [lastOnlineTime, setLastOnlineTime] = useState<Date | null>(null);
     
     const profileAvatar = botProfile?.avatar;
-    const profileName = botProfile?.name || "QwertyChat";
+    const profileName = botProfile?.name || "MorphChat";
     const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
     const title = profileName;
     const isOnline = status?.isOnline ?? true;

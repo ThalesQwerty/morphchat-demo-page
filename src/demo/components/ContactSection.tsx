@@ -9,12 +9,12 @@ export function ContactSection() {
                     Get in Touch
                 </h2>
                 <p className={styles.contactSubtitle}>
-                    Ready to transform your customer support? Contact us to learn more about QwertyChat.
+                    Ready to transform your customer support? Contact us to learn more about MorphChat.
                 </p>
                 <div className={styles.contactGrid}>
                     <div className={styles.contactItem}>
                         <h3>Email</h3>
-                        <p>hello@qwertychat.com</p>
+                        <p>hello@morphchat.com</p>
                     </div>
                     <div className={styles.contactItem}>
                         <h3>Phone</h3>

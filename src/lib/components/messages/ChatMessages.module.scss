@@ -2,15 +2,15 @@
 
 .chatMessages {
     flex: 1;
-    padding: var(--qwertychat-spacing-2xl) var(--qwertychat-spacing-sm) var(--qwertychat-spacing-2xl) var(--qwertychat-spacing-base);
+    padding: var(--morphchat-spacing-2xl) var(--morphchat-spacing-sm) var(--morphchat-spacing-2xl) var(--morphchat-spacing-base);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: var(--qwertychat-spacing-sm);
+    gap: var(--morphchat-spacing-sm);
 
     /* Custom Scrollbar for Messages */
     &::-webkit-scrollbar {
-        width: var(--qwertychat-spacing-sm);
+        width: var(--morphchat-spacing-sm);
     }
 
     &::-webkit-scrollbar-track {
@@ -18,12 +18,12 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var(--qwertychat-secondary);
-        border-radius: var(--qwertychat-radius-xs);
+        background: var(--morphchat-secondary);
+        border-radius: var(--morphchat-radius-xs);
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background: var(--qwertychat-secondary-hover);
+        background: var(--morphchat-secondary-hover);
     }
 }
 
@@ -31,40 +31,40 @@
 .typingContainer {
     display: flex;
     flex-direction: column;
-    max-width: var(--qwertychat-message-max-width);
-    gap: var(--qwertychat-spacing-sm);
-    margin-top: var(--qwertychat-spacing-3xl);
-    margin-bottom: var(--qwertychat-spacing-base);
+    max-width: var(--morphchat-message-max-width);
+    gap: var(--morphchat-spacing-sm);
+    margin-top: var(--morphchat-spacing-3xl);
+    margin-bottom: var(--morphchat-spacing-base);
     align-self: flex-start;
     align-items: flex-start;
-    animation: fadeIn var(--qwertychat-transition-slow) ease-in-out;
+    animation: fadeIn var(--morphchat-transition-slow) ease-in-out;
 }
 
 .typingContent {
     display: flex;
     align-items: flex-start;
-    gap: var(--qwertychat-spacing-base);
-    min-height: var(--qwertychat-spacing-3xl);
+    gap: var(--morphchat-spacing-base);
+    min-height: var(--morphchat-spacing-3xl);
 }
 
 .typingIcon {
-    width: var(--qwertychat-avatar-md);
-    height: var(--qwertychat-avatar-md);
-    border-radius: var(--qwertychat-radius-full);
+    width: var(--morphchat-avatar-md);
+    height: var(--morphchat-avatar-md);
+    border-radius: var(--morphchat-radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background: var(--qwertychat-components-message-bot-avatar-background, var(--qwertychat-primary));
-    color: var(--qwertychat-components-message-bot-avatar-text, var(--qwertychat-contrast));
+    background: var(--morphchat-components-message-bot-avatar-background, var(--morphchat-primary));
+    color: var(--morphchat-components-message-bot-avatar-text, var(--morphchat-contrast));
 }
 
 .typingBubble {
-    background: var(--qwertychat-components-message-bot-background, var(--qwertychat-secondary));
-    border-radius: var(--qwertychat-radius-lg);
-    border-bottom-left-radius: var(--qwertychat-radius-md);
-    padding: var(--qwertychat-spacing-lg) var(--qwertychat-spacing-xl);
-    max-width: var(--qwertychat-typing-max-width);
+    background: var(--morphchat-components-message-bot-background, var(--morphchat-secondary));
+    border-radius: var(--morphchat-radius-lg);
+    border-bottom-left-radius: var(--morphchat-radius-md);
+    padding: var(--morphchat-spacing-lg) var(--morphchat-spacing-xl);
+    max-width: var(--morphchat-typing-max-width);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,15 +72,15 @@
 
 .typingDots {
     display: flex;
-    gap: var(--qwertychat-spacing-sm);
+    gap: var(--morphchat-spacing-sm);
     align-items: center;
 }
 
 .dot {
-    width: var(--qwertychat-spacing-md);
-    height: var(--qwertychat-spacing-md);
-    border-radius: var(--qwertychat-radius-full);
-    background: var(--qwertychat-components-message-bot-text, var(--qwertychat-text));
+    width: var(--morphchat-spacing-md);
+    height: var(--morphchat-spacing-md);
+    border-radius: var(--morphchat-radius-full);
+    background: var(--morphchat-components-message-bot-text, var(--morphchat-text));
     animation: typingDot 1.4s infinite ease-in-out;
     
     &:nth-child(1) {

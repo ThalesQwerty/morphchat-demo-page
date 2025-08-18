@@ -6,7 +6,7 @@ export const ChatFooter: React.FC = () => {
     const { botProfile } = useWidgetContext();
     
     const profileAvatar = botProfile?.avatar;
-    const profileName = botProfile?.name || "QwertyChat";
+    const profileName = botProfile?.name || "MorphChat";
     const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
 
     return (
@@ -19,7 +19,7 @@ export const ChatFooter: React.FC = () => {
             )}
         </div>
         <div className={styles.footerText}>
-            Powered by QwertyChat
+            Powered by MorphChat
         </div>
     </div>
     );

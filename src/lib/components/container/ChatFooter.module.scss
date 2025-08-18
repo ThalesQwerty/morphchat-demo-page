@@ -1,38 +1,38 @@
 /* ChatFooter Component Styles */
 
 .chatFooter {
-    padding: var(--qwertychat-spacing-lg) var(--qwertychat-spacing-2xl);
+    padding: var(--morphchat-spacing-lg) var(--morphchat-spacing-2xl);
     text-align: center;
-    border-top: 1px solid var(--qwertychat-border);
+    border-top: 1px solid var(--morphchat-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--qwertychat-spacing-base);
-    background: var(--qwertychat-components-footer-background, var(--qwertychat-background));
+    gap: var(--morphchat-spacing-base);
+    background: var(--morphchat-components-footer-background, var(--morphchat-background));
 
     .footerLogo {
-        width: var(--qwertychat-avatar-base);
-        height: var(--qwertychat-avatar-base);
-        border-radius: var(--qwertychat-radius-full);
+        width: var(--morphchat-avatar-base);
+        height: var(--morphchat-avatar-base);
+        border-radius: var(--morphchat-radius-full);
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        font-size: var(--qwertychat-text-base);
-        color: var(--qwertychat-components-footer-avatar-text, var(--qwertychat-contrast));
-        background: var(--qwertychat-components-footer-avatar-background, var(--qwertychat-primary));
+        font-size: var(--morphchat-text-base);
+        color: var(--morphchat-components-footer-avatar-text, var(--morphchat-contrast));
+        background: var(--morphchat-components-footer-avatar-background, var(--morphchat-primary));
         flex-shrink: 0;
 
         .avatar {
             width: 100%;
             height: 100%;
-            border-radius: var(--qwertychat-radius-full);
+            border-radius: var(--morphchat-radius-full);
             object-fit: cover;
         }
     }
 
     .footerText {
-        font-size: var(--qwertychat-text-base);
-        color: var(--qwertychat-components-footer-text, var(--qwertychat-text-light));
+        font-size: var(--morphchat-text-base);
+        color: var(--morphchat-components-footer-text, var(--morphchat-text-light));
     }
 }

@@ -63,7 +63,7 @@ export function DemoProvider({ children }: DemoProviderProps) {
     const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
 
     // Profile state
-    const [botName, setBotName] = useState("QwertyChat");
+    const [botName, setBotName] = useState("MorphChat");
     const [botAvatar, setBotAvatar] = useState<string | null>(null);
     const [botShowAvatar, setBotShowAvatar] = useState(true);
     const [userName, setUserName] = useState("You");
@@ -156,7 +156,7 @@ export function DemoProvider({ children }: DemoProviderProps) {
     // Clear site data function
     const clearSiteData = () => {
         // Clear localStorage
-        localStorage.removeItem("qwertychat_messages");
+        localStorage.removeItem("morphchat_messages");
         
         // Close widget and clear messages if functions are available
         if (widgetFunctionsRef.current) {
@@ -174,7 +174,7 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setChatbotPrompt("You are a helpful AI assistant. Give short and concise answers.");
         
         // Reset profile names
-        setBotName("QwertyChat");
+        setBotName("MorphChat");
         setBotAvatar(null);
         setBotShowAvatar(true);
         setUserName("You");

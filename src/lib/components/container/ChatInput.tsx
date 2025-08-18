@@ -18,7 +18,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const isMaintenanceMode = status?.maintenanceMode ?? false;
-    const botName = botProfile?.name || "QwertyChat";
+    const botName = botProfile?.name || "MorphChat";
 
     const autoResize = useCallback(() => {
         if (textareaRef.current) {

@@ -5,7 +5,7 @@ import { FilledWidgetConfig } from "../types/WidgetConfig";
 import { LLM } from "../bot/LLM";
 import { useActions } from "./useActions";
 
-const STORAGE_KEY = "qwertychat_messages";
+const STORAGE_KEY = "morphchat_messages";
 
 export interface MessageHook { 
     messages: Message[];
@@ -131,7 +131,7 @@ export function useMessages(
                 id: Date.now().toString(),
                 from: "bot",
                 content: message,
-                username: botProfile?.name || "QwertyChat",
+                username: botProfile?.name || "MorphChat",
                 timestamp: new Date(),
                 read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
             }
@@ -155,7 +155,7 @@ export function useMessages(
                         id: Date.now().toString(),
                         from: "bot",
                         content: prompt.welcomeMessage!,
-                        username: botProfile?.name || "QwertyChat",
+                        username: botProfile?.name || "MorphChat",
                         timestamp: new Date(),
                         read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
                     }

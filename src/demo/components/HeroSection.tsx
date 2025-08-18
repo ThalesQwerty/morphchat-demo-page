@@ -7,7 +7,7 @@ export function HeroSection() {
         <section id="home" className={styles.heroSection}>
             <div className={styles.heroContent}>
                 <h1 className={styles.heroTitle}>
-                    Welcome to QwertyChat
+                    Welcome to MorphChat
                 </h1>
                 <p className={styles.heroSubtitle}>
                     Experience the future of customer support with our intelligent chat widget.

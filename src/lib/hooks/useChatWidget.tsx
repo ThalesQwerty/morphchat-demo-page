@@ -25,7 +25,7 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         corner: config.corner || "right",
         mode: resolvedMode,
         intro: config.intro || {
-            title: "QwertyChat responds instantly",
+            title: "MorphChat responds instantly",
             subtitle: "Ask me anything",
         },
         events: config.events || {},
@@ -35,7 +35,7 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         
         // Ensure botProfile is always defined
         botProfile: {
-            name: "QwertyChat",
+            name: "MorphChat",
             showAvatar: true, // Bot avatar shows by default
             ...config.botProfile,
         },

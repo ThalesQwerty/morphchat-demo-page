@@ -2,11 +2,11 @@
 
 .message {
     display: flex;
-    margin: var(--qwertychat-spacing-sm) 0;
-    padding: 0 var(--qwertychat-spacing-base);
-    animation: messageAppear var(--qwertychat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    margin: var(--morphchat-spacing-sm) 0;
+    padding: 0 var(--morphchat-spacing-base);
+    animation: messageAppear var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     align-items: flex-start;
-    gap: var(--qwertychat-spacing-base);
+    gap: var(--morphchat-spacing-base);
 
     &.user {
         justify-content: flex-end;
@@ -17,19 +17,19 @@
     }
 
     &.first {
-        margin-top: var(--qwertychat-spacing-base);
+        margin-top: var(--morphchat-spacing-base);
     }
 
     &.last {
-        margin-bottom: var(--qwertychat-spacing-base);
+        margin-bottom: var(--morphchat-spacing-base);
     }
 
     &.middle {
-        margin: var(--qwertychat-spacing-xs) 0;
+        margin: var(--morphchat-spacing-xs) 0;
     }
 
     &.single {
-        margin: var(--qwertychat-spacing-base) 0;
+        margin: var(--morphchat-spacing-base) 0;
     }
 
     &.unsent {
@@ -41,73 +41,73 @@
 
 .messageIcon {
     flex-shrink: 0;
-    width: var(--qwertychat-avatar-md);
-    height: var(--qwertychat-avatar-md);
+    width: var(--morphchat-avatar-md);
+    height: var(--morphchat-avatar-md);
 }
 
 .messageIconSpacer {
     flex-shrink: 0;
-    width: var(--qwertychat-avatar-md);
-    height: var(--qwertychat-avatar-md);
+    width: var(--morphchat-avatar-md);
+    height: var(--morphchat-avatar-md);
 }
 
 .messageBubbleContainer {
     display: flex;
     flex-direction: column;
-    gap: var(--qwertychat-spacing-sm);
-    max-width: var(--qwertychat-message-max-width);
+    gap: var(--morphchat-spacing-sm);
+    max-width: var(--morphchat-message-max-width);
 }
 
 .messageBubble {
-    padding: var(--qwertychat-spacing-lg) var(--qwertychat-spacing-xl);
-    border-radius: var(--qwertychat-radius-2xl);
-    font-size: var(--qwertychat-text-md);
-    line-height: var(--qwertychat-leading-normal);
+    padding: var(--morphchat-spacing-lg) var(--morphchat-spacing-xl);
+    border-radius: var(--morphchat-radius-2xl);
+    font-size: var(--morphchat-text-md);
+    line-height: var(--morphchat-leading-normal);
     word-wrap: break-word;
     max-width: 100%;
     position: relative;
 
     .user & {
-        background: var(--qwertychat-primary);
-        color: var(--qwertychat-contrast);
-        border-bottom-right-radius: var(--qwertychat-radius-sm);
+        background: var(--morphchat-primary);
+        color: var(--morphchat-contrast);
+        border-bottom-right-radius: var(--morphchat-radius-sm);
     }
 
     .bot & {
-        background: var(--qwertychat-secondary);
-        color: var(--qwertychat-text);
-        border-bottom-left-radius: var(--qwertychat-radius-sm);
+        background: var(--morphchat-secondary);
+        color: var(--morphchat-text);
+        border-bottom-left-radius: var(--morphchat-radius-sm);
     }
 
     &.lastInChain {
         .user & {
-            border-bottom-right-radius: var(--qwertychat-radius-2xl);
+            border-bottom-right-radius: var(--morphchat-radius-2xl);
         }
 
         .bot & {
-            border-bottom-left-radius: var(--qwertychat-radius-2xl);
+            border-bottom-left-radius: var(--morphchat-radius-2xl);
         }
     }
 
     .first & {
         .user & {
-            border-top-right-radius: var(--qwertychat-radius-2xl);
+            border-top-right-radius: var(--morphchat-radius-2xl);
         }
 
         .bot & {
-            border-top-left-radius: var(--qwertychat-radius-2xl);
+            border-top-left-radius: var(--morphchat-radius-2xl);
         }
     }
 
     .middle & {
         .user & {
-            border-top-right-radius: var(--qwertychat-radius-sm);
-            border-bottom-right-radius: var(--qwertychat-radius-sm);
+            border-top-right-radius: var(--morphchat-radius-sm);
+            border-bottom-right-radius: var(--morphchat-radius-sm);
         }
 
         .bot & {
-            border-top-left-radius: var(--qwertychat-radius-sm);
-            border-bottom-left-radius: var(--qwertychat-radius-sm);
+            border-top-left-radius: var(--morphchat-radius-sm);
+            border-bottom-left-radius: var(--morphchat-radius-sm);
         }
     }
 }

@@ -29,7 +29,7 @@ export interface WidgetConfig<P extends Record<string, TypeName> = any> {
         subtitle: string;
     }>;
     // the avatar is a image url or base64 data, if not provided use the name initials with primary background
-    // if no name is provided, use "QwertyChat"
+    // if no name is provided, use "MorphChat"
     botProfile?: Partial<{
         name: string;
         avatar?: string; // URL or base64 data

@@ -15,7 +15,7 @@
     min-height: 100px;
 
     &:focus {
-        border-color: var(--qwertychat-primary);
+        border-color: var(--morphchat-primary);
         box-shadow: 0 0 0 3px var(--demo-shadow-primary-focus);
     }
 
@@ -44,7 +44,7 @@
         border-color: var(--demo-dark-border);
 
         &:focus {
-            border-color: var(--qwertychat-primary);
+            border-color: var(--morphchat-primary);
             box-shadow: 0 0 0 3px var(--demo-shadow-primary-focus);
         }
 
