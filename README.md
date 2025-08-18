@@ -1,281 +1,276 @@
 # MorphChat
 
-A modern React chat widget component with TypeScript support, featuring customizable themes, actions, and a beautiful UI.
+A modern, highly customizable React chat widget component with TypeScript support, featuring OpenAI integration and seamless website integration without style conflicts.
 
-## 📦 Download & Installation
+This project was developed as a part of a role application process to [Eloquent AI](https://www.eloquentai.co/).
 
-### NPM Package
+**🚀 [Click here to open the Live Demo](https://morphchat-55adf53d3fdf.herokuapp.com/)**
 
-MorphChat is available as an NPM package and can be easily installed in your React project:
+## 📄 Introduction
+
+MorphChat is a powerful React library that provides a fully customizable chat widget for your website. Built with TypeScript and modern React patterns, it offers seamless integration with OpenAI's API while maintaining complete style isolation to prevent conflicts with your existing website design.
+
+### Key Features
+
+- 🤖 **OpenAI Integration**: Built-in support for GPT models with customizable prompts
+- 🎯 **Custom Actions**: Execute custom functions in your page based on user messages
+- 🎨 **Highly Customizable**: Extensive theming options with light/dark mode support
+- 🔧 **Style Isolation**: No conflicts with your existing website styles
+- 📱 **Responsive Design**: Works perfectly on all screen sizes
+- 🔄 **Real-time Updates**: Live typing indicators and message synchronization
+- 💾 **Local Storage**: Optional conversation persistence
+- ⚡ **TypeScript Support**: Full type safety and excellent developer experience
+
+## 🎉 Demo Website
+
+The demo showcases MorphChat's capabilities through an interactive website that integrates the widget with real-time customization options. You can test:
+
+#### 1. Theme Customization
+Customize the widget visual appearance.
+
+- **Primary Color**: Change the widget's main color scheme
+- **Theme Mode**: Switch between light, dark, and auto modes
+- **Widget Position**: Choose between different corner positions
+
+#### 2. Profile Management
+Customize the display names, avatar, and avatar visibility for both the user and the bot.
+The changes are applied instantly to the widget.
+
+#### 3. Page Actions
+Enable and disable certain actions that can be triggered by sending messages to the bot.
+
+#### 4. Bot Configuration
+- **Prompt Instructions**: Set custom instructions for the AI assistant
+- **Welcome Message**: Customize the bot's greeting
+- **Status Management**: Control online/offline status and maintenance mode
+- **Conversation Reset**: Clear chat history with localStorage persistence
+
+### 👨‍💻 Install and run locally
+
+To run the demo locally:
+
+#### 1. Clone the repository
+```bash
+git clone https://github.com/ThalesQwerty/morphchat.git
+cd morphchat
+```
+
+#### 2. Install dependencies
+```bash
+npm install
+```
+
+#### 3. Configure OpenAI API Key
+Create a `.env` file in the root directory:
+```env
+VITE_OPENAI_API_KEY=your_openai_api_key_here
+```
+
+**⚠️ Important**: Without this, the AI engine simply won't work. You can create your API key in the [OpenAI Platform](https://platform.openai.com/).
+
+#### 4. Start the development server
+```bash
+npm run dev
+```
+
+#### 5. Open your browser**
+Navigate to `http://localhost:3000` to see the demo in action.
+
+## 🧩 Library Usage
+
+### Installation
+
+Install MorphChat via npm:
 
 ```bash
 npm install morphchat
 ```
 
-### Package Information
+### Basic Setup 
 
-- **Package Name**: `morphchat`
-- **Latest Version**: `1.2.8`
-- **Registry**: [npmjs.com/package/morphchat](https://www.npmjs.com/package/morphchat)
-- **Size**: ~32.1 kB (minified)
-- **Dependencies**: React 18+, TypeScript support included
-
-### Alternative Installation Methods
-
-```bash
-# Using Yarn
-yarn add morphchat
-
-# Using pnpm
-pnpm add morphchat
-
-# Using Bun
-bun add morphchat
-```
-
-## Quick Start
+Here's an example for a quick-start:
 
 ```tsx
-import React from 'react';
-import { useChatWidget } from 'morphchat';
+import React from "react";
+import { useChatWidget } from "morphchat";
 
-// Import the global CSS variables (required for proper styling)
-import 'morphchat/dist/globals.scss';
+// Import global styles (required for proper styling)
+import "morphchat/globals.scss";
 
 function App() {
-  const { component: ChatWidgetContainer } = useChatWidget({
-    // Your configuration here
-    apiKey: 'your-openai-api-key',
-    theme: {
-      primaryColor: '#007bff',
-      backgroundColor: '#ffffff',
+  const { component: ChatWidget } = useChatWidget({
+    prompt: {
+      apiKey: "your-openai-api-key",
+      instructions: "You are an e-commerce AI-powered assistant. Help users the products available in the store."
+      welcomeMessage: "Hello! How can I help you today?",
+      model: "gpt-4o-mini",
     },
-    actions: [
-      {
-        id: 'help',
-        label: 'Help',
-        action: () => console.log('Help clicked'),
-      },
-    ],
+    theme: {
+      primary: "#3b82f6",
+      background: "#ffffff",
+      text: "#1f2937",
+    },
+    corner: "right",
+    mode: "dark",
   });
 
   return (
     <div>
-      <h1>My App</h1>
-      <ChatWidgetContainer />
+      <h1>My Website</h1>
+      { ChatWidget }
     </div>
   );
 }
 ```
 
-## Features
-
-- 🎨 **Customizable Themes**: Easy theme customization with CSS variables
-- 🤖 **AI Integration**: Built-in OpenAI integration
-- ⚡ **TypeScript Support**: Full TypeScript support with type definitions
-- 🎯 **Custom Actions**: Add custom actions and buttons
-- 📱 **Responsive Design**: Works on all screen sizes
-- 🌙 **Dark Mode**: Built-in dark mode support
-- 🔧 **Flexible Configuration**: Extensive configuration options
-
-## Configuration
-
-### Basic Configuration
-
-```tsx
-const config = {
-  apiKey: 'your-openai-api-key',
-  corner: 'bottom-right', // 'bottom-left' | 'bottom-right'
-  theme: {
-    primaryColor: '#007bff',
-    backgroundColor: '#ffffff',
-    textColor: '#333333',
-  },
-};
-```
-
 ### Advanced Configuration
 
 ```tsx
-const config = {
-  apiKey: 'your-openai-api-key',
-  corner: 'bottom-right',
-  theme: {
-    primaryColor: '#007bff',
-    backgroundColor: '#ffffff',
-    textColor: '#333333',
-    borderRadius: '12px',
-    fontFamily: 'Inter, sans-serif',
-  },
-  actions: [
-    {
-      id: 'help',
-      label: 'Help',
-      icon: 'question-circle',
-      action: () => console.log('Help clicked'),
-    },
-    {
-      id: 'settings',
-      label: 'Settings',
-      icon: 'gear',
-      action: () => console.log('Settings clicked'),
-    },
-  ],
-  events: {
-    onOpen: () => console.log('Chat opened'),
-    onClose: () => console.log('Chat closed'),
-    onToggle: () => console.log('Chat toggled'),
-  },
-};
-```
+const { component: ChatWidget } = useChatWidget({
+// Theme configuration
+theme: {
+  primary: "#8b5cf6",
+  background: "#ffffff",
+  text: "#1f2937",
+  borderRadius: "12px",
+  fontFamily: "Inter, sans-serif",
+},
 
-## API Reference
+// Widget positioning and mode
+corner: "left",
+mode: "auto", // Follows system preference
 
-### useChatWidget Hook
+// Bot and user profiles
+botProfile: {
+  name: "AI Assistant",
+  avatar: "https://example.com/bot-avatar.png",
+  showAvatar: true,
+},
+userProfile: {
+  name: "User",
+  avatar: "https://example.com/user-avatar.png",
+  showAvatar: true,
+},
 
-The main hook that provides the chat widget functionality.
+// OpenAI configuration
+prompt: {
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+  welcomeMessage: "Welcome! I\"m here to help.",
+  instructions: "You are a helpful assistant. Be concise and friendly.",
+  model: "gpt-4o-mini",
+  timeout: 30000,
+  localStorage: true, // Persist conversations
+},
 
-```tsx
-const { ChatWidgetContainer, messages, sendMessage, isOpen } = useChatWidget(config);
-```
+// Custom intro
+intro: {
+  title: "Chat with AI",
+  subtitle: "Ask me anything!",
+},
 
-#### Parameters
+// Event handlers
+events: {
+  onOpen: () => console.log("Chat opened"),
+  onClose: () => console.log("Chat closed"),
+  onSendMessage: (message) => console.log("Message sent:", message),
+},
 
-- `config` (WidgetConfig): Configuration object for the chat widget
-
-#### Returns
-
-- `ChatWidgetContainer`: React component to render the chat widget
-- `messages`: Array of chat messages
-- `sendMessage`: Function to send a message
-- `isOpen`: Boolean indicating if the chat is open
-
-### Types
-
-```tsx
-interface WidgetConfig {
-  apiKey: string;
-  corner?: Corner;
-  theme?: Theme;
-  actions?: WidgetAction[];
-  events?: {
-    onOpen?: () => void;
-    onClose?: () => void;
-    onToggle?: () => void;
-  };
-}
-
-interface Theme {
-  primaryColor?: string;
-  backgroundColor?: string;
-  textColor?: string;
-  borderRadius?: string;
-  fontFamily?: string;
-}
-
-interface WidgetAction {
-  id: string;
-  label: string;
-  icon?: string;
-  action: () => void;
-}
-```
-
-## Styling
-
-### Global CSS Variables
-
-MorphChat uses CSS custom properties (variables) for theming. The global styles file (`globals.scss`) defines all the design tokens used by the widget:
-
-```scss
-:root {
-  --morphchat-primary: #3b82f6;
-  --morphchat-primary-hover: #2563eb;
-  --morphchat-secondary: #f3f4f6;
-  --morphchat-contrast: #ffffff;
-  --morphchat-text: #1f2937;
-  --morphchat-text-light: #6b7280;
-  --morphchat-background: #ffffff;
-  --morphchat-border: #e5e7eb;
-  --morphchat-muted: #9ca3af;
-  
-  /* Spacing, typography, and other design tokens... */
-}
-```
-
-**Important**: You must import the global styles file in your application for the widget to display correctly:
-
-```tsx
-import 'morphchat/dist/globals.scss';
-```
-
-### Custom Theming
-
-You can override the default CSS variables in your own CSS:
-
-```css
-:root {
-  --morphchat-primary: #your-custom-color;
-  --morphchat-background: #your-custom-bg;
-  --morphchat-text: #your-custom-text;
-}
-```
-
-## Examples
-
-### Custom Theme
-
-```tsx
-const customTheme = {
-  primaryColor: '#ff6b6b',
-  backgroundColor: '#2c3e50',
-  textColor: '#ecf0f1',
-  borderRadius: '20px',
-  fontFamily: 'Poppins, sans-serif',
-};
-
-const { ChatWidgetContainer } = useChatWidget({
-  apiKey: 'your-api-key',
-  theme: customTheme,
+// Widget status
+status: {
+  isOnline: true,
+  maintenanceMode: false,
+  isOpen: false,
+},
 });
 ```
 
 ### Custom Actions
 
+Define actions that the bot can trigger based on user interactions. Actions can have typed parameters that the AI can use to execute specific functions:
+
 ```tsx
 const actions = [
   {
-    id: 'support',
-    label: 'Contact Support',
-    icon: 'headset',
-    action: () => window.open('mailto:support@example.com'),
+    name: "navigate",
+    description: "Navigate to a specific page on the website",
+    parameters: {
+      page: {
+        type: "string",
+        description: "The page path to navigate to (e.g., \"products\", \"about\", \"contact\")",
+        required: true,
+      },
+    },
+    function: ({ page }) => {
+      window.location.href = `/${page}`;
+      return `Navigating to ${page} page...`;
+    },
   },
   {
-    id: 'docs',
-    label: 'Documentation',
-    icon: 'book',
-    action: () => window.open('https://docs.example.com'),
+    name: "addToCart",
+    description: "Add a product to the shopping cart",
+    parameters: {
+      productId: {
+        type: "string",
+        description: "The unique identifier of the product",
+        required: true,
+      },
+      quantity: {
+        type: "integer",
+        description: "The quantity of the product to add (default: 1)",
+        required: false,
+      },
+    },
+    function: ({ productId, quantity = 1 }) => {
+      // Add to cart logic here
+      console.log(`Adding ${quantity} of product ${productId} to cart`);
+      return `Added ${quantity} item(s) to your cart!`;
+    },
   },
 ];
 
-const { ChatWidgetContainer } = useChatWidget({
-  apiKey: 'your-api-key',
-  actions,
+const { component: ChatWidget } = useChatWidget({
+  prompt: {
+    apiKey: "your-api-key",
+    actions,
+    // ... other config
+  },
+  // ...other config
 });
 ```
 
-## Contributing
+## Development Proccess
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Now I'll talk a bit about how I developed MorphChat.
 
-## License
+### Technologies
 
-This project is licensed under the ISC License.
+- **React 18+**: Modern React with hooks and functional components
+- **TypeScript**: Full type safety and excellent developer experience
+- **Sass**: Advanced styling with CSS custom properties
+- **Vite**: Fast development and build tooling
+- **OpenAI API**: Integration with GPT models
 
-## Support
+### Project Structure
 
-If you have any questions or need help, please open an issue on GitHub.
+```
+src/
+├── lib/                    # Main library (published to npm)
+│   ├── components/        # React components
+│   ├── hooks/            # Custom React hooks
+│   ├── types/            # TypeScript type definitions
+│   ├── constants/        # Constants and default values
+│   └── index.ts          # Main export file
+├── demo/                  # Demo application (not published)
+│   ├── components/       # Demo-specific components
+│   ├── context/          # React context providers
+│   └── App.tsx           # Demo main component
+└── main.tsx              # Demo entry point
+```
+
+### Development Practices
+
+- **DRY Principle**: Reusable components and utilities
+- **Separation of Concerns**: Clear separation between library and demo
+- **Type Safety**: Comprehensive TypeScript interfaces
+- **Code Quality**: ESLint and Prettier for consistent formatting
+- **Modular Architecture**: Well-organized component structure
