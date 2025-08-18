@@ -45,18 +45,18 @@
     }
 
     /* Mobile Responsive */
-    @media (max-width: var(--morphchat-bp-sm)) {
-        width: var(--morphchat-avatar-xl);
-        height: var(--morphchat-avatar-xl);
-        bottom: var(--morphchat-spacing-xl);
-        z-index: var(--morphchat-z-fixed);
+    @media (max-width: 480px) {
+        width: 60px;
+        height: 60px;
+        bottom: 16px;
+        z-index: 1030;
 
         &.right {
-            right: var(--morphchat-spacing-xl);
+            right: 16px;
         }
 
         &.left {
-            left: var(--morphchat-spacing-xl);
+            left: 16px;
         }
     }
 }

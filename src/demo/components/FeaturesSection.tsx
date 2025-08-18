@@ -55,6 +55,22 @@ export function FeaturesSection() {
                         </Card>
                     ))}
                 </div>
+                {/* Mobile List Layout */}
+                <div className={styles.featuresList}>
+                    {features.map((feature, index) => (
+                        <div key={index} className={styles.featureListItem}>
+                            <div className={styles.featureListIcon}>
+                                <Icon name={feature.icon as any} size={24} />
+                            </div>
+                            <div className={styles.featureListContent}>
+                                <h3 className={styles.featureListTitle}>
+                                    {feature.title}
+                                </h3>
+                                <p className={styles.featureListDescription}>{feature.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );

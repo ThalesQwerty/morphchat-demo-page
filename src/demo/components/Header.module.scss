@@ -16,7 +16,7 @@
             font-weight: bold;
         }
 
-        .navLinks {
+        .desktopNav {
             display: flex;
             gap: 2rem;
 
@@ -28,23 +28,96 @@
                     text-decoration: underline;
                 }
             }
+        }
 
+        .mobileDropdown {
+            display: none;
+            position: relative;
 
+            .dropdownButton {
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 0.5rem;
+                border-radius: 4px;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
+
+                .dropdownIcon {
+                    display: block;
+                }
+            }
+
+            .dropdownMenu {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: var(--demo-background);
+                border: 1px solid var(--demo-border);
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                min-width: 200px;
+                margin-top: 0.5rem;
+                z-index: 1000;
+                overflow: hidden;
+
+                .dropdownLink {
+                    display: block;
+                    color: var(--demo-text);
+                    text-decoration: none;
+                    padding: 0.75rem 1rem;
+                    border-bottom: 1px solid var(--demo-border);
+                    transition: background-color 0.2s ease;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    &:hover {
+                        background-color: var(--demo-background-light);
+                        text-decoration: none;
+                    }
+                }
+            }
         }
     }
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .header {
         .nav {
-            .navLinks {
-                gap: 1rem;
-                flex-wrap: wrap;
+            .desktopNav {
+                display: none;
             }
 
-            .navLink {
-                font-size: 0.9rem;
+            .mobileDropdown {
+                display: block;
+            }
+        }
+    }
+}
+
+/* Dark mode dropdown */
+:global(.theme-dark) .header {
+    .nav {
+        .mobileDropdown {
+            .dropdownMenu {
+                background: var(--demo-dark-surface);
+                border-color: var(--demo-dark-border);
+
+                .dropdownLink {
+                    color: var(--demo-dark-text);
+                    border-bottom-color: var(--demo-dark-border);
+
+                    &:hover {
+                        background-color: var(--demo-dark-background);
+                    }
+                }
             }
         }
     }
