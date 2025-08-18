@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import styles from "./ChatWidgetContainer.module.scss";
 import { ChatWidget } from "../ChatWidget";
 import { FloatingChatButton } from "./FloatingChatButton";

@@ -11,9 +11,11 @@ export interface MessageHook {
     messages: Message[];
     setMessages: (messages: Message[]) => void;
     sendUserMessage: (message: string) => void;
+    receiveBotMessage: (message: string) => void;
     chainedMessages: ChainedMessage[];
     flushMessages: () => void;
     isTyping: boolean;
+    setIsTyping: (isTyping: boolean) => void;
     markAllMessagesAsRead: () => void;
     clearMessages: () => void;
 }
@@ -268,25 +270,16 @@ export function useMessages(
         }, [] as ChainedMessage[]);
     }, [messages]);
 
-    const messageHook = useMemo(() => ({ 
+    return {
         messages, 
         setMessages: setMessagesWithStorage,
         sendUserMessage,
+        receiveBotMessage,
         chainedMessages,
         flushMessages,
         isTyping,
+        setIsTyping,
         markAllMessagesAsRead,
-        clearMessages,
-    }), [
-        messages,
-        setMessagesWithStorage,
-        sendUserMessage,
-        chainedMessages,
-        flushMessages,
-        isTyping,
-        markAllMessagesAsRead,
-        clearMessages,
-    ]);
-
-    return messageHook;
+        clearMessages
+    };
 }

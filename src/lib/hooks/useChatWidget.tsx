@@ -4,14 +4,23 @@ import { ChatWidgetContainer } from "../components/page/ChatWidgetContainer";
 import { FilledWidgetConfig, WidgetConfig } from "../types/WidgetConfig";
 import { useTheme } from "./useTheme";
 import { defaultDarkTheme, defaultLightTheme } from "../constants/defaultThemes";
-import { WidgetProvider, useWidgetContext } from "./useWidgetContext";
+import { WidgetContextType, WidgetProvider, useWidgetContext } from "./useWidgetContext";
 import { Color } from "../constants/Color";
 import { useMessages } from "./useMessages";
 import { useSystemColorMode } from "./useSystemColorMode";
 
-interface UseChatWidgetReturn {
+interface UseChatWidgetReturn { 
     component: React.ReactElement;
-    widgetFunctions?: { clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void };
+    state?: Pick<WidgetContextType, 
+        "clearMessages" 
+        | "setIsWidgetOpen" 
+        | "setMessages" 
+        | "sendUserMessage" 
+        | "receiveBotMessage" 
+        | "markAllMessagesAsRead" 
+        | "isTyping" 
+        | "setIsTyping"
+    >;
 }
 
 export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
@@ -82,15 +91,15 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
     }, [setIsWidgetOpen]);
 
     // Create a ref to store widget functions
-    const widgetFunctionsRef = React.useRef<{ clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void } | null>(null);
+    const stateRef = React.useRef<WidgetContextType | null>(null);
 
     // Wrapper component that provides widget functions - memoized to prevent recreation
     const WidgetWrapper = useCallback(() => {
-        const { clearMessages, setIsWidgetOpen } = useWidgetContext();
+        const context = useWidgetContext();
         
         React.useEffect(() => {
-            widgetFunctionsRef.current = { clearMessages, setIsWidgetOpen };
-        }, [clearMessages, setIsWidgetOpen]);
+            stateRef.current = context;
+        }, [context]);
         
         return <ChatWidgetContainer />;
     }, []);
@@ -108,6 +117,6 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
 
     return {
         component,
-        widgetFunctions: widgetFunctionsRef.current || undefined,
+        state: stateRef.current || undefined,
     };
 }

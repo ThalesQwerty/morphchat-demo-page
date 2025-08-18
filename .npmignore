@@ -1,5 +1,59 @@
+# Development files
 node_modules
-dist
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs (except dist which we want to include)
+build
+coverage
+
+# Source files (we only want the compiled dist)
+src
+public
+index.html
+vite.config.ts
+vite.config.standalone.ts
+vite-env.d.ts
+
+# Development and demo files
 src/demo
 src/main.tsx
+src/standalone.ts
+server.js
+Procfile
+
+# Configuration files
+tsconfig.json
+tsconfig.node.json
+tsconfig.lib.json
+.eslint.js
+.prettierrc.json
+
+# Documentation and misc
+README.md
+.gitignore
+.github
+
+# Package management
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

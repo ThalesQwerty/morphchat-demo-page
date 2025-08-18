@@ -33,10 +33,9 @@ function AppContent() {
         userAvatar,
         userShowAvatar,
         actions,
-        setWidgetFunctions
     } = useDemoContext();
 
-        const { component: ChatWidgetComponent, widgetFunctions } = useChatWidget({
+        const { component: ChatWidgetComponent } = useChatWidget({
         theme: colorTheme,
         mode: resolvedTheme,
         corner,
@@ -68,13 +67,6 @@ function AppContent() {
             localStorage: true
         },
     });
-
-    // Connect widget functions to demo context
-    React.useEffect(() => {
-        if (widgetFunctions) {
-            setWidgetFunctions(widgetFunctions);
-        }
-    }, [widgetFunctions, setWidgetFunctions]);
 
     return (
         <div className={styles.appContainer}>

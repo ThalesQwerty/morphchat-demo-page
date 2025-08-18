@@ -38,8 +38,7 @@ interface DemoContextType {
     actions: (WidgetAction<any, { icon: IconName }>)[]
     
     // Site data management
-    clearSiteData: () => void;
-    setWidgetFunctions: (functions: { clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void }) => void;
+    clearSiteData: () => void;      
     openGithub: () => void;
 }
 
@@ -158,9 +157,6 @@ export function DemoProvider({ children }: DemoProviderProps) {
 
     const [actions, setActions] = useState([changeTheme, changeColorMode, changeCorner]);
 
-    // Widget functions ref
-    const widgetFunctionsRef = useRef<{ clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void } | null>(null);
-
     // Action management functions
     const toggleAction = (actionName: string) => {
         const newActions = actions.map(action => {
@@ -172,21 +168,10 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setActions(newActions as any);
     };
 
-    // Set widget functions
-    const setWidgetFunctions = (functions: { clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void }) => {
-        widgetFunctionsRef.current = functions;
-    };
-
     // Clear site data function
     const clearSiteData = () => {
         // Clear localStorage
         localStorage.removeItem("morphchat_messages");
-        
-        // Close widget and clear messages if functions are available
-        if (widgetFunctionsRef.current) {
-            widgetFunctionsRef.current.setIsWidgetOpen(false);
-            widgetFunctionsRef.current.clearMessages();
-        }
         
         // Reset actions to enabled state
         setActions([changeTheme, changeColorMode, changeCorner]);
@@ -249,7 +234,6 @@ export function DemoProvider({ children }: DemoProviderProps) {
         
         // Site data management
         clearSiteData,
-        setWidgetFunctions,
         openGithub,
     };
 

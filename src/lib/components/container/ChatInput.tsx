@@ -102,7 +102,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
                 <div className={`${styles.inputContainer} ${styles.maintenanceMode}`}>
                     <div className={styles.maintenanceMessage}>
                         <Icon name="Warning" size={16} />
-                        <span>{botName} is currently in maintenance.</span>
+                        <span>{botName} is currently under maintenance.</span>
                         <Icon name="Warning" size={16} />
                     </div>
                 </div>
