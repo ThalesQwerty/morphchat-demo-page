@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MorphChat Standalone Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            background-color: #fafafa;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .integration-code {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 MorphChat Widget Demo</h1>
+        
+        <div class="demo-section">
+            <h2>📦 Standalone Integration</h2>
+            <p>This demo shows how to integrate MorphChat into any HTML page without React or build tools.</p>
+            
+            <div class="integration-code">
+                <h3>Integration Code:</h3>
+                <pre><code>&lt;!-- Load MorphChat Widget --&gt;
+&lt;script src="https://your-app.herokuapp.com/widget.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    MorphChat.init({
+        apiKey: 'your-openai-api-key',
+        theme: 'purple',
+        botProfile: {
+            name: 'MorphChat Assistant'
+        },
+        prompt: {
+            welcomeMessage: 'Hello! How can I help you today?',
+            model: 'gpt-4o-mini'
+        }
+    });
+&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎮 Live Demo</h2>
+            <p>The widget should appear in the bottom-right corner. Try asking it to change themes or modes!</p>
+            <p><strong>Demo Commands:</strong></p>
+            <ul>
+                <li>"Change the theme to blue"</li>
+                <li>"Switch to dark mode"</li>
+                <li>"Move to the left corner"</li>
+                <li>"Make yourself more helpful"</li>
+            </ul>
+        </div>
+
+        <div class="demo-section">
+            <h2>🔧 Configuration Options</h2>
+            <pre><code>MorphChat.init({
+    // Widget positioning
+    corner: "right", // "left" | "right"
+    
+    // Theme configuration
+    theme: "purple", // "purple" | "blue" | "green" | "red" | "orange" | "pink" | "gray"
+    mode: "auto", // "light" | "dark" | "auto"
+    
+    // Bot profile
+    botProfile: {
+        name: "MorphChat",
+        avatar: "https://example.com/avatar.png", // Optional
+        showAvatar: true
+    },
+    
+    // AI configuration
+    prompt: {
+        apiKey: "your-openai-api-key",
+        welcomeMessage: "Hello! I'm MorphChat, your AI assistant.",
+        instructions: "You are a helpful AI assistant.",
+        model: "gpt-4o-mini",
+        timeout: 30000,
+        localStorage: true
+    },
+    
+    // Status
+    status: {
+        isOnline: true,
+        maintenanceMode: false
+    }
+});</code></pre>
+        </div>
+
+        <div class="demo-section">
+            <h2>📚 Documentation</h2>
+            <p>For more information, visit the main demo at: <a href="/">Main Demo</a></p>
+        </div>
+    </div>
+
+    <!-- Load MorphChat Widget -->
+    <script src="/widget.js"></script>
+    <script>
+        // Initialize the widget for this demo
+        MorphChat.init({
+            theme: 'purple',
+            botProfile: {
+                name: 'MorphChat Demo'
+            },
+            prompt: {
+                apiKey: 'demo-key', // This will show demo messages
+                welcomeMessage: 'Hello! This is the standalone widget demo. Try asking me to change themes!',
+                model: 'gpt-4o-mini'
+            },
+            status: {
+                isOnline: true,
+                maintenanceMode: false
+            }
+        });
+    </script>
+</body>
+</html>

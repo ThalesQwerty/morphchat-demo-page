@@ -1,12 +1,15 @@
 {
-	"name": "qwertychat",
+	"name": "morphchat",
 	"version": "1.0.0",
 	"description": "React TypeScript boilerplate",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
+		"build:standalone": "vite build --config vite.config.standalone.ts",
+		"build:all": "npm run build && npm run build:standalone",
 		"preview": "vite preview",
+		"start": "node server.js",
 		"lint": "eslint src --ext .ts,.tsx",
 		"lint:fix": "eslint src --ext .ts,.tsx --fix",
 		"clean": "rimraf dist",
@@ -15,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ThalesQwerty/qwertychat.git"
+		"url": "git+https://github.com/ThalesQwerty/morphchat.git"
 	},
 	"keywords": [
 		"react",
@@ -25,11 +28,12 @@
 	"author": "ThalesQwerty",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/ThalesQwerty/qwertychat/issues"
+		"url": "https://github.com/ThalesQwerty/morphchat/issues"
 	},
-	"homepage": "https://github.com/ThalesQwerty/qwertychat#readme",
+	"homepage": "https://github.com/ThalesQwerty/morphchat#readme",
 	"dependencies": {
 		"@phosphor-icons/react": "^2.1.10",
+		"express": "^4.18.2",
 		"lodash": "^4.17.21",
 		"openai": "^5.12.2",
 		"react": "^18.2.0",

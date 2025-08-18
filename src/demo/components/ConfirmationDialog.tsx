@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "./Button";
 import { Card } from "./Card";
-import { Icon } from "../../lib/components/layout/Icon";
+import { Icon, IconName } from "../../lib/components/layout/Icon";
 import styles from "./ConfirmationDialog.module.scss";
 
 interface ConfirmationDialogProps {
@@ -12,8 +12,8 @@ interface ConfirmationDialogProps {
     message: string;
     confirmText?: string;
     cancelText?: string;
-    variant?: "danger" | "warning" | "info";
-    icon?: string;
+    variant?: "danger";
+    icon?: IconName;
 }
 
 export const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
@@ -46,7 +46,7 @@ export const ConfirmationDialog: React.FC<ConfirmationDialogProps> = ({
                 <Card variant="elevated" size="medium" className={styles.dialog}>
                     <div className={styles.header}>
                         <div className={styles.iconContainer}>
-                            <Icon name={icon} size={24} />
+                            <Icon name={icon as IconName} size={24} />
                         </div>
                         <h3 className={styles.title}>{title}</h3>
                     </div>

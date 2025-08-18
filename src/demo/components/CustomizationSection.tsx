@@ -1,4 +1,3 @@
-import React from "react";
 import { Color } from "../../lib/constants/Color";
 import { Icon } from "../../lib/components/layout/Icon";
 import { useAppTheme } from "../context/ThemeContext";

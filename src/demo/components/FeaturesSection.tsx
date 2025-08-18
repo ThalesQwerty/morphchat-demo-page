@@ -1,4 +1,3 @@
-import React from "react";
 import { Icon } from "../../lib/components/layout/Icon";
 import { Card } from "./Card";
 import styles from "./FeaturesSection.module.scss";

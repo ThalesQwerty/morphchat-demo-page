@@ -1,8 +1,6 @@
-import React from "react";
 import { Button } from "./Button";
 import { useDemoContext } from "../context/DemoContext";
 import styles from "./AboutSection.module.scss";
-import { IconName } from "../../lib/components/layout/Icon";
 
 export function AboutSection() {
     const { openGithub } = useDemoContext();

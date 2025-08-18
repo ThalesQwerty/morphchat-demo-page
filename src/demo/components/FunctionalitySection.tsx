@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Icon } from "../../lib/components/layout/Icon";
 import { useDemoContext } from "../context/DemoContext";
 import { Button } from "./Button";

@@ -19,7 +19,7 @@ export const FloatingChatButton: React.FC<FloatingChatButtonProps> = ({
         message.from === "bot" && !message.read
     ).length || 0;
 
-    const handleClick = (e: React.MouseEvent) => {
+    const handleClick = () => {
         setIsRippling(true);
         onClick();
         
