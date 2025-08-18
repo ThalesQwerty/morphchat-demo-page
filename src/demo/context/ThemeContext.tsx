@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { Color } from "../../lib";
+import { Color } from "morphchat";
 
 export type AppTheme = "light" | "dark" | "auto";
 

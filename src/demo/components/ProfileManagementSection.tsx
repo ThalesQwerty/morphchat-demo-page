@@ -1,4 +1,4 @@
-import { Icon } from "../../lib";
+import { Icon } from "morphchat";
 import { ProfileCard } from "./ProfileCard";
 import styles from "./ProfileManagementSection.module.scss";
 

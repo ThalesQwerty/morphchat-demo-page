@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Icon } from "../../lib";
+import { Icon } from "morphchat";
 import { useDemoContext } from "../context/DemoContext";
 import { Button } from "./Button";
 import { TextArea } from "./TextArea";

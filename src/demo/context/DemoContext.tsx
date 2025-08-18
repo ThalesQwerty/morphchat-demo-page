@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode, useRef } from "react";
-import { useChatAction, Color, Corner, IconName } from "../../lib";
+import { useChatAction, Color, Corner, IconName } from "morphchat";
 import { useAppTheme } from "./ThemeContext";
-import { WidgetAction } from "../../lib";
+import { WidgetAction } from "morphchat";
 
 interface DemoContextType {
     // Widget state

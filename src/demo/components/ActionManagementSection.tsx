@@ -1,4 +1,4 @@
-import { Icon } from "../../lib";
+import { Icon } from "morphchat";
 import { useDemoContext } from "../context/DemoContext";
 import { Card } from "./Card";
 import styles from "./ActionManagementSection.module.scss";

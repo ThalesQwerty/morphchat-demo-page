@@ -1,4 +1,4 @@
-import { Icon } from "../../lib";
+import { Icon } from "morphchat";
 import { Card } from "./Card";
 import styles from "./FeaturesSection.module.scss";
 

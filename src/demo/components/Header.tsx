@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDemoContext } from "../context/DemoContext";
-import { Icon } from "../../lib";
+import { Icon } from "morphchat";
 import styles from "./Header.module.scss";
 
 export function Header() {

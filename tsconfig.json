@@ -19,11 +19,6 @@
         "noUnusedLocals": false,
         "noUnusedParameters": false,
         "noFallthroughCasesInSwitch": true,
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["src/lib/*"]
-        }
     },
-    "include": ["src", "vite-env.d.ts"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": ["src", "vite-env.d.ts"]
 }

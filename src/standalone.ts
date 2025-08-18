@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { useChatWidget } from "./lib/hooks/useChatWidget";
-import type { WidgetConfig } from "./lib/types/WidgetConfig";
+import { useChatWidget } from "morphchat";
+import type { WidgetConfig } from "morphchat";
 
 // Create a simple initialization function
 export function init(config: WidgetConfig) {

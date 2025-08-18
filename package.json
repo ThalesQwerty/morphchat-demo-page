@@ -3,71 +3,12 @@
 	"version": "1.2.9",
 	"description": "A modern React chat widget component with TypeScript support",
 	"type": "module",
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./hooks/useChatWidget": {
-			"import": "./dist/hooks/useChatWidget.js",
-			"types": "./dist/hooks/useChatWidget.d.ts"
-		},
-		"./hooks/useChatAction": {
-			"import": "./dist/hooks/useChatAction.js",
-			"types": "./dist/hooks/useChatAction.d.ts"
-		},
-		"./components/ChatWidget": {
-			"import": "./dist/components/ChatWidget.js",
-			"types": "./dist/components/ChatWidget.d.ts"
-		},
-		"./components/page/ChatWidgetContainer": {
-			"import": "./dist/components/page/ChatWidgetContainer.js",
-			"types": "./dist/components/page/ChatWidgetContainer.d.ts"
-		},
-		"./components/page/FloatingChatButton": {
-			"import": "./dist/components/page/FloatingChatButton.js",
-			"types": "./dist/components/page/FloatingChatButton.d.ts"
-		},
-		"./components/layout/Icon": {
-			"import": "./dist/components/layout/Icon.js",
-			"types": "./dist/components/layout/Icon.d.ts"
-		},
-		"./types/WidgetConfig": {
-			"import": "./dist/types/WidgetConfig.js",
-			"types": "./dist/types/WidgetConfig.d.ts"
-		},
-		"./types/WidgetAction": {
-			"import": "./dist/types/WidgetAction.js",
-			"types": "./dist/types/WidgetAction.d.ts"
-		},
-		"./types/Theme": {
-			"import": "./dist/types/Theme.js",
-			"types": "./dist/types/Theme.d.ts"
-		},
-		"./types/Corner": {
-			"import": "./dist/types/Corner.js",
-			"types": "./dist/types/Corner.d.ts"
-		},
-		"./constants/Color": {
-			"import": "./dist/constants/Color.js",
-			"types": "./dist/constants/Color.d.ts"
-		},
-		"./dist/globals.scss": "./dist/globals.scss",
-		"./globals.scss": "./dist/globals.scss"
-	},
 	"files": [
 		"dist"
 	],
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
-		"build:standalone": "vite build --config vite.config.standalone.ts",
-		"build:all": "npm run build && npm run build:standalone",
-		"build:lib": "tsc --project tsconfig.lib.json && tsc-alias -p tsconfig.lib.json && npm run copy-assets",
-		"copy-assets": "node scripts/copy-assets.js",
 		"preview": "vite preview",
 		"start": "node scripts/server.js",
 		"lint": "eslint src --ext .ts,.tsx",
@@ -104,6 +45,7 @@
 		"@phosphor-icons/react": ">=2.1.10",
 		"express": ">=4.18.2",
 		"lodash": ">=4.17.21",
+		"morphchat": "^1.2.9",
 		"openai": ">=5.12.2"
 	},
 	"devDependencies": {

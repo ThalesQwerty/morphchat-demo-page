@@ -1,4 +1,4 @@
-import { Color, Icon } from "../../lib";
+import { Color, Icon } from "morphchat";
 import { useAppTheme } from "../context/ThemeContext";
 import { useDemoContext } from "../context/DemoContext";
 import { Button } from "./Button";

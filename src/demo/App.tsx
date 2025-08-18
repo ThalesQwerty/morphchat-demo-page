@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./globals.scss";
-import "../lib/globals.scss";
+import "morphchat/globals.scss";
 import styles from "./App.module.scss";
 
 import { ThemeProvider, useAppTheme } from "./context/ThemeContext";
@@ -15,7 +15,7 @@ import { ActionManagementSection } from "./components/ActionManagementSection";
 import { ProfileManagementSection } from "./components/ProfileManagementSection";
 import { AboutSection } from "./components/AboutSection";
 import { Footer } from "./components/Footer";
-import { useChatWidget } from "../lib";
+import { useChatWidget } from "morphchat";
 
 function AppContent() {
     const { resolvedTheme, colorTheme } = useAppTheme();

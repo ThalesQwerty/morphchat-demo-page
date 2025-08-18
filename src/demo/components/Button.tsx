@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Corner } from "../../lib";
+import { Icon, Corner } from "morphchat";
 import styles from "./Button.module.scss";
 
 export interface ButtonProps {
