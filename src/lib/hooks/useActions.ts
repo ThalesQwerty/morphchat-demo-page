@@ -6,7 +6,7 @@ import { LLM } from "../bot/LLM";
 export function useActions(config: FilledWidgetConfig) {
     const { prompt } = config;
 
-    const actions = useMemo(() => prompt?.actions?.map(action => <const>({
+    const actions = useMemo(() => prompt?.actions?.filter(action => !action.disabled).map(action => <const>({
         type: "function",
         function: {
             name: action.name,

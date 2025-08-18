@@ -11,6 +11,7 @@ export function Header() {
                     <a href="#features" className={styles.navLink}>Features</a>
                     <a href="#customization" className={styles.navLink}>Customize</a>
                     <a href="#functionality" className={styles.navLink}>Functionality</a>
+                    <a href="#actions" className={styles.navLink}>Actions</a>
                     <a href="#about" className={styles.navLink}>About</a>
                     <a href="#contact" className={styles.navLink}>Contact</a>
                 </div>

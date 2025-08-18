@@ -1,7 +1,11 @@
 import { NameToType, TypeName } from "../bot/TypeName";
 
-export interface WidgetAction<P extends Record<string, TypeName> = Record<string, never>> {
+export interface WidgetAction<
+    P extends Record<string, TypeName> = Record<string, never>,
+    M = any
+> {
     name: string;
+    disabled?: boolean;
     description?: string;
     parameters?: {
         [K in keyof P]: {
@@ -14,4 +18,5 @@ export interface WidgetAction<P extends Record<string, TypeName> = Record<string
     function: (args: {
         [K in keyof P]: NameToType<P[K]>
     }) => string | Promise<string>;
+    metadata?: M;
 }

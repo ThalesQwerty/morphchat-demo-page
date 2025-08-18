@@ -5,7 +5,7 @@ import { ChatModel } from "openai/resources";
 
 import { Theme } from "./Theme";
 import { Color } from "../constants/Color";
-import { WidgetAction } from "./WigetAction";
+import { WidgetAction } from "./WidgetAction";
 import { TypeName } from "../bot/TypeName";
 
 

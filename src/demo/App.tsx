@@ -10,6 +10,7 @@ import { HeroSection } from "./components/HeroSection";
 import { FeaturesSection } from "./components/FeaturesSection";
 import { CustomizationSection } from "./components/CustomizationSection";
 import { FunctionalitySection } from "./components/FunctionalitySection";
+import { ActionManagementSection } from "./components/ActionManagementSection";
 import { AboutSection } from "./components/AboutSection";
 import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
@@ -58,6 +59,7 @@ function AppContent() {
             <FeaturesSection />
             <CustomizationSection />
             <FunctionalitySection />
+            <ActionManagementSection />
             <AboutSection />
             <ContactSection />
             <Footer />

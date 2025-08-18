@@ -2,7 +2,8 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { useChatAction } from "../../lib";
 import { Color } from "../../lib/constants/Color";
 import { useAppTheme } from "./ThemeContext";
-import { WidgetAction } from "../../lib/types/WigetAction";
+import { WidgetAction } from "../../lib/types/WidgetAction";
+import { IconName } from "../../lib/components/layout/Icon";
 
 interface DemoContextType {
     // Widget state
@@ -15,7 +16,8 @@ interface DemoContextType {
     chatbotPrompt: string;
     setChatbotPrompt: (prompt: string) => void;
 
-    actions: WidgetAction<any>[];
+    toggleAction: (actionName: string) => void;
+    actions: (WidgetAction<any, { icon: IconName }>)[]
 }
 
 const DemoContext = createContext<DemoContextType | undefined>(undefined);
@@ -60,6 +62,9 @@ export function DemoProvider({ children }: DemoProviderProps) {
                 return `Theme changed to ${args.theme}`;
             }
             return `Invalid theme: ${args.theme}`;
+        },
+        metadata: {
+            icon: "Palette" as const satisfies IconName
         }
     });
 
@@ -76,6 +81,9 @@ export function DemoProvider({ children }: DemoProviderProps) {
             console.log("Change color mode", args);
             setTheme(args.mode as "light" | "dark" | "auto");
             return `Color mode changed to ${args.mode}`;
+        },
+        metadata: {
+            icon: "Sun" as const satisfies IconName
         }
     });
 
@@ -92,8 +100,24 @@ export function DemoProvider({ children }: DemoProviderProps) {
             console.log("Change corner", args);
             setWidgetCorner(args.corner as "left" | "right");
             return `Widget moved to ${args.corner} corner`;
+        },
+        metadata: {
+            icon: "ArrowsOut" as const satisfies IconName
         }
     });
+
+    const [actions, setActions] = useState([changeTheme, changeColorMode, changeCorner]);
+
+    // Action management functions
+    const toggleAction = (actionName: string) => {
+        const newActions = actions.map(action => {
+            if (action.name === actionName) {
+                return { ...action, disabled: !action.disabled };
+            }
+            return action;
+        });
+        setActions(newActions as any);
+    };
 
     const value: DemoContextType = {
         // Widget state
@@ -106,7 +130,8 @@ export function DemoProvider({ children }: DemoProviderProps) {
         chatbotPrompt,
         setChatbotPrompt,
         
-        actions: [changeTheme, changeColorMode, changeCorner],
+        toggleAction,
+        actions,
     };
 
     return (
