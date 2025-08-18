@@ -2,10 +2,10 @@ import styles from "./ChatIntro.module.scss";
 import { useWidgetContext } from "../../hooks/useWidgetContext";
 
 export const ChatIntro = () => {
-    const { intro, profile } = useWidgetContext();
+    const { intro, botProfile } = useWidgetContext();
 
-    const profileAvatar = profile?.avatar;
-    const profileName = profile?.name || "QwertyChat";
+    const profileAvatar = botProfile?.avatar;
+    const profileName = botProfile?.name || "QwertyChat";
     const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
 
     if (typeof intro !== "object" || !intro || (!("title" in intro) && !("subtitle" in intro))) {

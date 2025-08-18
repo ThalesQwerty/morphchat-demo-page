@@ -3,10 +3,10 @@ import styles from "./ChatFooter.module.scss";
 import { useWidgetContext } from "../../hooks/useWidgetContext";
 
 export const ChatFooter: React.FC = () => {
-    const { profile } = useWidgetContext();
+    const { botProfile } = useWidgetContext();
     
-    const profileAvatar = profile?.avatar;
-    const profileName = profile?.name || "QwertyChat";
+    const profileAvatar = botProfile?.avatar;
+    const profileName = botProfile?.name || "QwertyChat";
     const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
 
     return (

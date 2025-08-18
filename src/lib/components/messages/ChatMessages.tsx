@@ -8,7 +8,7 @@ import { useWidgetContext } from "../../hooks/useWidgetContext";
 
 
 export const ChatMessages = () => {
-    const { messages, chainedMessages, isTyping, profile, status } = useWidgetContext();
+    const { messages, chainedMessages, isTyping, botProfile, status } = useWidgetContext();
     
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -83,9 +83,11 @@ export const ChatMessages = () => {
             {isTyping && (
                 <div className={styles.typingContainer}>
                     <div className={styles.typingContent}>
-                        <div className={styles.typingIcon}>
-                            <UserAvatar profile={profile} />
-                        </div>
+                        {botProfile.showAvatar && (
+                            <div className={styles.typingIcon}>
+                                <UserAvatar profile={botProfile} variant="bot" />
+                            </div>
+                        )}
                         <div className={styles.typingBubble}>
                             <div className={styles.typingDots}>
                                 <div className={styles.dot}></div>

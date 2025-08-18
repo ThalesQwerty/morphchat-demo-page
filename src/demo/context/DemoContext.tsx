@@ -16,6 +16,16 @@ interface DemoContextType {
     chatbotPrompt: string;
     setChatbotPrompt: (prompt: string) => void;
 
+    // Profile management
+    botName: string;
+    setBotName: (name: string) => void;
+    botShowAvatar: boolean;
+    setBotShowAvatar: (show: boolean) => void;
+    userName: string;
+    setUserName: (name: string) => void;
+    userShowAvatar: boolean;
+    setUserShowAvatar: (show: boolean) => void;
+
     toggleAction: (actionName: string) => void;
     actions: (WidgetAction<any, { icon: IconName }>)[]
     
@@ -47,6 +57,12 @@ export function DemoProvider({ children }: DemoProviderProps) {
     const [isOnline, setIsOnline] = useState(true);
     const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
     const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
+
+    // Profile state
+    const [botName, setBotName] = useState("QwertyChat");
+    const [botShowAvatar, setBotShowAvatar] = useState(true);
+    const [userName, setUserName] = useState("You");
+    const [userShowAvatar, setUserShowAvatar] = useState(false);
 
     // Chat actions
     const changeTheme = useChatAction({
@@ -150,6 +166,12 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setIsOnline(true);
         setIsMaintenanceMode(false);
         setChatbotPrompt("You are a helpful AI assistant. Give short and concise answers.");
+        
+        // Reset profile names
+        setBotName("QwertyChat");
+        setBotShowAvatar(true);
+        setUserName("You");
+        setUserShowAvatar(false);
     };
 
     const value: DemoContextType = {
@@ -162,6 +184,16 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setIsMaintenanceMode,
         chatbotPrompt,
         setChatbotPrompt,
+        
+        // Profile management
+        botName,
+        setBotName,
+        botShowAvatar,
+        setBotShowAvatar,
+        userName,
+        setUserName,
+        userShowAvatar,
+        setUserShowAvatar,
         
         toggleAction,
         actions,

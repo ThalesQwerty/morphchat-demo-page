@@ -10,11 +10,11 @@ interface ChatHeaderProps {
 export const ChatHeader: React.FC<ChatHeaderProps> = ({
     onClose,
 }) => {
-    const { profile, status } = useWidgetContext();
+    const { botProfile, status } = useWidgetContext();
     const [lastOnlineTime, setLastOnlineTime] = useState<Date | null>(null);
     
-    const profileAvatar = profile?.avatar;
-    const profileName = profile?.name || "QwertyChat";
+    const profileAvatar = botProfile?.avatar;
+    const profileName = botProfile?.name || "QwertyChat";
     const logo = profileAvatar ? undefined : profileName.charAt(0).toUpperCase();
     const title = profileName;
     const isOnline = status?.isOnline ?? true;

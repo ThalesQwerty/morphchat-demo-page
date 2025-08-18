@@ -33,10 +33,18 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         // Only spread config properties that are actually provided
         ...(config.prompt && { prompt: config.prompt }),
         
-        // Ensure profile is always defined
-        profile: {
+        // Ensure botProfile is always defined
+        botProfile: {
             name: "QwertyChat",
-            ...config.profile,
+            showAvatar: true, // Bot avatar shows by default
+            ...config.botProfile,
+        },
+
+        // Ensure userProfile is always defined
+        userProfile: {
+            name: "You",
+            showAvatar: false, // User avatar hidden by default
+            ...config.userProfile,
         },
 
         // Override status.isOpen with local state to ensure it's always correct
@@ -55,7 +63,8 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
         config.intro,
         config.events,
         config.prompt,
-        config.profile,
+        config.botProfile,
+        config.userProfile,
         config.status?.isOnline,
         config.status?.maintenanceMode,
         config.theme,

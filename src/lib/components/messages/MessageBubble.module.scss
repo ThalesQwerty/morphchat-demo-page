@@ -5,6 +5,8 @@
     margin: 4px 0;
     padding: 0 8px; /* Reduced from 16px to 8px */
     animation: messageAppear 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: flex-start;
+    gap: 8px;
 
     &.user {
         justify-content: flex-end;
@@ -35,12 +37,7 @@
     }
 }
 
-.messageContent {
-    display: flex;
-    align-items: flex-start;
-    max-width: 80%;
-    gap: 8px;
-}
+
 
 .messageIcon {
     flex-shrink: 0;
@@ -58,6 +55,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    max-width: 80%;
 }
 
 .messageBubble {

@@ -7,10 +7,20 @@
     justify-content: center;
     font-weight: bold;
     font-size: 14px;
-    color: var(--qwertychat-components-message-bot-avatar-text, var(--qwertychat-contrast));
-    background: var(--qwertychat-components-message-bot-avatar-background, var(--qwertychat-primary));
     flex-shrink: 0;
     overflow: hidden;
+
+    // Bot variant (default)
+    &.bot {
+        color: var(--qwertychat-components-message-bot-avatar-text, var(--qwertychat-contrast));
+        background: var(--qwertychat-components-message-bot-avatar-background, var(--qwertychat-primary));
+    }
+
+    // User variant
+    &.user {
+        color: var(--qwertychat-components-message-user-avatar-text, var(--qwertychat-text));
+        background: var(--qwertychat-components-message-user-avatar-background, var(--qwertychat-secondary));
+    }
 
     .avatarImage {
         width: 100%;

@@ -8,11 +8,12 @@ interface Profile {
 
 interface UserAvatarProps {
     profile: Profile;
+    variant?: "bot" | "user";
 }
 
-export const UserAvatar: React.FC<UserAvatarProps> = ({ profile }) => {
+export const UserAvatar: React.FC<UserAvatarProps> = ({ profile, variant = "bot" }) => {
     return (
-        <div className={styles.avatar}>
+        <div className={`${styles.avatar} ${styles[variant]}`}>
             {profile.avatar ? (
                 <img src={profile.avatar} alt="Profile" className={styles.avatarImage} />
             ) : (

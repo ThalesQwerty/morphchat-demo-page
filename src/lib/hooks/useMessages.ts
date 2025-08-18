@@ -21,7 +21,7 @@ export interface MessageHook {
 export function useMessages(
     config: FilledWidgetConfig,
 ): MessageHook {
-    const { prompt, profile, events, status } = config;
+    const { prompt, botProfile, userProfile, events, status } = config;
 
     const { actions, handleToolCalls } = useActions(config);
 
@@ -110,7 +110,7 @@ export function useMessages(
             id: Date.now().toString(),
             from: "user",
             content: message,
-            username: "You",
+            username: userProfile?.name || "You",
             timestamp: new Date(),
             sent: false
         };
@@ -131,7 +131,7 @@ export function useMessages(
                 id: Date.now().toString(),
                 from: "bot",
                 content: message,
-                username: profile?.name || "QwertyChat",
+                username: botProfile?.name || "QwertyChat",
                 timestamp: new Date(),
                 read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
             }
@@ -143,7 +143,7 @@ export function useMessages(
                 content: message
             });
         }
-    }, [profile, status?.isOpen]);
+    }, [botProfile, status?.isOpen]);
 
     useEffect(() => {
         if (prompt?.welcomeMessage && !welcomeMessageAddedRef.current) {
@@ -155,7 +155,7 @@ export function useMessages(
                         id: Date.now().toString(),
                         from: "bot",
                         content: prompt.welcomeMessage!,
-                        username: profile?.name || "QwertyChat",
+                        username: botProfile?.name || "QwertyChat",
                         timestamp: new Date(),
                         read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
                     }

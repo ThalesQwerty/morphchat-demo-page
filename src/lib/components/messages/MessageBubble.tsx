@@ -14,7 +14,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
     message,
     "data-message-id": dataMessageId
 }) => {
-    const { profile } = useWidgetContext();
+    const { botProfile, userProfile } = useWidgetContext();
     const { chain } = message;
 
     const isFromUser = message.from === "user";
@@ -23,30 +23,41 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({
     const showTimestamp = chain === "last" || chain === "single";
     const showAuthorPhoto = chain === "last" || chain === "single";
     
+    // Determine which profile to use and whether to show avatar
+    const profile = isFromUser ? userProfile : botProfile;
+    const shouldShowAvatar = showAuthorPhoto && profile.showAvatar;
+    
     return (
         <div 
             className={`${styles.message} ${styles[message.from]} ${styles[message.chain]} ${isUnsent ? styles.unsent : ''}`}
             data-message-id={dataMessageId}
         >
-            <div className={styles.messageContent}>
-                {!isFromUser && (
-                    showAuthorPhoto ? (
-                        <div className={styles.messageIcon}>
-                            <UserAvatar profile={profile} />
-                        </div>
-                    ) : (
-                        <div className={styles.messageIconSpacer} />
-                    )
-                )}
-                <div className={styles.messageBubbleContainer}>
-                    <div className={`${styles.messageBubble} ${showTimestamp ? styles.lastInChain : ''}`}>
-                        {message.content}
+            {!isFromUser && profile.showAvatar && (
+                shouldShowAvatar ? (
+                    <div className={styles.messageIcon}>
+                        <UserAvatar profile={profile} variant="bot" />
                     </div>
-                    {showTimestamp && message.timestamp && (
-                        <MessageTimestamp message={message} />
-                    )}
+                ) : (
+                    <div className={styles.messageIconSpacer} />
+                )
+            )}
+            <div className={styles.messageBubbleContainer}>
+                <div className={`${styles.messageBubble} ${showTimestamp ? styles.lastInChain : ''}`}>
+                    {message.content}
                 </div>
+                {showTimestamp && message.timestamp && (
+                    <MessageTimestamp message={message} />
+                )}
             </div>
+            {isFromUser && profile.showAvatar && (
+                shouldShowAvatar ? (
+                    <div className={styles.messageIcon}>
+                        <UserAvatar profile={profile} variant="user" />
+                    </div>
+                ) : (
+                    <div className={styles.messageIconSpacer} />
+                )
+            )}
         </div>
     );
 };

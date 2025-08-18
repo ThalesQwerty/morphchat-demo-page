@@ -1,0 +1,268 @@
+.profileManagementSection {
+    padding: 4rem 2rem;
+    background: white;
+    transition: background-color 0.3s ease;
+
+    .profileManagementContainer {
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .profileManagementTitle {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            transition: color 0.3s ease;
+        }
+
+        .profileManagementSubtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            transition: color 0.3s ease;
+        }
+
+        .profilesGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+
+            .profileCard {
+                padding: 2rem;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                background: #f9fafb;
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+                
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+
+                .profileCardTitle {
+                    font-size: 1.25rem;
+                    margin-bottom: 0.75rem;
+                    color: #1f2937;
+                    transition: color 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                .profileCardDescription {
+                    color: #6b7280;
+                    line-height: 1.6;
+                    margin-bottom: 1.5rem;
+                    transition: color 0.3s ease;
+                }
+
+                .profileInput {
+                    .profileTextInput {
+                        width: 100%;
+                        padding: 12px 16px;
+                        border: 2px solid #e5e7eb;
+                        border-radius: 8px;
+                        background: white;
+                        color: #374151;
+                        font-size: 0.95rem;
+                        font-family: inherit;
+                        transition: border-color 0.2s ease;
+                        
+                        &:focus {
+                            outline: none;
+                            border-color: var(--qwertychat-primary);
+                        }
+                        
+                        &::placeholder {
+                            color: #9ca3af;
+                        }
+                    }
+
+                    .profileInfo {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin-top: 0.75rem;
+                        color: #6b7280;
+                        font-size: 0.85rem;
+                        transition: color 0.3s ease;
+                    }
+
+                    .avatarToggle {
+                        margin-top: 1rem;
+                        padding-top: 1rem;
+                        border-top: 1px solid #e5e7eb;
+
+                        .avatarToggleLabel {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.75rem;
+                            cursor: pointer;
+                            transition: color 0.3s ease;
+
+                            &:hover {
+                                color: var(--qwertychat-primary);
+                            }
+                        }
+
+                        .avatarToggleCheckbox {
+                            width: 18px;
+                            height: 18px;
+                            accent-color: var(--qwertychat-primary);
+                            cursor: pointer;
+                            transition: transform 0.2s ease;
+
+                            &:hover {
+                                transform: scale(1.05);
+                            }
+                        }
+
+                        .avatarToggleText {
+                            font-size: 0.9rem;
+                            font-weight: 500;
+                            color: #374151;
+                            transition: color 0.3s ease;
+                        }
+                    }
+                }
+            }
+        }
+
+        .profileInfo {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+
+            .profileNote {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                color: #6b7280;
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin: 0;
+                transition: color 0.3s ease;
+            }
+        }
+    }
+}
+
+/* Dark mode profile management section */
+:global(.theme-dark) .profileManagementSection {
+    background: #1f2937;
+
+    .profileManagementContainer {
+        .profileManagementTitle {
+            color: #f9fafb;
+        }
+
+        .profileManagementSubtitle {
+            color: #d1d5db;
+        }
+
+        .profilesGrid {
+            .profileCard {
+                background: #374151;
+                border-color: #4b5563;
+
+                &:hover {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                }
+
+                .profileCardTitle {
+                    color: #f9fafb;
+                }
+
+                .profileCardDescription {
+                    color: #d1d5db;
+                }
+
+                .profileInput {
+                    .profileTextInput {
+                        border-color: #4b5563;
+                        background: #374151;
+                        color: #d1d5db;
+                        
+                        &:focus {
+                            border-color: var(--qwertychat-primary);
+                        }
+                        
+                        &::placeholder {
+                            color: #9ca3af;
+                        }
+                    }
+
+                    .profileInfo {
+                        color: #9ca3af;
+                    }
+
+                    .avatarToggle {
+                        border-top-color: #4b5563;
+
+                        .avatarToggleLabel {
+                            &:hover {
+                                color: var(--qwertychat-primary);
+                            }
+                        }
+
+                        .avatarToggleText {
+                            color: #d1d5db;
+                        }
+                    }
+                }
+            }
+        }
+
+        .profileInfo {
+            background: #374151;
+            border-color: #4b5563;
+
+            .profileNote {
+                color: #9ca3af;
+            }
+        }
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profileManagementSection {
+        .profileManagementContainer {
+            .profileManagementTitle {
+                font-size: 2rem;
+            }
+
+            .profilesGrid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+
+                .profileCard {
+                    padding: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .profileManagementSection {
+        padding: 2rem 1rem;
+
+        .profileManagementContainer {
+            .profileManagementTitle {
+                font-size: 1.75rem;
+            }
+
+            .profilesGrid {
+                .profileCard {
+                    padding: 1rem;
+                }
+            }
+        }
+    }
+}

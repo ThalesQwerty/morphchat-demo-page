@@ -11,6 +11,7 @@ import { FeaturesSection } from "./components/FeaturesSection";
 import { CustomizationSection } from "./components/CustomizationSection";
 import { FunctionalitySection } from "./components/FunctionalitySection";
 import { ActionManagementSection } from "./components/ActionManagementSection";
+import { ProfileManagementSection } from "./components/ProfileManagementSection";
 import { AboutSection } from "./components/AboutSection";
 import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
@@ -24,6 +25,10 @@ function AppContent() {
         isOnline, 
         isMaintenanceMode, 
         chatbotPrompt,
+        botName,
+        botShowAvatar,
+        userName,
+        userShowAvatar,
         actions,
         setWidgetFunctions
     } = useDemoContext();
@@ -32,8 +37,13 @@ function AppContent() {
         theme: colorTheme,
         mode: resolvedTheme,
         corner,
-        profile: {
-            name: "QwertyChat",
+        botProfile: {
+            name: botName,
+            showAvatar: botShowAvatar,
+        },
+        userProfile: {
+            name: userName,
+            showAvatar: userShowAvatar,
         },
         intro: {
             title: "QwertyChat responds instantly",
@@ -69,6 +79,7 @@ function AppContent() {
             <CustomizationSection />
             <FunctionalitySection />
             <ActionManagementSection />
+            <ProfileManagementSection />
             <AboutSection />
             <ContactSection />
             <Footer />

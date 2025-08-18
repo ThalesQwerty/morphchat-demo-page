@@ -12,13 +12,13 @@ export const ChatInput: React.FC<ChatInputProps> = ({
     initialValue = "",
     onInputInteraction
 }) => {
-    const { sendUserMessage, profile, status } = useWidgetContext();
+    const { sendUserMessage, botProfile, status } = useWidgetContext();
 
     const [inputValue, setInputValue] = useState(initialValue);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const isMaintenanceMode = status?.maintenanceMode ?? false;
-    const botName = profile?.name || "QwertyChat";
+    const botName = botProfile?.name || "QwertyChat";
 
     const autoResize = useCallback(() => {
         if (textareaRef.current) {
