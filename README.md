@@ -1,6 +1,6 @@
-# MorphChat
+# MorphChat Demo Page
 
-A modern, highly customizable React chat widget component with TypeScript support, featuring OpenAI integration and seamless website integration without style conflicts.
+A demonstration website showcasing the MorphChat library - a modern, highly customizable React chat widget component with TypeScript support, featuring OpenAI integration and seamless website integration without style conflicts.
 
 This project was developed as a part of a role application process to [Eloquent AI](https://www.eloquentai.co/).
 
@@ -8,9 +8,11 @@ This project was developed as a part of a role application process to [Eloquent 
 
 ## 📄 Introduction
 
-MorphChat is a powerful React library that provides a fully customizable chat widget for your website. Built with TypeScript and modern React patterns, it offers seamless integration with OpenAI's API while maintaining complete style isolation to prevent conflicts with your existing website design.
+This repository contains a demo website that showcases the capabilities of the MorphChat library. MorphChat is a powerful React library that provides a fully customizable chat widget for your website. Built with TypeScript and modern React patterns, it offers seamless integration with OpenAI's API while maintaining complete style isolation to prevent conflicts with your existing website design.
 
-### Key Features
+The demo page imports the MorphChat library from npm and demonstrates its various features through an interactive interface.
+
+### Key Features Demonstrated
 
 - 🤖 **OpenAI Integration**: Built-in support for GPT models with customizable prompts
 - 🎯 **Custom Actions**: Execute custom functions in your page based on user messages
@@ -51,8 +53,8 @@ To run the demo locally:
 
 #### 1. Clone the repository
 ```bash
-git clone https://github.com/ThalesQwerty/morphchat.git
-cd morphchat
+git clone https://github.com/ThalesQwerty/morphchat-demo-page.git
+cd morphchat-demo-page
 ```
 
 #### 2. Install dependencies
@@ -73,10 +75,14 @@ VITE_OPENAI_API_KEY=your_openai_api_key_here
 npm run dev
 ```
 
-#### 5. Open your browser**
+#### 5. Open your browser
 Navigate to `http://localhost:3000` to see the demo in action.
 
 ## 🧩 Library Usage
+
+The MorphChat library is available on npm and can be installed in your own projects.
+
+**📦 Library Repository**: [github.com/ThalesQwerty/morphchat](https://github.com/ThalesQwerty/morphchat)
 
 ### Installation
 
@@ -238,39 +244,35 @@ const { component: ChatWidget } = useChatWidget({
 });
 ```
 
-## Development Proccess
+## Development Process
 
-Now I'll talk a bit about how I developed MorphChat.
+This demo page was built to showcase the MorphChat library capabilities.
 
-### Technologies
+### Technologies Used
 
 - **React 18+**: Modern React with hooks and functional components
 - **TypeScript**: Full type safety and excellent developer experience
 - **Sass**: Advanced styling with CSS custom properties
 - **Vite**: Fast development and build tooling
+- **MorphChat Library**: The main chat widget library imported from npm
 - **OpenAI API**: Integration with GPT models
 
 ### Project Structure
 
 ```
 src/
-├── lib/                    # Main library (published to npm)
-│   ├── components/        # React components
-│   ├── hooks/            # Custom React hooks
-│   ├── types/            # TypeScript type definitions
-│   ├── constants/        # Constants and default values
-│   └── index.ts          # Main export file
-├── demo/                  # Demo application (not published)
+├── demo/                  # Demo application
 │   ├── components/       # Demo-specific components
 │   ├── context/          # React context providers
 │   └── App.tsx           # Demo main component
-└── main.tsx              # Demo entry point
+├── main.tsx              # Demo entry point
+└── standalone.ts         # Standalone demo entry point
 ```
 
 ### Development Practices
 
-- **DRY Principle**: Reusable components and utilities
-- **Separation of Concerns**: Clear separation between library and demo
-- **Type Safety**: Comprehensive TypeScript interfaces
+- **Demo-Focused**: This repository focuses on demonstrating the library's capabilities
+- **Real-World Usage**: Shows practical implementation examples
+- **Interactive Features**: Live customization and testing of library features
 - **Code Quality**: ESLint and Prettier for consistent formatting
 - **Modular Architecture**: Well-organized component structure
