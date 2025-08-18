@@ -6,19 +6,39 @@ import { LLM } from "../bot/LLM";
 export function useActions(config: FilledWidgetConfig) {
     const { prompt } = config;
 
-    const actions = useMemo(() => prompt?.actions?.filter(action => !action.disabled).map(action => <const>({
-        type: "function",
-        function: {
-            name: action.name,
-            description: action.description,
-            parameters: {
-                type: "object",
-                properties: action.parameters,
-                required: Object.keys(action.parameters ?? {}).filter(key => action.parameters?.[key]?.required),
-                additionalProperties: false
-            }
+    const actions = useMemo(() => prompt?.actions?.filter(action => !action.disabled).map(action => {
+        // Ensure parameters are properly structured
+        const properties: any = {};
+        const required: string[] = [];
+        
+        if (action.parameters) {
+            Object.entries(action.parameters).forEach(([key, param]) => {
+                properties[key] = {
+                    type: param.type,
+                    ...(param.description && { description: param.description }),
+                    ...(param.enum && { enum: param.enum })
+                };
+                
+                if (param.required === true) {
+                    required.push(key);
+                }
+            });
         }
-    })), [prompt?.actions]);
+        
+        return <const>{
+            type: "function",
+            function: {
+                name: action.name,
+                description: action.description,
+                parameters: {
+                    type: "object",
+                    properties,
+                    ...(required.length > 0 && { required }),
+                    additionalProperties: false
+                }
+            }
+        };
+    }), [prompt?.actions]);
 
     async function handleToolCalls(
         calls: ChatCompletionMessageToolCall[] & { type: "function" }[],
