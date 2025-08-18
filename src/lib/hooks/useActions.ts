@@ -47,6 +47,8 @@ export function useActions(config: FilledWidgetConfig) {
         const promises: any[] = [];
 
         for (const item of calls ?? []) {
+            if (item.type !== "function") continue;
+
             const action = prompt?.actions?.find(action => action.name === item.function.name);
 
             if (!action) continue;

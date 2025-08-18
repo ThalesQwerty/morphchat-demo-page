@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { ChainedMessage, Message } from "../types/Message";
 import { TimeUnit } from "../constants/TimeUnit";
 import { FilledWidgetConfig } from "../types/WidgetConfig";
-import { LLM } from "../bot/LLM";
+import { createLLM } from "../bot/LLM";
 import { useActions } from "./useActions";
 
 const STORAGE_KEY = "morphchat_messages";
@@ -49,19 +49,38 @@ export function useMessages(
 
     const [messages, setMessages] = useState<Message[]>(() => loadStoredMessages());
     const welcomeMessageAddedRef = useRef(false);
+    const llmRef = useRef<ReturnType<typeof createLLM> | null>(null);
 
-    const llm = useMemo(() => {
-        if (!prompt) return null;
-        
-        const llmInstance = new LLM(
-            prompt.apiKey,
-            prompt.instructions,
-            prompt.model,
-            prompt.timeout
-        );
+    useEffect(() => {
+        if (!prompt) return;
 
-        return llmInstance;
+        if (!llmRef.current) {
+            llmRef.current = createLLM(
+                prompt.apiKey,
+                prompt.instructions,
+                prompt.model,
+                prompt.timeout || 30000
+            );
+        }
+
+        if (prompt.instructions) {
+            llmRef.current.setInstructions(prompt.instructions);
+        }
+
+        if (prompt.apiKey) {
+            llmRef.current.apiKey = prompt.apiKey;
+        }
+
+        if (prompt.model) {
+            llmRef.current.model = prompt.model;
+        }
+
+        if (prompt.timeout) {
+            llmRef.current.timeout = prompt.timeout;
+        }
     }, [prompt]);
+
+    const llm = llmRef.current;
 
     // Feed stored messages to LLM on mount and when localStorage is enabled
     useEffect(() => {

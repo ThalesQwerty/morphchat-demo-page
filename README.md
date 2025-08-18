@@ -15,7 +15,7 @@ npm install morphchat
 ### Package Information
 
 - **Package Name**: `morphchat`
-- **Latest Version**: `1.0.3`
+- **Latest Version**: `1.2.8`
 - **Registry**: [npmjs.com/package/morphchat](https://www.npmjs.com/package/morphchat)
 - **Size**: ~32.1 kB (minified)
 - **Dependencies**: React 18+, TypeScript support included
@@ -38,6 +38,9 @@ bun add morphchat
 ```tsx
 import React from 'react';
 import { useChatWidget } from 'morphchat';
+
+// Import the global CSS variables (required for proper styling)
+import 'morphchat/dist/globals.scss';
 
 function App() {
   const { component: ChatWidgetContainer } = useChatWidget({
@@ -175,6 +178,46 @@ interface WidgetAction {
   label: string;
   icon?: string;
   action: () => void;
+}
+```
+
+## Styling
+
+### Global CSS Variables
+
+MorphChat uses CSS custom properties (variables) for theming. The global styles file (`globals.scss`) defines all the design tokens used by the widget:
+
+```scss
+:root {
+  --morphchat-primary: #3b82f6;
+  --morphchat-primary-hover: #2563eb;
+  --morphchat-secondary: #f3f4f6;
+  --morphchat-contrast: #ffffff;
+  --morphchat-text: #1f2937;
+  --morphchat-text-light: #6b7280;
+  --morphchat-background: #ffffff;
+  --morphchat-border: #e5e7eb;
+  --morphchat-muted: #9ca3af;
+  
+  /* Spacing, typography, and other design tokens... */
+}
+```
+
+**Important**: You must import the global styles file in your application for the widget to display correctly:
+
+```tsx
+import 'morphchat/dist/globals.scss';
+```
+
+### Custom Theming
+
+You can override the default CSS variables in your own CSS:
+
+```css
+:root {
+  --morphchat-primary: #your-custom-color;
+  --morphchat-background: #your-custom-bg;
+  --morphchat-text: #your-custom-text;
 }
 ```
 

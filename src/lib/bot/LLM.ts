@@ -2,59 +2,68 @@ import OpenAI from "openai";
 import { ChatModel, ChatCompletionMessageParam, ChatCompletionTool, ChatCompletionMessageToolCall } from "openai/resources";
 import { Timeout } from "./Timeout";
 import { LLMError } from "./LLMError";
+import { LLM_DEFAULTS } from "./constants";
 
-export class LLM {
-	public readonly DEFAULT_TIMEOUT = 30000;
-    public readonly DEFAULT_MODEL = "gpt-4o-mini";
-    public readonly DEFAULT_PROMPT = "You are a helpful assistant. Give short and concise answers.";
+export type LLM = Awaited<ReturnType<typeof createLLM>>;
 
-	private openai: OpenAI;
+export function createLLM(
+    apiKey: string,
+    instructions: string = LLM_DEFAULTS.PROMPT,
+    model: ChatModel = LLM_DEFAULTS.MODEL,
+    timeout: number = LLM_DEFAULTS.TIMEOUT
+) {
+    const openai = new OpenAI({
+        apiKey,
+        dangerouslyAllowBrowser: true
+    });
 
-	public messages: ChatCompletionMessageParam[] = [];
-
-	constructor(
-        public readonly apiKey: string,
-		public readonly instructions: string = this.DEFAULT_PROMPT,
-		public model: ChatModel = this.DEFAULT_MODEL,
-		public timeout = this.DEFAULT_TIMEOUT
-	) {
-        this.openai = new OpenAI({
-            apiKey: this.apiKey,
-			dangerouslyAllowBrowser: true
-        });
-
-        this.messages.push({
+    const messages: ChatCompletionMessageParam[] = [
+        {
             role: "system",
-            content: this.instructions
-        });
-	}
+            content: instructions
+        }
+    ];
 
-	async submit(tools?: ChatCompletionTool[]) {
-		return Timeout(async () => {
-			const completion = await this.openai.chat.completions.create({
-				model: this.model,
-				messages: this.messages,
-				max_tokens: 3000,
-				tools
-			});
-
-			const response = completion.choices[0].message.content;
-			const toolCalls = completion.choices[0].message.tool_calls;
-
-			this.messages.push({ role: "assistant", content: response, tool_calls: toolCalls });
-			
-			return {
-				response,
-				toolCalls: toolCalls as typeof toolCalls & { type: "function" }[]
+    const llm = {
+        apiKey,
+        instructions,
+        model,
+        timeout,
+        messages,
+		setInstructions(newInstructions: string) {
+			llm.messages[0] = {
+				role: "system",
+				content: newInstructions
 			}
-		}, this.timeout, LLMError.Timeout(this.timeout));
-    }
+		},
+        async submit(tools?: ChatCompletionTool[]) {
+            return Timeout(async () => {
+                const completion = await openai.chat.completions.create({
+                    model: llm.model,
+                    messages: llm.messages,
+                    max_tokens: 3000,
+                    tools
+                });
 
-	async addToolResult(call: ChatCompletionMessageToolCall, result: unknown) {
-		this.messages.push({
-			role: "tool",
-			content: JSON.stringify(result),
-			tool_call_id: call.id
-		});
-	}
-} 
+                const response = completion.choices[0].message.content;
+                const toolCalls = completion.choices[0].message.tool_calls;
+
+                llm.messages.push({ role: "assistant", content: response, tool_calls: toolCalls });
+                
+                return {
+                    response,
+                    toolCalls: toolCalls as typeof toolCalls & { type: "function" }[]
+                };
+            }, llm.timeout, LLMError.Timeout(llm.timeout));
+        },
+        addToolResult(call: ChatCompletionMessageToolCall, result: unknown) {
+            llm.messages.push({
+                role: "tool",
+                content: JSON.stringify(result),
+                tool_call_id: call.id
+            });
+        }
+    };
+
+    return llm;
+}

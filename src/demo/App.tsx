@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./globals.scss";
+import "../lib/globals.scss";
 import styles from "./App.module.scss";
 
 import { ThemeProvider, useAppTheme } from "./context/ThemeContext";

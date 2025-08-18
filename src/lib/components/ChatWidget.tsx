@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import "../globals.scss";
 
 import { ChatHeader } from "./container/ChatHeader";
 import { ChatMessages } from "./messages/ChatMessages";

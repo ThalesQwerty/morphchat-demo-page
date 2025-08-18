@@ -1,11 +1,11 @@
 import React, { useState, useMemo, useCallback } from "react";
 
-import { ChatWidgetContainer } from "../components/page/ChatWidgetContainer";
-import { FilledWidgetConfig, WidgetConfig } from "../types/WidgetConfig";
+import { ChatWidgetContainer } from "@/components/page/ChatWidgetContainer";
+import { FilledWidgetConfig, WidgetConfig } from "@/types/WidgetConfig";
 import { useTheme } from "./useTheme";
-import { defaultDarkTheme, defaultLightTheme } from "../constants/defaultThemes";
+import { defaultDarkTheme, defaultLightTheme } from "@/constants/defaultThemes";
 import { WidgetContextType, WidgetProvider, useWidgetContext } from "./useWidgetContext";
-import { Color } from "../constants/Color";
+import { Color } from "@/constants/Color";
 import { useMessages } from "./useMessages";
 import { useSystemColorMode } from "./useSystemColorMode";
 
