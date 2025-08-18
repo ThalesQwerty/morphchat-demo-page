@@ -1,8 +1,8 @@
 .unreadDivider {
     display: flex;
     align-items: center;
-    margin: 16px 0;
-    padding: 0 16px;
+    margin: var(--qwertychat-spacing-xl) 0;
+    padding: 0 var(--qwertychat-spacing-xl);
 }
 
 .dividerLine {
@@ -13,8 +13,8 @@
 }
 
 .unreadText {
-    padding: 0 12px;
-    font-size: 12px;
+    padding: 0 var(--qwertychat-spacing-lg);
+    font-size: var(--qwertychat-text-base);
     font-weight: 600;
     color: var(--qwertychat-primary);
     text-transform: uppercase;

@@ -1,0 +1,184 @@
+// Base button styles
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--demo-spacing-sm);
+    border-radius: var(--demo-radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--demo-transition-normal);
+    border: 2px solid transparent;
+    font-family: inherit;
+    text-decoration: none;
+    outline: none;
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &:focus {
+        outline: 2px solid var(--qwertychat-primary);
+        outline-offset: 2px;
+    }
+}
+
+// Size variants
+.small {
+    padding: var(--demo-spacing-sm) var(--demo-spacing-base);
+    font-size: var(--demo-text-xs);
+    min-width: 100px;
+}
+
+.medium {
+    padding: var(--demo-spacing-md) var(--demo-spacing-xl);
+    font-size: var(--demo-text-sm);
+    min-width: 140px;
+}
+
+.large {
+    padding: var(--demo-spacing-base) var(--demo-spacing-2xl);
+    font-size: var(--demo-text-lg);
+    min-width: 180px;
+}
+
+// Color variants
+.outline {
+    background: var(--demo-surface);
+    color: var(--demo-text);
+    border-color: var(--demo-border);
+
+    &:hover:not(:disabled) {
+        border-color: var(--demo-border-light);
+        background: var(--demo-background);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(1px);
+    }
+}
+
+.primary {
+    background: var(--qwertychat-primary);
+    color: white;
+    border-color: var(--qwertychat-primary);
+
+    &:hover:not(:disabled) {
+        background: var(--qwertychat-primary-hover);
+        border-color: var(--qwertychat-primary-hover);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(1px);
+    }
+}
+
+.secondary {
+    background: var(--demo-secondary);
+    color: white;
+    border-color: var(--demo-secondary);
+
+    &:hover:not(:disabled) {
+        background: var(--demo-dark-border);
+        border-color: var(--demo-dark-border);
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(1px);
+    }
+}
+
+.danger {
+    background: var(--demo-surface);
+    color: var(--demo-danger);
+    border-color: var(--demo-danger);
+
+    &:hover:not(:disabled) {
+        background: var(--demo-danger);
+        color: white;
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(1px);
+    }
+}
+
+// Icon positioning
+.iconLeft {
+    order: -1;
+}
+
+.iconRight {
+    order: 1;
+}
+
+.buttonText {
+    flex: 1;
+    text-align: center;
+}
+
+// Dark mode support
+:global(.theme-dark) {
+    .outline {
+        background: var(--demo-dark-surface);
+        color: var(--demo-dark-text);
+        border-color: var(--demo-dark-border);
+
+        &:hover:not(:disabled) {
+            border-color: var(--demo-dark-border-light);
+            background: var(--demo-dark-border);
+        }
+    }
+
+    .secondary {
+        background: var(--demo-dark-border);
+        border-color: var(--demo-dark-border);
+
+        &:hover:not(:disabled) {
+            background: var(--demo-dark-surface);
+            border-color: var(--demo-dark-surface);
+        }
+    }
+
+    .danger {
+        background: var(--demo-dark-surface);
+        color: var(--demo-danger);
+        border-color: var(--demo-danger);
+
+        &:hover:not(:disabled) {
+            background: var(--demo-danger);
+            color: white;
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: var(--demo-bp-md)) {
+    .medium {
+        padding: var(--demo-spacing-sm) var(--demo-spacing-lg);
+        font-size: var(--demo-text-xs);
+        min-width: 120px;
+    }
+
+    .large {
+        padding: var(--demo-spacing-md) var(--demo-spacing-2xl);
+        font-size: var(--demo-text-base);
+        min-width: 160px;
+    }
+}
+
+@media (max-width: var(--demo-bp-sm)) {
+    .medium {
+        padding: var(--demo-spacing-sm) var(--demo-spacing-base);
+        font-size: var(--demo-text-xs);
+        min-width: 100px;
+    }
+
+    .large {
+        padding: var(--demo-spacing-md) var(--demo-spacing-xl);
+        font-size: var(--demo-text-sm);
+        min-width: 140px;
+    }
+}

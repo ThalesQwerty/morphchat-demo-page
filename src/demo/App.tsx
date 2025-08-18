@@ -26,8 +26,10 @@ function AppContent() {
         isMaintenanceMode, 
         chatbotPrompt,
         botName,
+        botAvatar,
         botShowAvatar,
         userName,
+        userAvatar,
         userShowAvatar,
         actions,
         setWidgetFunctions
@@ -39,10 +41,12 @@ function AppContent() {
         corner,
         botProfile: {
             name: botName,
+            avatar: botAvatar || undefined,
             showAvatar: botShowAvatar,
         },
         userProfile: {
             name: userName,
+            avatar: userAvatar || undefined,
             showAvatar: userShowAvatar,
         },
         intro: {

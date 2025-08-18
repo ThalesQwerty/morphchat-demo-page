@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "../../lib/components/layout/Icon";
+import { Card } from "./Card";
 import styles from "./FeaturesSection.module.scss";
 
 const features = [
@@ -44,7 +45,7 @@ export function FeaturesSection() {
                 </h2>
                 <div className={styles.featuresGrid}>
                     {features.map((feature, index) => (
-                        <div key={index} className={styles.featureCard}>
+                        <Card key={index} variant="elevated" size="large" className={styles.featureCard}>
                             <div className={styles.featureIcon}>
                                 <Icon name={feature.icon as any} size={48} />
                             </div>
@@ -52,7 +53,7 @@ export function FeaturesSection() {
                                 {feature.title}
                             </h3>
                             <p className={styles.featureDescription}>{feature.description}</p>
-                        </div>
+                        </Card>
                     ))}
                 </div>
             </div>

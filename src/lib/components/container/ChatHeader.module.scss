@@ -3,22 +3,22 @@
 .chatHeader {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
+    gap: var(--qwertychat-spacing-lg);
+    padding: var(--qwertychat-spacing-xl) var(--qwertychat-spacing-2xl);
     border-bottom: 1px solid var(--qwertychat-border);
     background: var(--qwertychat-background);
     min-height: 60px;
 }
 
 .logo {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: var(--qwertychat-avatar-md);
+    height: var(--qwertychat-avatar-md);
+    border-radius: var(--qwertychat-radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: var(--qwertychat-text-md);
     color: var(--qwertychat-components-chat-button-text, var(--qwertychat-contrast));
     background: var(--qwertychat-components-chat-button-background, var(--qwertychat-primary));
     flex-shrink: 0;
@@ -26,7 +26,7 @@
     .avatar {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
+        border-radius: var(--qwertychat-radius-full);
         object-fit: cover;
     }
 }
@@ -35,30 +35,30 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--qwertychat-spacing-xs);
 }
 
 .titleRow {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--qwertychat-spacing-base);
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--qwertychat-text-lg);
     color: var(--qwertychat-text);
-    line-height: 1.2;
+    line-height: var(--qwertychat-leading-tight);
 }
 
 .statusText {
-    font-size: 12px;
+    font-size: var(--qwertychat-text-base);
     color: var(--qwertychat-text-light);
     line-height: 1;
     font-weight: 400;
 }
 
 .statusDot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: var(--qwertychat-spacing-base);
+    height: var(--qwertychat-spacing-base);
+    border-radius: var(--qwertychat-radius-full);
     flex-shrink: 0;
 
     &.online {
@@ -74,10 +74,10 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 6px;
+    padding: var(--qwertychat-spacing-base);
+    border-radius: var(--qwertychat-radius-md);
     color: var(--qwertychat-text-light);
-    transition: all 0.2s ease;
+    transition: all var(--qwertychat-transition-normal) ease;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -2,10 +2,10 @@
 
 .chatWidgetContainer {
     position: relative;
-    z-index: 1000;
+    z-index: var(--qwertychat-z-modal);
 
     /* Mobile Responsive */
-    @media (max-width: 480px) {
+    @media (max-width: var(--qwertychat-bp-sm)) {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -24,31 +24,31 @@
 
 .chatWidget {
     position: fixed;
-    bottom: 20px;
-    width: 400px;
-    height: 600px;
+    bottom: var(--qwertychat-spacing-2xl);
+    width: var(--qwertychat-widget-width);
+    height: var(--qwertychat-widget-height);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: var(--qwertychat-radius-lg);
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--qwertychat-border);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--qwertychat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--qwertychat-background);
 
     &.right {
-        right: 20px;
+        right: var(--qwertychat-spacing-2xl);
     }
 
     &.left {
-        left: 20px;
+        left: var(--qwertychat-spacing-2xl);
     }
 
     /* Mobile Responsive */
-    @media (max-width: 480px) {
-        width: 100% !important;
-        height: 100% !important;
-        border-radius: 0 !important;
+    @media (max-width: var(--qwertychat-bp-sm)) {
+        width: var(--qwertychat-widget-width-mobile) !important;
+        height: var(--qwertychat-widget-height-mobile) !important;
+        border-radius: 0 !important; /* Full screen on mobile, no border radius */
         bottom: 0 !important;
         right: 0 !important;
         left: 0 !important;
@@ -73,6 +73,6 @@
 
     /* Smooth transitions for all elements */
     * {
-        transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        transition: background-color var(--qwertychat-transition-normal) ease, border-color var(--qwertychat-transition-normal) ease, color var(--qwertychat-transition-normal) ease;
     }
 }

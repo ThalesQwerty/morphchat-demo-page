@@ -1,0 +1,89 @@
+/* QwertyChat Widget Global Variables */
+
+:root {
+    /* Spacing Variables */
+    --qwertychat-spacing-xs: 2px;      /* 2px */
+    --qwertychat-spacing-sm: 4px;      /* 4px */
+    --qwertychat-spacing-md: 6px;      /* 6px */
+    --qwertychat-spacing-base: 8px;    /* 8px */
+    --qwertychat-spacing-lg: 12px;     /* 12px */
+    --qwertychat-spacing-xl: 16px;     /* 16px */
+    --qwertychat-spacing-2xl: 20px;    /* 20px */
+    --qwertychat-spacing-3xl: 24px;    /* 24px */
+    --qwertychat-spacing-4xl: 32px;    /* 32px */
+    --qwertychat-spacing-5xl: 48px;    /* 48px */
+
+    /* Border Radius */
+    --qwertychat-radius-xs: 2px;
+    --qwertychat-radius-sm: 4px;
+    --qwertychat-radius-md: 6px;
+    --qwertychat-radius-base: 8px;
+    --qwertychat-radius-lg: 12px;
+    --qwertychat-radius-xl: 16px;
+    --qwertychat-radius-2xl: 18px;
+    --qwertychat-radius-3xl: 24px;
+    --qwertychat-radius-full: 50%;
+
+    /* Font Sizes */
+    --qwertychat-text-xs: 10px;
+    --qwertychat-text-sm: 11px;
+    --qwertychat-text-base: 12px;
+    --qwertychat-text-md: 14px;
+    --qwertychat-text-lg: 16px;
+    --qwertychat-text-xl: 18px;
+    --qwertychat-text-2xl: 20px;
+
+    /* Line Heights */
+    --qwertychat-leading-tight: 1.2;
+    --qwertychat-leading-normal: 1.4;
+    --qwertychat-leading-relaxed: 1.6;
+
+    /* Transitions */
+    --qwertychat-transition-fast: 0.15s ease;
+    --qwertychat-transition-normal: 0.2s ease;
+    --qwertychat-transition-slow: 0.3s ease;
+
+    /* Z-Index */
+    --qwertychat-z-dropdown: 1000;
+    --qwertychat-z-sticky: 1020;
+    --qwertychat-z-fixed: 1030;
+    --qwertychat-z-modal: 1040;
+    --qwertychat-z-popover: 1050;
+    --qwertychat-z-tooltip: 1060;
+
+    /* Widget Sizes */
+    --qwertychat-widget-width: 400px;
+    --qwertychat-widget-height: 600px;
+    --qwertychat-widget-width-mobile: 100%;
+    --qwertychat-widget-height-mobile: 100%;
+
+    /* Avatar Sizes */
+    --qwertychat-avatar-sm: 18px;
+    --qwertychat-avatar-base: 24px;
+    --qwertychat-avatar-md: 32px;
+    --qwertychat-avatar-lg: 48px;
+    --qwertychat-avatar-xl: 60px;
+
+    /* Icon Sizes */
+    --qwertychat-icon-xs: 8px;
+    --qwertychat-icon-sm: 10px;
+    --qwertychat-icon-base: 12px;
+    --qwertychat-icon-md: 14px;
+    --qwertychat-icon-lg: 16px;
+    --qwertychat-icon-xl: 20px;
+
+    /* Input Heights */
+    --qwertychat-input-min-height: 20px;
+    --qwertychat-input-max-height: 120px;
+
+    /* Message Max Widths */
+    --qwertychat-message-max-width: 80%;
+    --qwertychat-typing-max-width: 80px;
+
+    /* Breakpoints (for reference in media queries) */
+    --qwertychat-bp-sm: 480px;
+    --qwertychat-bp-md: 768px;
+    --qwertychat-bp-lg: 1024px;
+    --qwertychat-bp-xl: 1280px;
+    --qwertychat-bp-2xl: 1536px;
+}

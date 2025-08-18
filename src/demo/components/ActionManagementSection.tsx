@@ -1,5 +1,6 @@
 import { Icon } from "../../lib/components/layout/Icon";
 import { useDemoContext } from "../context/DemoContext";
+import { Card } from "./Card";
 import styles from "./ActionManagementSection.module.scss";
 
 export function ActionManagementSection() {
@@ -23,18 +24,13 @@ export function ActionManagementSection() {
                         const isEnabled = !action.disabled;
                         
                         return (
-                            <div 
-                                key={action.name} 
-                                className={`${styles.actionItem} ${isEnabled ? styles.actionEnabled : styles.actionDisabled}`}
+                            <Card
+                                key={action.name}
+                                variant={isEnabled ? "outlined" : "default"}
+                                size="medium"
+                                hover={true}
                                 onClick={() => toggleAction(action.name)}
-                                role="button"
-                                tabIndex={0}
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter' || e.key === ' ') {
-                                        e.preventDefault();
-                                        toggleAction(action.name);
-                                    }
-                                }}
+                                className={`${styles.actionItem} ${isEnabled ? styles.actionEnabled : styles.actionDisabled}`}
                             >
                                 <div className={styles.actionContent}>
                                     <input
@@ -56,7 +52,7 @@ export function ActionManagementSection() {
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </Card>
                         );
                     })}
                 </div>

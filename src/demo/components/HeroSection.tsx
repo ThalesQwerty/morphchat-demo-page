@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./Button";
 import styles from "./HeroSection.module.scss";
 
 export function HeroSection() {
@@ -12,9 +13,11 @@ export function HeroSection() {
                     Experience the future of customer support with our intelligent chat widget.
                     Get instant responses and seamless communication.
                 </p>
-                <button className={styles.ctaButton}>
-                    Get Started
-                </button>
+                <div className={styles.heroButtonContainer}>
+                    <Button variant="primary" size="large">
+                        Get Started
+                    </Button>
+                </div>
             </div>
         </section>
     );

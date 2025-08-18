@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./UserAvatar.module.scss";
 
 interface Profile {
-    avatar?: string;
+    avatar?: string; // Can be URL or base64 data
     name?: string;
 }
 

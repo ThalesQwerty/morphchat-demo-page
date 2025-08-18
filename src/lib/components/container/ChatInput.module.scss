@@ -1,18 +1,18 @@
 /* ChatInput Component Styles */
 
 .chatInput {
-    padding: 16px 20px;
+    padding: var(--qwertychat-spacing-xl) var(--qwertychat-spacing-2xl);
     border-top: 1px solid var(--qwertychat-border);
 
     .inputContainer {
         display: flex;
         align-items: flex-end;
-        gap: 8px;
+        gap: var(--qwertychat-spacing-base);
         border: 1px solid var(--qwertychat-border);
-        border-radius: 24px;
-        padding: 4px;
+        border-radius: var(--qwertychat-radius-3xl);
+        padding: var(--qwertychat-spacing-sm);
         background: var(--qwertychat-components-input-background, var(--qwertychat-background));
-        transition: border-color 0.2s;
+        transition: border-color var(--qwertychat-transition-normal);
 
         &:focus-within {
             border-color: var(--qwertychat-primary) !important;
@@ -27,29 +27,29 @@
 
         .maintenanceMessage {
             flex: 1;
-            padding: 8px 12px;
+            padding: var(--qwertychat-spacing-base) var(--qwertychat-spacing-lg);
             color: var(--qwertychat-text-light);
-            font-size: 14px;
+            font-size: var(--qwertychat-text-md);
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: var(--qwertychat-spacing-base);
         }
 
         .inputField {
             flex: 1;
-            min-height: 20px;
-            max-height: 120px;
-            padding: 6px 12px;
+            min-height: var(--qwertychat-input-min-height);
+            max-height: var(--qwertychat-input-max-height);
+            padding: var(--qwertychat-spacing-md) var(--qwertychat-spacing-lg);
             border: none;
-            border-radius: 18px;
-            font-size: 14px;
+            border-radius: var(--qwertychat-radius-2xl);
+            font-size: var(--qwertychat-text-md);
             outline: none;
-            transition: height 0.2s ease;
+            transition: height var(--qwertychat-transition-normal) ease;
             resize: none;
             font-family: inherit;
-            line-height: 1.4;
+            line-height: var(--qwertychat-leading-normal);
             overflow-y: hidden;
             box-sizing: border-box;
             background: transparent;
@@ -66,16 +66,16 @@
         }
 
         .sendButton {
-            width: 32px;
-            height: 32px;
+            width: var(--qwertychat-avatar-md);
+            height: var(--qwertychat-avatar-md);
             border: none;
-            border-radius: 50%;
+            border-radius: var(--qwertychat-radius-full);
             color: var(--qwertychat-components-input-send-button-text, var(--qwertychat-contrast));
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color var(--qwertychat-transition-normal);
             flex-shrink: 0;
             background: var(--qwertychat-components-input-send-button-background, var(--qwertychat-primary));
 
@@ -92,8 +92,8 @@
             }
 
             .sendIcon {
-                width: 14px;
-                height: 14px;
+                width: var(--qwertychat-icon-md);
+                height: var(--qwertychat-icon-md);
             }
         }
     }

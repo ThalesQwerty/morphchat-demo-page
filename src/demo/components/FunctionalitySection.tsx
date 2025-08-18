@@ -1,6 +1,9 @@
 import React from "react";
 import { Icon } from "../../lib/components/layout/Icon";
 import { useDemoContext } from "../context/DemoContext";
+import { Button } from "./Button";
+import { TextArea } from "./TextArea";
+import { Card } from "./Card";
 import styles from "./FunctionalitySection.module.scss";
 
 export function FunctionalitySection() {
@@ -24,7 +27,7 @@ export function FunctionalitySection() {
                 </p>
 
                 {/* Chatbot Prompt Editor - Full Width */}
-                <div className={styles.promptSection}>
+                <Card variant="default" size="large" className={styles.promptSection}>
                     <h3 className={styles.promptSectionTitle}>
                         <Icon name="ChatCircle" size={24} />
                         Chatbot Instructions
@@ -33,11 +36,10 @@ export function FunctionalitySection() {
                         Edit the chatbot's behavior and personality in real-time
                     </p>
                     <div className={styles.promptEditor}>
-                        <textarea
+                        <TextArea
                             value={chatbotPrompt}
-                            onChange={(e) => setChatbotPrompt(e.target.value)}
+                            onChange={setChatbotPrompt}
                             placeholder="Enter chatbot instructions..."
-                            className={styles.promptTextarea}
                             rows={6}
                         />
                         <div className={styles.promptInfo}>
@@ -45,12 +47,12 @@ export function FunctionalitySection() {
                             <span>Changes apply to new conversations</span>
                         </div>
                     </div>
-                </div>
+                </Card>
 
                 {/* Status Controls - Row Layout */}
                 <div className={styles.statusControlsGrid}>
                     {/* Connection Status */}
-                    <div className={styles.statusControlCard}>
+                    <Card variant="elevated" size="medium" className={styles.statusControlCard}>
                         <h3 className={styles.statusControlTitle}>
                             <Icon name="PowerIcon" size={20} />
                             Connection Status
@@ -59,18 +61,19 @@ export function FunctionalitySection() {
                             The chat only answers when the widget is online
                         </p>
                         <div className={styles.statusButtons}>
-                            <button
+                            <Button
                                 onClick={() => setIsOnline(!isOnline)}
-                                className={`${styles.statusButton} ${isOnline ? styles.statusButtonSelected : styles.statusButtonDefault}`}
+                                variant={isOnline ? "primary" : "outline"}
+                                size="medium"
+                                icon={{ name: "PowerIcon", size: 16, position: "left" }}
                             >
-                                <Icon name="PowerIcon" size={16} />
                                 {isOnline ? 'Online' : 'Offline'}
-                            </button>
+                            </Button>
                         </div>
-                    </div>
+                    </Card>
 
                     {/* Maintenance Mode */}
-                    <div className={styles.statusControlCard}>
+                    <Card variant="elevated" size="medium" className={styles.statusControlCard}>
                         <h3 className={styles.statusControlTitle}>
                             <Icon name="Wrench" size={20} />
                             Maintenance Mode
@@ -79,19 +82,20 @@ export function FunctionalitySection() {
                             You cannot send messages when the widget is in maintenance mode
                         </p>
                         <div className={styles.maintenanceButtons}>
-                            <button
+                            <Button
                                 onClick={() => setIsMaintenanceMode(!isMaintenanceMode)}
-                                className={`${styles.maintenanceButton} ${isMaintenanceMode ? styles.maintenanceButtonSelected : styles.maintenanceButtonDefault}`}
+                                variant={isMaintenanceMode ? "primary" : "outline"}
+                                size="medium"
+                                icon={{ name: "Wrench", size: 16, position: "left" }}
                             >
-                                <Icon name="Wrench" size={16} />
                                 {isMaintenanceMode ? 'Maintenance Mode ON' : 'Maintenance Mode OFF'}
-                            </button>
+                            </Button>
                         </div>
-                    </div>
+                    </Card>
                 </div>
 
                 {/* Clear Site Data */}
-                <div className={styles.clearDataSection}>
+                <Card variant="default" size="medium" className={styles.clearDataSection}>
                     <h3 className={styles.clearDataTitle}>
                         <Icon name="Trash" size={20} />
                         Reset conversation
@@ -99,14 +103,15 @@ export function FunctionalitySection() {
                     <p className={styles.clearDataDescription}>
                         Delete all stored messages
                     </p>
-                    <button
+                    <Button
+                        variant="danger"
+                        size="medium"
                         onClick={clearSiteData}
-                        className={styles.clearDataButton}
+                        icon={{ name: "Trash", size: 16, position: "left" }}
                     >
-                        <Icon name="Trash" size={16} />
                         Clear chat history
-                    </button>
-                </div>
+                    </Button>
+                </Card>
             </div>
         </section>
     );

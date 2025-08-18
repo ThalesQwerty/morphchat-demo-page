@@ -3,6 +3,7 @@ import { Color } from "../../lib/constants/Color";
 import { Icon } from "../../lib/components/layout/Icon";
 import { useAppTheme } from "../context/ThemeContext";
 import { useDemoContext } from "../context/DemoContext";
+import { Button } from "./Button";
 import styles from "./CustomizationSection.module.scss";
 
 export function CustomizationSection() {
@@ -55,13 +56,14 @@ export function CustomizationSection() {
                         </p>
                         <div className={styles.modeButtons}>
                             {(["light", "dark", "auto"] as const).map((mode) => (
-                                <button
+                                <Button
                                     key={mode}
                                     onClick={() => setTheme(mode)}
-                                    className={`${styles.modeButton} ${theme === mode ? styles.modeButtonSelected : styles.modeButtonDefault}`}
+                                    variant={theme === mode ? "primary" : "outline"}
+                                    size="medium"
                                 >
                                     {mode.charAt(0).toUpperCase() + mode.slice(1)}
-                                </button>
+                                </Button>
                             ))}
                         </div>
                     </div>
@@ -74,13 +76,14 @@ export function CustomizationSection() {
                         </p>
                         <div className={styles.cornerButtons}>
                             {(["left", "right"] as const).map((corner) => (
-                                <button
+                                <Button
                                     key={corner}
                                     onClick={() => setWidgetCorner(corner)}
-                                    className={`${styles.cornerButton} ${widgetCorner === corner ? styles.cornerButtonSelected : styles.cornerButtonDefault}`}
+                                    variant={widgetCorner === corner ? "primary" : "outline"}
+                                    size="medium"
                                 >
                                     {corner.charAt(0).toUpperCase() + corner.slice(1)}
-                                </button>
+                                </Button>
                             ))}
                         </div>
                     </div>

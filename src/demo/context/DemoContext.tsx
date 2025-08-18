@@ -19,10 +19,14 @@ interface DemoContextType {
     // Profile management
     botName: string;
     setBotName: (name: string) => void;
+    botAvatar: string | null;
+    setBotAvatar: (avatar: string | null) => void;
     botShowAvatar: boolean;
     setBotShowAvatar: (show: boolean) => void;
     userName: string;
     setUserName: (name: string) => void;
+    userAvatar: string | null;
+    setUserAvatar: (avatar: string | null) => void;
     userShowAvatar: boolean;
     setUserShowAvatar: (show: boolean) => void;
 
@@ -60,8 +64,10 @@ export function DemoProvider({ children }: DemoProviderProps) {
 
     // Profile state
     const [botName, setBotName] = useState("QwertyChat");
+    const [botAvatar, setBotAvatar] = useState<string | null>(null);
     const [botShowAvatar, setBotShowAvatar] = useState(true);
     const [userName, setUserName] = useState("You");
+    const [userAvatar, setUserAvatar] = useState<string | null>(null);
     const [userShowAvatar, setUserShowAvatar] = useState(false);
 
     // Chat actions
@@ -169,8 +175,10 @@ export function DemoProvider({ children }: DemoProviderProps) {
         
         // Reset profile names
         setBotName("QwertyChat");
+        setBotAvatar(null);
         setBotShowAvatar(true);
         setUserName("You");
+        setUserAvatar(null);
         setUserShowAvatar(false);
     };
 
@@ -188,10 +196,14 @@ export function DemoProvider({ children }: DemoProviderProps) {
         // Profile management
         botName,
         setBotName,
+        botAvatar,
+        setBotAvatar,
         botShowAvatar,
         setBotShowAvatar,
         userName,
         setUserName,
+        userAvatar,
+        setUserAvatar,
         userShowAvatar,
         setUserShowAvatar,
         

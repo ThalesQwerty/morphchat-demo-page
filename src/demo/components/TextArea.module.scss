@@ -1,0 +1,80 @@
+// Base textarea styles
+.textArea {
+    width: 100%;
+    padding: var(--demo-spacing-md) var(--demo-spacing-base);
+    border: 2px solid var(--demo-border);
+    border-radius: var(--demo-radius-md);
+    background: var(--demo-surface);
+    color: var(--demo-text);
+    font-size: var(--demo-text-base);
+    font-family: inherit;
+    line-height: var(--demo-leading-normal);
+    transition: var(--demo-transition-normal);
+    outline: none;
+    resize: vertical;
+    min-height: 100px;
+
+    &:focus {
+        border-color: var(--qwertychat-primary);
+        box-shadow: 0 0 0 3px var(--demo-shadow-primary-focus);
+    }
+
+    &::placeholder {
+        color: var(--demo-muted);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background: var(--demo-background);
+    }
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--demo-background);
+}
+
+// Dark mode support
+:global(.theme-dark) {
+    .textArea {
+        background: var(--demo-dark-surface);
+        color: var(--demo-dark-text);
+        border-color: var(--demo-dark-border);
+
+        &:focus {
+            border-color: var(--qwertychat-primary);
+            box-shadow: 0 0 0 3px var(--demo-shadow-primary-focus);
+        }
+
+        &::placeholder {
+            color: var(--demo-dark-muted);
+        }
+
+        &:disabled {
+            background: var(--demo-dark-background);
+        }
+    }
+
+    .disabled {
+        background: var(--demo-dark-background);
+    }
+}
+
+// Responsive adjustments
+@media (max-width: var(--demo-bp-md)) {
+    .textArea {
+        padding: var(--demo-spacing-sm) var(--demo-spacing-md);
+        font-size: var(--demo-text-sm);
+        min-height: 80px;
+    }
+}
+
+@media (max-width: var(--demo-bp-sm)) {
+    .textArea {
+        padding: var(--demo-spacing-sm) var(--demo-spacing-md);
+        font-size: var(--demo-text-xs);
+        min-height: 60px;
+    }
+}

@@ -1,3 +1,21 @@
+// Common button styles
+%button-base {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+    justify-content: center;
+}
+
+
+
+// Main section
 .profileManagementSection {
     padding: 4rem 2rem;
     background: white;
@@ -11,14 +29,14 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #1f2937;
+            color: var(--demo-primary);
             transition: color 0.3s ease;
         }
 
         .profileManagementSubtitle {
             text-align: center;
             font-size: 1.1rem;
-            color: #6b7280;
+            color: var(--demo-secondary);
             margin-bottom: 3rem;
             transition: color 0.3s ease;
         }
@@ -30,21 +48,12 @@
             margin-bottom: 2rem;
 
             .profileCard {
-                padding: 2rem;
-                border: 1px solid #e5e7eb;
-                border-radius: 12px;
-                background: #f9fafb;
-                transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
-                
-                &:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                }
+                // Card component handles the base styling
 
                 .profileCardTitle {
                     font-size: 1.25rem;
                     margin-bottom: 0.75rem;
-                    color: #1f2937;
+                    color: var(--demo-primary);
                     transition: color 0.3s ease;
                     display: flex;
                     align-items: center;
@@ -52,33 +61,13 @@
                 }
 
                 .profileCardDescription {
-                    color: #6b7280;
+                    color: var(--demo-secondary);
                     line-height: 1.6;
                     margin-bottom: 1.5rem;
                     transition: color 0.3s ease;
                 }
 
                 .profileInput {
-                    .profileTextInput {
-                        width: 100%;
-                        padding: 12px 16px;
-                        border: 2px solid #e5e7eb;
-                        border-radius: 8px;
-                        background: white;
-                        color: #374151;
-                        font-size: 0.95rem;
-                        font-family: inherit;
-                        transition: border-color 0.2s ease;
-                        
-                        &:focus {
-                            outline: none;
-                            border-color: var(--qwertychat-primary);
-                        }
-                        
-                        &::placeholder {
-                            color: #9ca3af;
-                        }
-                    }
 
                     .profileInfo {
                         display: flex;
@@ -91,9 +80,9 @@
                     }
 
                     .avatarToggle {
-                        margin-top: 1rem;
-                        padding-top: 1rem;
-                        border-top: 1px solid #e5e7eb;
+                        margin-top: 1.5rem;
+                        padding-top: 1.5rem;
+                        border-top: 1px solid var(--demo-border);
 
                         .avatarToggleLabel {
                             display: flex;
@@ -126,33 +115,137 @@
                             transition: color 0.3s ease;
                         }
                     }
+
+                    .avatarSection {
+                        margin-top: 1rem;
+                        padding-top: 1rem;
+                        border-top: 1px solid var(--demo-border);
+
+                        .avatarSectionTitle {
+                            font-size: 1rem;
+                            font-weight: 600;
+                            color: var(--demo-text);
+                            margin-bottom: 1rem;
+                            transition: color 0.3s ease;
+                        }
+
+                        .avatarUpload {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 1rem;
+
+                            .avatarPreview {
+                                width: 80px;
+                                height: 80px;
+                                border-radius: 50%;
+                                border: 2px solid var(--demo-border);
+                                overflow: hidden;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: var(--demo-background);
+                                transition: border-color 0.3s ease;
+
+                                .avatarPreviewImage {
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    object-position: center;
+                                    max-width: 100%;
+                                    max-height: 100%;
+                                    border-radius: 50%;
+                                    flex-shrink: 0;
+                                    display: block;
+                                }
+
+                                .avatarPreviewPlaceholder {
+                                    color: var(--demo-muted);
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                            }
+
+                            .avatarControls {
+                                display: flex;
+                                gap: 0.5rem;
+                                flex-wrap: wrap;
+
+                                .avatarUploadButton {
+                                    position: relative;
+                                    cursor: pointer;
+
+
+
+                                    .avatarFileInput {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        opacity: 0;
+                                        cursor: pointer;
+                                        font-size: 0;
+                                        line-height: 0;
+                                        overflow: hidden;
+                                        border: none;
+                                        background: transparent;
+                                        padding: 0;
+                                        margin: 0;
+                                        outline: none;
+                                        -webkit-appearance: none;
+                                        -moz-appearance: none;
+                                        appearance: none;
+                                    }
+                                }
+
+                                .avatarRemoveButton {
+                                    @extend %button-base;
+                                    border: 2px solid var(--demo-danger);
+                                    background: var(--demo-surface);
+                                    color: var(--demo-danger);
+
+                                    &:hover {
+                                        background: var(--demo-danger);
+                                        color: white;
+                                    }
+                                }
+                            }
+
+                            .avatarError {
+                                color: var(--demo-danger);
+                                font-size: 0.85rem;
+                                margin-top: 0.5rem;
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        .profileInfo {
-            text-align: center;
-            padding: 1.5rem;
-            background: #f9fafb;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
+                        .profileInfo {
+                    text-align: center;
+                    padding: 1.5rem;
+                    background: var(--demo-background);
+                    border-radius: 12px;
+                    border: 1px solid var(--demo-border);
 
-            .profileNote {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.5rem;
-                color: #6b7280;
-                font-size: 0.9rem;
-                line-height: 1.5;
-                margin: 0;
-                transition: color 0.3s ease;
-            }
-        }
+                    .profileNote {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.5rem;
+                        color: var(--demo-secondary);
+                        font-size: 0.9rem;
+                        line-height: 1.5;
+                        margin: 0;
+                        transition: color 0.3s ease;
+                    }
+                }
     }
 }
 
-/* Dark mode profile management section */
+// Dark mode
 :global(.theme-dark) .profileManagementSection {
     background: #1f2937;
 
@@ -165,53 +258,70 @@
             color: #d1d5db;
         }
 
-        .profilesGrid {
-            .profileCard {
-                background: #374151;
-                border-color: #4b5563;
+        .profilesGrid .profileCard {
+            // Card component handles dark mode styling
 
-                &:hover {
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            .profileCardTitle {
+                color: var(--demo-dark-primary);
+            }
+
+            .profileCardDescription {
+                color: var(--demo-dark-text);
+            }
+
+            .profileInput {
+                .profileTextInput {
+                    border-color: var(--demo-dark-border);
+                    background: var(--demo-dark-surface);
+                    color: var(--demo-dark-text);
+
+                    &::placeholder {
+                        color: var(--demo-dark-muted);
+                    }
                 }
 
-                .profileCardTitle {
-                    color: #f9fafb;
+                .profileInfo {
+                    color: var(--demo-dark-muted);
                 }
 
-                .profileCardDescription {
-                    color: #d1d5db;
+                .avatarToggle {
+                    border-top-color: var(--demo-dark-border);
+
+                    .avatarToggleText {
+                        color: var(--demo-dark-text);
+                    }
                 }
 
-                .profileInput {
-                    .profileTextInput {
-                        border-color: #4b5563;
-                        background: #374151;
-                        color: #d1d5db;
-                        
-                        &:focus {
-                            border-color: var(--qwertychat-primary);
-                        }
-                        
-                        &::placeholder {
-                            color: #9ca3af;
-                        }
+                .avatarSection {
+                    border-top-color: var(--demo-dark-border);
+
+                    .avatarSectionTitle {
+                        color: var(--demo-dark-primary);
                     }
 
-                    .profileInfo {
-                        color: #9ca3af;
-                    }
+                    .avatarUpload {
+                        .avatarPreview {
+                            border-color: var(--demo-dark-border);
+                            background: var(--demo-dark-surface);
 
-                    .avatarToggle {
-                        border-top-color: #4b5563;
-
-                        .avatarToggleLabel {
-                            &:hover {
-                                color: var(--qwertychat-primary);
+                            .avatarPreviewPlaceholder {
+                                color: var(--demo-dark-muted);
                             }
                         }
 
-                        .avatarToggleText {
-                            color: #d1d5db;
+                        .avatarControls {
+
+
+                            .avatarRemoveButton {
+                                border-color: var(--demo-danger);
+                                background: var(--demo-dark-surface);
+                                color: var(--demo-danger);
+
+                                &:hover {
+                                    background: var(--demo-danger);
+                                    color: white;
+                                }
+                            }
                         }
                     }
                 }
@@ -219,17 +329,46 @@
         }
 
         .profileInfo {
-            background: #374151;
-            border-color: #4b5563;
+            background: var(--demo-dark-surface);
+            border-color: var(--demo-dark-border);
 
             .profileNote {
-                color: #9ca3af;
+                color: var(--demo-dark-muted);
             }
         }
     }
 }
 
-/* Responsive Design */
+// Global styles
+input[type="file"] {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.profileManagementSection img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+// Responsive design
 @media (max-width: 768px) {
     .profileManagementSection {
         .profileManagementContainer {
@@ -242,7 +381,7 @@
                 gap: 1.5rem;
 
                 .profileCard {
-                    padding: 1.5rem;
+                    // Card component handles responsive sizing
                 }
             }
         }
@@ -258,11 +397,9 @@
                 font-size: 1.75rem;
             }
 
-            .profilesGrid {
-                .profileCard {
-                    padding: 1rem;
+            .profilesGrid                 .profileCard {
+                    // Card component handles responsive sizing
                 }
-            }
         }
     }
 }

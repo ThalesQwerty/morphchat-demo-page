@@ -1,8 +1,8 @@
 /* MessageTimestamp Component Styles */
 
 .timestamp {
-    font-size: 11px;
-    margin-top: 4px;
+    font-size: var(--qwertychat-text-sm);
+    margin-top: var(--qwertychat-spacing-sm);
     color: var(--qwertychat-text-light);
     width: 100%;
 }

@@ -1,67 +1,63 @@
 .functionalitySection {
-    padding: 4rem 2rem;
-    background: white;
-    transition: background-color 0.3s ease;
+    padding: var(--demo-spacing-5xl) var(--demo-spacing-2xl);
+    background: var(--demo-surface);
+    transition: var(--demo-transition-slow);
 
     .functionalityContainer {
-        max-width: 1200px;
+        max-width: var(--demo-container-xl);
         margin: 0 auto;
 
         .functionalityTitle {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
-            transition: color 0.3s ease;
+            font-size: var(--demo-text-6xl);
+            margin-bottom: var(--demo-spacing-base);
+            color: var(--demo-primary);
+            transition: var(--demo-transition-slow);
         }
 
         .functionalitySubtitle {
             text-align: center;
-            font-size: 1.1rem;
-            color: #6b7280;
-            margin-bottom: 3rem;
-            transition: color 0.3s ease;
+            font-size: var(--demo-text-xl);
+            color: var(--demo-secondary);
+            margin-bottom: var(--demo-spacing-4xl);
+            transition: var(--demo-transition-slow);
         }
 
         /* Prompt Section - Full Width */
         .promptSection {
-            margin-bottom: 3rem;
-            padding: 2rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            background: #f9fafb;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            margin-bottom: var(--demo-spacing-4xl);
+            // Card component handles the base styling
 
             .promptSectionTitle {
-                font-size: 1.5rem;
-                margin-bottom: 0.75rem;
-                color: #1f2937;
-                transition: color 0.3s ease;
+                font-size: var(--demo-text-3xl);
+                margin-bottom: var(--demo-spacing-md);
+                color: var(--demo-primary);
+                transition: var(--demo-transition-slow);
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: var(--demo-spacing-sm);
             }
 
             .promptSectionDescription {
-                color: #6b7280;
-                line-height: 1.6;
-                margin-bottom: 1.5rem;
-                transition: color 0.3s ease;
+                color: var(--demo-secondary);
+                line-height: var(--demo-leading-relaxed);
+                margin-bottom: var(--demo-spacing-xl);
+                transition: var(--demo-transition-slow);
             }
 
             .promptEditor {
                 .promptTextarea {
                     width: 100%;
-                    padding: 16px;
-                    border: 2px solid #e5e7eb;
-                    border-radius: 8px;
-                    background: white;
-                    color: #374151;
-                    font-size: 0.95rem;
+                    padding: var(--demo-spacing-base);
+                    border: 2px solid var(--demo-border);
+                    border-radius: var(--demo-radius-md);
+                    background: var(--demo-surface);
+                    color: var(--demo-text);
+                    font-size: var(--demo-text-base);
                     font-family: inherit;
                     resize: vertical;
                     min-height: 120px;
-                    transition: border-color 0.2s ease;
+                    transition: var(--demo-transition-normal);
                     
                     &:focus {
                         outline: none;
@@ -69,18 +65,18 @@
                     }
                     
                     &::placeholder {
-                        color: #9ca3af;
+                        color: var(--demo-muted);
                     }
                 }
 
                 .promptInfo {
                     display: flex;
                     align-items: center;
-                    gap: 0.5rem;
-                    margin-top: 0.75rem;
-                    color: #6b7280;
-                    font-size: 0.85rem;
-                    transition: color 0.3s ease;
+                    gap: var(--demo-spacing-sm);
+                    margin-top: var(--demo-spacing-md);
+                    color: var(--demo-secondary);
+                    font-size: var(--demo-text-xs);
+                    transition: var(--demo-transition-slow);
                 }
             }
         }
@@ -89,63 +85,54 @@
         .statusControlsGrid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: var(--demo-spacing-2xl);
 
             .statusControlCard {
-                padding: 2rem;
-                border: 1px solid #e5e7eb;
-                border-radius: 12px;
-                background: #f9fafb;
-                transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
-                
-                &:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                }
+                // Card component handles the base styling
 
                 .statusControlTitle {
-                    font-size: 1.25rem;
-                    margin-bottom: 0.75rem;
-                    color: #1f2937;
-                    transition: color 0.3s ease;
+                    font-size: var(--demo-text-2xl);
+                    margin-bottom: var(--demo-spacing-md);
+                    color: var(--demo-primary);
+                    transition: var(--demo-transition-slow);
                     display: flex;
                     align-items: center;
-                    gap: 0.5rem;
+                    gap: var(--demo-spacing-sm);
                 }
 
                 .statusControlDescription {
-                    color: #6b7280;
-                    line-height: 1.6;
-                    margin-bottom: 1.5rem;
-                    transition: color 0.3s ease;
+                    color: var(--demo-secondary);
+                    line-height: var(--demo-leading-relaxed);
+                    margin-bottom: var(--demo-spacing-xl);
+                    transition: var(--demo-transition-slow);
                 }
 
                 .statusButtons,
                 .maintenanceButtons {
                     display: flex;
                     justify-content: center;
-                    gap: 1rem;
+                    gap: var(--demo-spacing-base);
 
                     .statusButton,
                     .maintenanceButton {
-                        padding: 12px 24px;
-                        border: 2px solid #e5e7eb;
-                        border-radius: 8px;
-                        background: white;
-                        color: #374151;
-                        font-size: 0.9rem;
+                        padding: var(--demo-spacing-md) var(--demo-spacing-xl);
+                        border: 2px solid var(--demo-border);
+                        border-radius: var(--demo-radius-md);
+                        background: var(--demo-surface);
+                        color: var(--demo-text);
+                        font-size: var(--demo-text-sm);
                         font-weight: 500;
                         cursor: pointer;
-                        transition: all 0.2s ease;
+                        transition: var(--demo-transition-normal);
                         display: flex;
                         align-items: center;
-                        gap: 8px;
+                        gap: var(--demo-spacing-sm);
                         min-width: 140px;
                         justify-content: center;
                         
                         &:hover {
-                            border-color: #d1d5db;
-                            background: #f9fafb;
+                            border-color: var(--demo-border-light);
+                            background: var(--demo-background);
                         }
                     }
 
@@ -174,49 +161,45 @@
 
         /* Clear Data Section */
         .clearDataSection {
-            margin-top: 3rem;
-            padding: 2rem;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            background: #f9fafb;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            margin-top: var(--demo-spacing-4xl);
+            // Card component handles the base styling
 
             .clearDataTitle {
-                font-size: 1.5rem;
-                margin-bottom: 0.75rem;
-                color: #1f2937;
-                transition: color 0.3s ease;
+                font-size: var(--demo-text-3xl);
+                margin-bottom: var(--demo-spacing-md);
+                color: var(--demo-primary);
+                transition: var(--demo-transition-slow);
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: var(--demo-spacing-sm);
             }
 
             .clearDataDescription {
-                color: #6b7280;
-                line-height: 1.6;
-                margin-bottom: 1.5rem;
-                transition: color 0.3s ease;
+                color: var(--demo-secondary);
+                line-height: var(--demo-leading-relaxed);
+                margin-bottom: var(--demo-spacing-xl);
+                transition: var(--demo-transition-slow);
             }
 
             .clearDataButton {
-                padding: 12px 24px;
-                border: 2px solid #ef4444;
-                border-radius: 8px;
-                background: white;
-                color: #ef4444;
-                font-size: 0.9rem;
+                padding: var(--demo-spacing-md) var(--demo-spacing-xl);
+                border: 2px solid var(--demo-danger);
+                border-radius: var(--demo-radius-md);
+                background: var(--demo-surface);
+                color: var(--demo-danger);
+                font-size: var(--demo-text-sm);
                 font-weight: 500;
                 cursor: pointer;
-                transition: all 0.2s ease;
+                transition: var(--demo-transition-normal);
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: var(--demo-spacing-sm);
                 
                 &:hover {
-                    background: #ef4444;
+                    background: var(--demo-danger);
                     color: white;
                     transform: translateY(-1px);
-                    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+                    box-shadow: 0 4px 12px var(--demo-shadow-danger);
                 }
                 
                 &:active {
@@ -229,78 +212,78 @@
 
 /* Dark mode functionality section */
 :global(.theme-dark) .functionalitySection {
-    background: #1f2937;
+    background: var(--demo-dark-background);
 
     .functionalityContainer {
         .functionalityTitle {
-            color: #f9fafb;
+            color: var(--demo-dark-primary);
         }
 
         .functionalitySubtitle {
-            color: #d1d5db;
+            color: var(--demo-dark-text);
         }
 
         .promptSection {
-            background: #374151;
-            border-color: #4b5563;
+            background: var(--demo-dark-surface);
+            border-color: var(--demo-dark-border);
 
             .promptSectionTitle {
-                color: #f9fafb;
+                color: var(--demo-dark-primary);
             }
 
             .promptSectionDescription {
-                color: #d1d5db;
+                color: var(--demo-dark-text);
             }
 
             .promptEditor {
                 .promptTextarea {
-                    border-color: #4b5563;
-                    background: #374151;
-                    color: #d1d5db;
+                    border-color: var(--demo-dark-border);
+                    background: var(--demo-dark-surface);
+                    color: var(--demo-dark-text);
                     
                     &:focus {
                         border-color: var(--qwertychat-primary);
                     }
                     
                     &::placeholder {
-                        color: #9ca3af;
+                        color: var(--demo-dark-muted);
                     }
                 }
 
                 .promptInfo {
-                    color: #9ca3af;
+                    color: var(--demo-dark-muted);
                 }
             }
         }
 
         .statusControlsGrid {
             .statusControlCard {
-                background: #374151;
-                border-color: #4b5563;
+                background: var(--demo-dark-surface);
+                border-color: var(--demo-dark-border);
 
                 &:hover {
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                    box-shadow: 0 4px 12px var(--demo-shadow-dark);
                 }
 
                 .statusControlTitle {
-                    color: #f9fafb;
+                    color: var(--demo-dark-primary);
                 }
 
                 .statusControlDescription {
-                    color: #d1d5db;
+                    color: var(--demo-dark-text);
                 }
 
                 .statusButtons,
                 .maintenanceButtons {
                     .statusButton,
                     .maintenanceButton {
-                        border-color: #4b5563;
-                        background: #374151;
-                        color: #d1d5db;
+                        border-color: var(--demo-dark-border);
+                        background: var(--demo-dark-surface);
+                        color: var(--demo-dark-text);
                         
                         &:hover {
-                            border-color: #6b7280;
-                            background: #4b5563;
+                            border-color: var(--demo-dark-border-light);
+                            background: var(--demo-dark-border);
                         }
                     }
 
@@ -329,24 +312,24 @@
 
         /* Clear Data Section - Dark Mode */
         .clearDataSection {
-            background: #374151;
-            border-color: #4b5563;
+            background: var(--demo-dark-surface);
+            border-color: var(--demo-dark-border);
 
             .clearDataTitle {
-                color: #f9fafb;
+                color: var(--demo-dark-primary);
             }
 
             .clearDataDescription {
-                color: #d1d5db;
+                color: var(--demo-dark-text);
             }
 
             .clearDataButton {
-                border-color: #ef4444;
-                background: #374151;
-                color: #ef4444;
+                border-color: var(--demo-danger);
+                background: var(--demo-dark-surface);
+                color: var(--demo-danger);
                 
                 &:hover {
-                    background: #ef4444;
+                    background: var(--demo-danger);
                     color: white;
                 }
             }
@@ -355,23 +338,23 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: var(--demo-bp-md)) {
     .functionalitySection {
         .functionalityContainer {
             .functionalityTitle {
-                font-size: 2rem;
+                font-size: var(--demo-text-5xl);
             }
         }
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--demo-bp-sm)) {
     .functionalitySection {
-        padding: 2rem 1rem;
+        padding: var(--demo-spacing-2xl) var(--demo-spacing-base);
 
         .functionalityContainer {
             .functionalityTitle {
-                font-size: 1.75rem;
+                font-size: var(--demo-text-4xl);
             }
         }
     }

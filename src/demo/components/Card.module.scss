@@ -1,0 +1,113 @@
+// Base card styles
+.card {
+    border-radius: var(--demo-radius-lg);
+    transition: var(--demo-transition-normal);
+    font-family: inherit;
+}
+
+// Size variants
+.small {
+    padding: var(--demo-spacing-base);
+}
+
+.medium {
+    padding: var(--demo-spacing-xl);
+}
+
+.large {
+    padding: var(--demo-spacing-2xl);
+}
+
+// Variant styles
+.default {
+    background: var(--demo-background);
+    border: 1px solid var(--demo-border);
+}
+
+.elevated {
+    background: var(--demo-surface);
+    border: 1px solid var(--demo-border);
+    box-shadow: 0 2px 8px var(--demo-shadow-light);
+}
+
+.outlined {
+    background: var(--demo-surface);
+    border: 2px solid var(--demo-border);
+}
+
+// Interactive states
+.hover {
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px var(--demo-shadow-light);
+    }
+}
+
+.clickable {
+    cursor: pointer;
+    
+    &:focus {
+        outline: 2px solid var(--qwertychat-primary);
+        outline-offset: 2px;
+    }
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+// Dark mode support
+:global(.theme-dark) {
+    .default {
+        background: var(--demo-dark-surface);
+        border-color: var(--demo-dark-border);
+    }
+
+    .elevated {
+        background: var(--demo-dark-surface);
+        border-color: var(--demo-dark-border);
+        box-shadow: 0 2px 8px var(--demo-shadow-dark);
+    }
+
+    .outlined {
+        background: var(--demo-dark-surface);
+        border-color: var(--demo-dark-border);
+    }
+
+    .hover {
+        &:hover {
+            box-shadow: 0 4px 12px var(--demo-shadow-dark);
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: var(--demo-bp-md)) {
+    .small {
+        padding: var(--demo-spacing-md);
+    }
+
+    .medium {
+        padding: var(--demo-spacing-lg);
+    }
+
+    .large {
+        padding: var(--demo-spacing-xl);
+    }
+}
+
+@media (max-width: var(--demo-bp-sm)) {
+    .small {
+        padding: var(--demo-spacing-sm);
+    }
+
+    .medium {
+        padding: var(--demo-spacing-base);
+    }
+
+    .large {
+        padding: var(--demo-spacing-lg);
+    }
+}

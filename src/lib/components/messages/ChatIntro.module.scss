@@ -2,38 +2,38 @@
 
 .introMessage {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: var(--qwertychat-spacing-2xl);
 
     .introLogo {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
+        width: var(--qwertychat-avatar-lg);
+        height: var(--qwertychat-avatar-lg);
+        border-radius: var(--qwertychat-radius-full);
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        font-size: 20px;
+        font-size: var(--qwertychat-text-2xl);
         color: var(--qwertychat-components-chat-button-text, var(--qwertychat-contrast));
         background: var(--qwertychat-components-chat-button-background, var(--qwertychat-primary));
-        margin: 0 auto 16px;
+        margin: 0 auto var(--qwertychat-spacing-xl);
 
         .avatar {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            border-radius: var(--qwertychat-radius-full);
             object-fit: cover;
         }
     }
 
     .introTitle {
-        font-size: 20px;
+        font-size: var(--qwertychat-text-2xl);
         font-weight: 700;
-        margin-bottom: 8px;
+        margin-bottom: var(--qwertychat-spacing-base);
         color: var(--qwertychat-text);
     }
 
     .introSubtitle {
-        font-size: 14px;
+        font-size: var(--qwertychat-text-md);
         color: var(--qwertychat-text-light);
     }
 }

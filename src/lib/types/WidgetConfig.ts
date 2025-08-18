@@ -28,16 +28,17 @@ export interface WidgetConfig<P extends Record<string, TypeName> = any> {
         title: string;
         subtitle: string;
     }>;
-    // the avatar is a image url, if not provided use the name initials with primary background
+    // the avatar is a image url or base64 data, if not provided use the name initials with primary background
     // if no name is provided, use "QwertyChat"
     botProfile?: Partial<{
         name: string;
-        avatar: string;
+        avatar?: string; // URL or base64 data
         showAvatar?: boolean;
     }>;
     // user profile configuration
     userProfile?: Partial<{
         name: string;
+        avatar?: string; // URL or base64 data
         showAvatar?: boolean;
     }>;
     events?: Partial<{
@@ -63,6 +64,7 @@ export type FilledWidgetConfig = Omit<Required<WidgetConfig>, "prompt"> & {
     };
     userProfile: {
         name: string;
+        avatar?: string;
         showAvatar: boolean;
     };
     status: Required<WidgetConfig["status"]>;

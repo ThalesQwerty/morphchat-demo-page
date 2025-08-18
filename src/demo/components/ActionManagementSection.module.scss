@@ -1,66 +1,60 @@
 .actionManagementSection {
-    padding: 4rem 2rem;
-    background: #f9fafb;
-    transition: background-color 0.3s ease;
+    padding: var(--demo-spacing-5xl) var(--demo-spacing-2xl);
+    background: var(--demo-background);
+    transition: var(--demo-transition-slow);
 
     .actionManagementContainer {
-        max-width: 800px;
+        max-width: var(--demo-container-md);
         margin: 0 auto;
 
         .actionManagementTitle {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1f2937;
-            transition: color 0.3s ease;
+            font-size: var(--demo-text-6xl);
+            margin-bottom: var(--demo-spacing-base);
+            color: var(--demo-primary);
+            transition: var(--demo-transition-slow);
         }
 
         .actionManagementSubtitle {
             text-align: center;
-            font-size: 1.1rem;
-            color: #6b7280;
-            margin-bottom: 3rem;
-            transition: color 0.3s ease;
+            font-size: var(--demo-text-xl);
+            color: var(--demo-secondary);
+            margin-bottom: var(--demo-spacing-4xl);
+            transition: var(--demo-transition-slow);
         }
 
         .actionsList {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: var(--demo-spacing-base);
+            margin-bottom: var(--demo-spacing-2xl);
 
             .actionItem {
-                padding: 1.5rem;
-                border: 2px solid #e5e7eb;
-                border-radius: 12px;
-                background: white;
-                transition: all 0.3s ease;
-                cursor: pointer;
-
-                &:hover {
-                    border-color: #d1d5db;
-                    transform: translateY(-1px);
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                }
+                // Card component handles the base styling
 
                 &.actionEnabled {
-                    border-color: var(--qwertychat-primary);
-                    background: #f0f7ff;
+                    // Custom styling for enabled actions
+                    border-color: var(--qwertychat-primary) !important;
+                    background: var(--demo-background-light) !important;
+                    box-shadow: 0 1px 3px var(--demo-shadow-primary) !important;
 
                     &:hover {
-                        border-color: var(--qwertychat-primary-hover);
-                        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+                        border-color: var(--qwertychat-primary-hover) !important;
+                        box-shadow: 0 2px 8px var(--demo-shadow-primary) !important;
+                        background: var(--demo-background-light) !important;
                     }
                 }
 
                 &.actionDisabled {
-                    opacity: 0.6;
-                    background: #f9fafb;
-                    border-color: #d1d5db;
+                    // Custom styling for disabled actions
+                    opacity: 0.6 !important;
+                    background: var(--demo-border) !important;
+                    border-color: var(--demo-border-light) !important;
 
                     &:hover {
-                        opacity: 0.8;
-                        border-color: #9ca3af;
+                        opacity: 0.8 !important;
+                        border-color: var(--demo-muted) !important;
+                        background: var(--demo-border) !important;
                     }
                 }
 
@@ -70,12 +64,12 @@
                     flex: 1;
 
                     .actionCheckbox {
-                        margin-right: 1rem;
+                        margin-right: var(--demo-spacing-base);
                         width: 20px;
                         height: 20px;
                         accent-color: var(--qwertychat-primary);
                         cursor: pointer;
-                        transition: transform 0.2s ease;
+                        transition: var(--demo-transition-normal);
 
                         &:hover {
                             transform: scale(1.05);
@@ -83,13 +77,16 @@
                     }
 
                     .actionIcon {
-                        margin-right: 1rem;
+                        margin-right: var(--demo-spacing-base);
                         color: white;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         width: 56px;
                         height: 56px;
+                        background: var(--qwertychat-primary);
+                        border-radius: var(--demo-radius-full);
+                        flex-shrink: 0;
                     }
 
                     .actionText {
@@ -98,17 +95,17 @@
                         flex: 1;
 
                         .actionDescription {
-                            font-size: 1rem;
+                            font-size: var(--demo-text-lg);
                             font-weight: 500;
-                            color: #1f2937;
-                            margin-bottom: 0.25rem;
-                            transition: color 0.3s ease;
+                            color: var(--demo-primary);
+                            margin-bottom: var(--demo-spacing-xs);
+                            transition: var(--demo-transition-slow);
                         }
 
                         .actionStatus {
-                            font-size: 0.875rem;
-                            color: #6b7280;
-                            transition: color 0.3s ease;
+                            font-size: var(--demo-text-sm);
+                            color: var(--demo-secondary);
+                            transition: var(--demo-transition-slow);
                         }
                     }
                 }
@@ -117,28 +114,28 @@
 
         .actionsInfo {
             text-align: center;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
+            padding: var(--demo-spacing-xl);
+            background: var(--demo-surface);
+            border-radius: var(--demo-radius-lg);
+            border: 1px solid var(--demo-border);
 
             .actionsCount {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 0.5rem;
-                margin-bottom: 1rem;
-                color: #6b7280;
+                gap: var(--demo-spacing-sm);
+                margin-bottom: var(--demo-spacing-base);
+                color: var(--demo-secondary);
                 font-weight: 500;
-                transition: color 0.3s ease;
+                transition: var(--demo-transition-slow);
             }
 
             .actionsNote {
-                color: #6b7280;
-                font-size: 0.9rem;
-                line-height: 1.5;
+                color: var(--demo-secondary);
+                font-size: var(--demo-text-sm);
+                line-height: var(--demo-leading-normal);
                 margin: 0;
-                transition: color 0.3s ease;
+                transition: var(--demo-transition-slow);
             }
         }
     }
@@ -146,58 +143,62 @@
 
 /* Dark mode action management section */
 :global(.theme-dark) .actionManagementSection {
-    background: #374151;
+    background: var(--demo-dark-surface);
 
     .actionManagementContainer {
         .actionManagementTitle {
-            color: #f9fafb;
+            color: var(--demo-dark-primary);
         }
 
         .actionManagementSubtitle {
-            color: #d1d5db;
+            color: var(--demo-dark-text);
         }
 
         .actionsList {
             .actionItem {
-                background: #1f2937;
-                border-color: #4b5563;
+                background: var(--demo-dark-background);
+                border-color: var(--demo-dark-border);
 
                 &:hover {
-                    border-color: #6b7280;
+                    border-color: var(--demo-dark-border-light);
                 }
 
                 &.actionEnabled {
-                    background: rgba(59, 130, 246, 0.08);
-                    border-color: var(--qwertychat-primary);
+                    background: var(--demo-shadow-primary-light) !important;
+                    border-color: var(--qwertychat-primary) !important;
+                    box-shadow: 0 1px 3px var(--demo-shadow-primary) !important;
 
                     &:hover {
-                        border-color: var(--qwertychat-primary-hover);
+                        border-color: var(--qwertychat-primary-hover) !important;
+                        background: var(--demo-shadow-primary-light) !important;
                     }
                 }
 
                 &.actionDisabled {
-                    background: #374151;
-                    border-color: #4b5563;
+                    background: var(--demo-dark-border) !important;
+                    border-color: var(--demo-dark-border);
                     opacity: 0.5;
 
                     &:hover {
                         opacity: 0.7;
-                        border-color: #6b7280;
+                        border-color: var(--demo-dark-border-light);
+                        background: var(--demo-dark-border) !important;
                     }
                 }
 
                 .actionContent {
                     .actionIcon {
                         color: white;
+                        background: var(--qwertychat-primary);
                     }
 
                     .actionText {
                         .actionDescription {
-                            color: #f9fafb;
+                            color: var(--demo-dark-primary);
                         }
 
                         .actionStatus {
-                            color: #9ca3af;
+                            color: var(--demo-dark-muted);
                         }
                     }
                 }
@@ -205,46 +206,46 @@
         }
 
         .actionsInfo {
-            background: #1f2937;
-            border-color: #4b5563;
+            background: var(--demo-dark-background);
+            border-color: var(--demo-dark-border);
 
             .actionsCount {
-                color: #9ca3af;
+                color: var(--demo-dark-muted);
             }
 
             .actionsNote {
-                color: #9ca3af;
+                color: var(--demo-dark-muted);
             }
         }
     }
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: var(--demo-bp-md)) {
     .actionManagementSection {
         .actionManagementContainer {
             .actionManagementTitle {
-                font-size: 2rem;
+                font-size: var(--demo-text-5xl);
             }
 
             .actionsList {
                 .actionItem {
-                    padding: 1rem;
+                    padding: var(--demo-spacing-base);
 
                     .actionContent {
                         .actionIcon {
                             width: 48px;
                             height: 48px;
-                            margin-right: 0.75rem;
+                            margin-right: var(--demo-spacing-md);
                         }
 
                         .actionText {
                             .actionDescription {
-                                font-size: 0.9rem;
+                                font-size: var(--demo-text-sm);
                             }
 
                             .actionStatus {
-                                font-size: 0.8rem;
+                                font-size: var(--demo-text-xs);
                             }
                         }
                     }
@@ -254,13 +255,13 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: var(--demo-bp-sm)) {
     .actionManagementSection {
-        padding: 2rem 1rem;
+        padding: var(--demo-spacing-2xl) var(--demo-spacing-base);
 
         .actionManagementContainer {
             .actionManagementTitle {
-                font-size: 1.75rem;
+                font-size: var(--demo-text-4xl);
             }
 
             .actionsList {
@@ -274,7 +275,7 @@
                         .actionIcon {
                             width: 44px;
                             height: 44px;
-                            margin-right: 0.5rem;
+                            margin-right: var(--demo-spacing-sm);
                         }
                     }
                 }
