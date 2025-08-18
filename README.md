@@ -6,6 +6,8 @@ This project was developed as a part of a role application process to [Eloquent 
 
 **🚀 [Click here to open the Live Demo](https://morphchat-55adf53d3fdf.herokuapp.com/)**
 
+**📦 [Click here to open  the lib repo](https://github.com/ThalesQwerty/morphchat)**
+
 ## 📄 Introduction
 
 This repository contains a demo website that showcases the capabilities of the MorphChat library. MorphChat is a powerful React library that provides a fully customizable chat widget for your website. Built with TypeScript and modern React patterns, it offers seamless integration with OpenAI's API while maintaining complete style isolation to prevent conflicts with your existing website design.
