@@ -1,5 +1,7 @@
 # MorphChat - Intelligent Chat Widget
 
+[Check out the demo!](https://morphchat-55adf53d3fdf.herokuapp.com/)
+
 A modern, intelligent chat widget built with React and TypeScript, featuring AI-powered responses, customizable themes, and interactive actions. MorphChat is highly customizable to seamlessly fit into your own web page and can be integrated with your application through powerful action systems. The widget is designed with CSS isolation in mind - every CSS variable starts with the `--morphchat` prefix to avoid conflicts with your host page styles.
 
 ## 🚀 Features
