@@ -8,6 +8,16 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Serve the standalone widget script
+app.get("/widget.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "dist", "morphchat.umd.js"));
+});
+
+// Serve a demo page for the standalone widget
+app.get("/demo", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "public", "standalone-demo.html"));
+});
+
 // Serve static files from the dist directory (one level up from scripts)
 app.use(express.static(path.join(__dirname, "..", "dist")));
 // Serve the main HTML file for all routes (SPA)
