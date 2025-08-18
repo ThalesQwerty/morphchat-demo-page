@@ -10,7 +10,8 @@ export function FunctionalitySection() {
         isOnline, 
         setIsOnline, 
         isMaintenanceMode, 
-        setIsMaintenanceMode 
+        setIsMaintenanceMode,
+        clearSiteData
     } = useDemoContext();
     return (
         <section id="functionality" className={styles.functionalitySection}>
@@ -87,6 +88,24 @@ export function FunctionalitySection() {
                             </button>
                         </div>
                     </div>
+                </div>
+
+                {/* Clear Site Data */}
+                <div className={styles.clearDataSection}>
+                    <h3 className={styles.clearDataTitle}>
+                        <Icon name="Trash" size={20} />
+                        Reset conversation
+                    </h3>
+                    <p className={styles.clearDataDescription}>
+                        Delete all stored messages
+                    </p>
+                    <button
+                        onClick={clearSiteData}
+                        className={styles.clearDataButton}
+                    >
+                        <Icon name="Trash" size={16} />
+                        Clear chat history
+                    </button>
                 </div>
             </div>
         </section>

@@ -64,11 +64,10 @@
                     }
                 }
 
-                .actionLabel {
+                .actionContent {
                     display: flex;
                     align-items: center;
-                    cursor: pointer;
-                    width: 100%;
+                    flex: 1;
 
                     .actionCheckbox {
                         margin-right: 1rem;
@@ -77,45 +76,39 @@
                         accent-color: var(--qwertychat-primary);
                         cursor: pointer;
                         transition: transform 0.2s ease;
-                        
+
                         &:hover {
                             transform: scale(1.05);
                         }
                     }
 
-                    .actionContent {
+                    .actionIcon {
+                        margin-right: 1rem;
+                        color: white;
                         display: flex;
                         align-items: center;
+                        justify-content: center;
+                        width: 56px;
+                        height: 56px;
+                    }
+
+                    .actionText {
+                        display: flex;
+                        flex-direction: column;
                         flex: 1;
 
-                        .actionIcon {
-                            margin-right: 1rem;
-                            color: white;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 56px;
-                            height: 56px;
+                        .actionDescription {
+                            font-size: 1rem;
+                            font-weight: 500;
+                            color: #1f2937;
+                            margin-bottom: 0.25rem;
+                            transition: color 0.3s ease;
                         }
 
-                        .actionText {
-                            display: flex;
-                            flex-direction: column;
-                            flex: 1;
-
-                            .actionDescription {
-                                font-size: 1rem;
-                                font-weight: 500;
-                                color: #1f2937;
-                                margin-bottom: 0.25rem;
-                                transition: color 0.3s ease;
-                            }
-
-                            .actionStatus {
-                                font-size: 0.875rem;
-                                color: #6b7280;
-                                transition: color 0.3s ease;
-                            }
+                        .actionStatus {
+                            font-size: 0.875rem;
+                            color: #6b7280;
+                            transition: color 0.3s ease;
                         }
                     }
                 }
@@ -193,20 +186,18 @@
                     }
                 }
 
-                .actionLabel {
-                    .actionContent {
-                        .actionIcon {
-                            color: white;
-                        }
-                        
-                        .actionText {
-                            .actionDescription {
-                                color: #f9fafb;
-                            }
+                .actionContent {
+                    .actionIcon {
+                        color: white;
+                    }
 
-                            .actionStatus {
-                                color: #9ca3af;
-                            }
+                    .actionText {
+                        .actionDescription {
+                            color: #f9fafb;
+                        }
+
+                        .actionStatus {
+                            color: #9ca3af;
                         }
                     }
                 }
@@ -240,22 +231,20 @@
                 .actionItem {
                     padding: 1rem;
 
-                    .actionLabel {
-                        .actionContent {
-                                                         .actionIcon {
-                                 width: 48px;
-                                 height: 48px;
-                                 margin-right: 0.75rem;
-                             }
+                    .actionContent {
+                        .actionIcon {
+                            width: 48px;
+                            height: 48px;
+                            margin-right: 0.75rem;
+                        }
 
-                            .actionText {
-                                .actionDescription {
-                                    font-size: 0.9rem;
-                                }
+                        .actionText {
+                            .actionDescription {
+                                font-size: 0.9rem;
+                            }
 
-                                .actionStatus {
-                                    font-size: 0.8rem;
-                                }
+                            .actionStatus {
+                                font-size: 0.8rem;
                             }
                         }
                     }
@@ -276,18 +265,16 @@
 
             .actionsList {
                 .actionItem {
-                    .actionLabel {
-                        .actionCheckbox {
-                            width: 18px;
-                            height: 18px;
-                        }
+                    .actionCheckbox {
+                        width: 18px;
+                        height: 18px;
+                    }
 
-                        .actionContent {
-                                                         .actionIcon {
-                                 width: 44px;
-                                 height: 44px;
-                                 margin-right: 0.5rem;
-                             }
+                    .actionContent {
+                        .actionIcon {
+                            width: 44px;
+                            height: 44px;
+                            margin-right: 0.5rem;
                         }
                     }
                 }

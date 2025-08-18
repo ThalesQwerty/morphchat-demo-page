@@ -22,6 +22,7 @@ export interface WidgetConfig<P extends Record<string, TypeName> = any> {
         model?: ChatModel;
         timeout?: number;
         actions?: WidgetAction<P>[];
+        localStorage?: boolean;
     };
     intro?: ReactNode | Partial<{
         title: string;

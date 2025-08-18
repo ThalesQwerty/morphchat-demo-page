@@ -24,10 +24,11 @@ function AppContent() {
         isOnline, 
         isMaintenanceMode, 
         chatbotPrompt,
-        actions
+        actions,
+        setWidgetFunctions
     } = useDemoContext();
 
-    const { component: ChatWidgetComponent } = useChatWidget({
+        const { component: ChatWidgetComponent, widgetFunctions } = useChatWidget({
         theme: colorTheme,
         mode: resolvedTheme,
         corner,
@@ -48,10 +49,18 @@ function AppContent() {
             welcomeMessage: "Hello! I'm QwertyChat, your AI assistant. How can I help you today?",
             model: "gpt-4o-mini" as const,
             timeout: 30000,
-            actions
+            actions,
+            localStorage: true
         },
     });
-    
+
+    // Connect widget functions to demo context
+    React.useEffect(() => {
+        if (widgetFunctions) {
+            setWidgetFunctions(widgetFunctions);
+        }
+    }, [widgetFunctions, setWidgetFunctions]);
+
     return (
         <div className={styles.appContainer}>
             <Header />

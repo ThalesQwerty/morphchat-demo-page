@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useRef } from "react";
 import { useChatAction } from "../../lib";
 import { Color } from "../../lib/constants/Color";
 import { useAppTheme } from "./ThemeContext";
@@ -18,6 +18,10 @@ interface DemoContextType {
 
     toggleAction: (actionName: string) => void;
     actions: (WidgetAction<any, { icon: IconName }>)[]
+    
+    // Site data management
+    clearSiteData: () => void;
+    setWidgetFunctions: (functions: { clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void }) => void;
 }
 
 const DemoContext = createContext<DemoContextType | undefined>(undefined);
@@ -108,6 +112,9 @@ export function DemoProvider({ children }: DemoProviderProps) {
 
     const [actions, setActions] = useState([changeTheme, changeColorMode, changeCorner]);
 
+    // Widget functions ref
+    const widgetFunctionsRef = useRef<{ clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void } | null>(null);
+
     // Action management functions
     const toggleAction = (actionName: string) => {
         const newActions = actions.map(action => {
@@ -117,6 +124,32 @@ export function DemoProvider({ children }: DemoProviderProps) {
             return action;
         });
         setActions(newActions as any);
+    };
+
+    // Set widget functions
+    const setWidgetFunctions = (functions: { clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void }) => {
+        widgetFunctionsRef.current = functions;
+    };
+
+    // Clear site data function
+    const clearSiteData = () => {
+        // Clear localStorage
+        localStorage.removeItem("qwertychat_messages");
+        
+        // Close widget and clear messages if functions are available
+        if (widgetFunctionsRef.current) {
+            widgetFunctionsRef.current.setIsWidgetOpen(false);
+            widgetFunctionsRef.current.clearMessages();
+        }
+        
+        // Reset actions to enabled state
+        setActions([changeTheme, changeColorMode, changeCorner]);
+        
+        // Reset other state if needed
+        setWidgetCorner("right");
+        setIsOnline(true);
+        setIsMaintenanceMode(false);
+        setChatbotPrompt("You are a helpful AI assistant. Give short and concise answers.");
     };
 
     const value: DemoContextType = {
@@ -132,6 +165,10 @@ export function DemoProvider({ children }: DemoProviderProps) {
         
         toggleAction,
         actions,
+        
+        // Site data management
+        clearSiteData,
+        setWidgetFunctions,
     };
 
     return (

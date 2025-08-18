@@ -1,16 +1,17 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 
 import { ChatWidgetContainer } from "../components/page/ChatWidgetContainer";
 import { FilledWidgetConfig, WidgetConfig } from "../types/WidgetConfig";
 import { useTheme } from "./useTheme";
 import { defaultDarkTheme, defaultLightTheme } from "../constants/defaultThemes";
-import { WidgetProvider } from "./useWidgetContext";
+import { WidgetProvider, useWidgetContext } from "./useWidgetContext";
 import { Color } from "../constants/Color";
 import { useMessages } from "./useMessages";
 import { useSystemColorMode } from "./useSystemColorMode";
 
 interface UseChatWidgetReturn {
     component: React.ReactElement;
+    widgetFunctions?: { clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void };
 }
 
 export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
@@ -21,21 +22,27 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
     const [isWidgetOpen, setIsWidgetOpen] = useState(!!config.status?.isOpen);
     
     const filledConfig: FilledWidgetConfig = useMemo(() => ({
-        corner: "right",
+        corner: config.corner || "right",
         mode: resolvedMode,
-        intro: {
+        intro: config.intro || {
             title: "QwertyChat responds instantly",
             subtitle: "Ask me anything",
         },
-        events: {},
+        events: config.events || {},
 
-        ...config,
+        // Only spread config properties that are actually provided
+        ...(config.prompt && { prompt: config.prompt }),
+        
+        // Ensure profile is always defined
+        profile: {
+            name: "QwertyChat",
+            ...config.profile,
+        },
 
         // Override status.isOpen with local state to ensure it's always correct
         status: {
-            isOnline: true, // default to online
-            maintenanceMode: false, // default to not in maintenance
-            ...config.status,
+            isOnline: config.status?.isOnline ?? true,
+            maintenanceMode: config.status?.maintenanceMode ?? false,
             isOpen: isWidgetOpen, // Use local state
         },
 
@@ -43,12 +50,15 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
             ...(resolvedMode === "light" ? defaultLightTheme : defaultDarkTheme),
             primary: config.theme ?? Color.purple,
         } : config.theme ?? defaultLightTheme,
-        profile: {
-            name: "QwertyChat",
-            ...config.profile,
-        },
     }), [
-        config,
+        config.corner,
+        config.intro,
+        config.events,
+        config.prompt,
+        config.profile,
+        config.status?.isOnline,
+        config.status?.maintenanceMode,
+        config.theme,
         resolvedMode,
         isWidgetOpen
     ]);
@@ -57,17 +67,38 @@ export function useChatWidget(config: WidgetConfig = {}): UseChatWidgetReturn {
 
     useTheme(filledConfig.theme);
 
-    const component = (
-        <WidgetProvider value={{
+    // Memoize setIsWidgetOpen to prevent recreation
+    const stableSetIsWidgetOpen = useCallback((isOpen: boolean) => {
+        setIsWidgetOpen(isOpen);
+    }, [setIsWidgetOpen]);
+
+    // Create a ref to store widget functions
+    const widgetFunctionsRef = React.useRef<{ clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void } | null>(null);
+
+    // Wrapper component that provides widget functions - memoized to prevent recreation
+    const WidgetWrapper = useCallback(() => {
+        const { clearMessages, setIsWidgetOpen } = useWidgetContext();
+        
+        React.useEffect(() => {
+            widgetFunctionsRef.current = { clearMessages, setIsWidgetOpen };
+        }, [clearMessages, setIsWidgetOpen]);
+        
+        return <ChatWidgetContainer />;
+    }, []);
+
+    // Memoize the component to prevent recreation when config changes
+    const component = useMemo(() => (
+        <WidgetProvider key="widget-provider" value={{
             ...filledConfig,
             ...messageHook,
-            setIsWidgetOpen,
+            setIsWidgetOpen: stableSetIsWidgetOpen,
         }}>
-            <ChatWidgetContainer />
+            <WidgetWrapper />
         </WidgetProvider>
-    );
+    ), [filledConfig, messageHook, stableSetIsWidgetOpen, WidgetWrapper]);
 
     return {
         component,
+        widgetFunctions: widgetFunctionsRef.current || undefined,
     };
 }

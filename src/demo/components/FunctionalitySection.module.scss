@@ -171,6 +171,59 @@
                 }
             }
         }
+
+        /* Clear Data Section */
+        .clearDataSection {
+            margin-top: 3rem;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #f9fafb;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+            .clearDataTitle {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+                color: #1f2937;
+                transition: color 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .clearDataDescription {
+                color: #6b7280;
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+                transition: color 0.3s ease;
+            }
+
+            .clearDataButton {
+                padding: 12px 24px;
+                border: 2px solid #ef4444;
+                border-radius: 8px;
+                background: white;
+                color: #ef4444;
+                font-size: 0.9rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                
+                &:hover {
+                    background: #ef4444;
+                    color: white;
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+                }
+                
+                &:active {
+                    transform: translateY(0);
+                }
+            }
+        }
     }
 }
 
@@ -270,6 +323,31 @@
                             color: var(--qwertychat-primary);
                         }
                     }
+                }
+            }
+        }
+
+        /* Clear Data Section - Dark Mode */
+        .clearDataSection {
+            background: #374151;
+            border-color: #4b5563;
+
+            .clearDataTitle {
+                color: #f9fafb;
+            }
+
+            .clearDataDescription {
+                color: #d1d5db;
+            }
+
+            .clearDataButton {
+                border-color: #ef4444;
+                background: #374151;
+                color: #ef4444;
+                
+                &:hover {
+                    background: #ef4444;
+                    color: white;
                 }
             }
         }

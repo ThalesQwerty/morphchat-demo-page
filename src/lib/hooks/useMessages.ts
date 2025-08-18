@@ -5,6 +5,8 @@ import { FilledWidgetConfig } from "../types/WidgetConfig";
 import { LLM } from "../bot/LLM";
 import { useActions } from "./useActions";
 
+const STORAGE_KEY = "qwertychat_messages";
+
 export interface MessageHook { 
     messages: Message[];
     setMessages: (messages: Message[]) => void;
@@ -13,6 +15,7 @@ export interface MessageHook {
     flushMessages: () => void;
     isTyping: boolean;
     markAllMessagesAsRead: () => void;
+    clearMessages: () => void;
 }
 
 export function useMessages(
@@ -22,21 +25,85 @@ export function useMessages(
 
     const { actions, handleToolCalls } = useActions(config);
 
-    const [messages, setMessages] = useState<Message[]>([]);
+    // Load messages from localStorage if enabled
+    const loadStoredMessages = useCallback((): Message[] => {
+        if (!prompt?.localStorage) return [];
+        
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                // Convert timestamp strings back to Date objects
+                return parsed.map((msg: any) => ({
+                    ...msg,
+                    timestamp: new Date(msg.timestamp)
+                }));
+            }
+        } catch (error) {
+            console.warn("Failed to load messages from localStorage:", error);
+        }
+        return [];
+    }, [prompt?.localStorage]);
+
+    const [messages, setMessages] = useState<Message[]>(() => loadStoredMessages());
     const welcomeMessageAddedRef = useRef(false);
 
     const llm = useMemo(() => {
         if (!prompt) return null;
         
-        return new LLM(
+        const llmInstance = new LLM(
             prompt.apiKey,
             prompt.instructions,
             prompt.model,
             prompt.timeout
         );
-    }, []);
+
+        return llmInstance;
+    }, [prompt]);
+
+    // Feed stored messages to LLM on mount and when localStorage is enabled
+    useEffect(() => {
+        if (llm && prompt?.localStorage && messages.length > 0) {
+            // Clear existing messages to avoid duplicates
+            llm.messages = [];
+            
+            messages.forEach(message => {
+                if (message.from === "user") {
+                    llm.messages.push({
+                        role: "user",
+                        content: message.content
+                    });
+                } else if (message.from === "bot" && message.content !== prompt.welcomeMessage) {
+                    llm.messages.push({
+                        role: "assistant",
+                        content: message.content
+                    });
+                }
+            });
+        }
+    }, [llm, prompt?.localStorage, messages.length > 0]);
 
     const [isTyping, setIsTyping] = useState(false);
+
+    // Save messages to localStorage
+    const saveMessagesToStorage = useCallback((messagesToSave: Message[]) => {
+        if (!prompt?.localStorage) return;
+        
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(messagesToSave));
+        } catch (error) {
+            console.warn("Failed to save messages to localStorage:", error);
+        }
+    }, [prompt?.localStorage]);
+
+    // Wrapper for setMessages that also saves to localStorage
+    const setMessagesWithStorage = useCallback((updater: Message[] | ((prev: Message[]) => Message[])) => {
+        setMessages(prev => {
+            const newMessages = typeof updater === 'function' ? updater(prev) : updater;
+            saveMessagesToStorage(newMessages);
+            return newMessages;
+        });
+    }, [saveMessagesToStorage]);
     
     const sendUserMessage = useCallback((message: string) => {
         const newMessage: Message = {
@@ -53,13 +120,13 @@ export function useMessages(
             content: message
         });
 
-        setMessages(previous => [...previous, newMessage]);
+        setMessagesWithStorage(previous => [...previous, newMessage]);
         events?.onSendMessage?.(message);
     }, [events]);
     
     const receiveBotMessage = useCallback((message: string, alreadyInLLM?: "already_in_llm") => {
         setIsTyping(false);
-        setMessages(previous => [
+        setMessagesWithStorage(previous => [
             ...previous, {
                 id: Date.now().toString(),
                 from: "bot",
@@ -80,32 +147,47 @@ export function useMessages(
 
     useEffect(() => {
         if (prompt?.welcomeMessage && !welcomeMessageAddedRef.current) {
-            // Add welcome message to UI but not to LLM conversation
-            setIsTyping(false);
-            setMessages(previous => [
-                ...previous, {
-                    id: Date.now().toString(),
-                    from: "bot",
-                    content: prompt.welcomeMessage!,
-                    username: profile?.name || "QwertyChat",
-                    timestamp: new Date(),
-                    read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
-                }
-            ]);
+            // Only add welcome message if there are no existing messages (no localStorage or empty storage)
+            if (messages.length === 0) {
+                setIsTyping(false);
+                setMessagesWithStorage(previous => [
+                    ...previous, {
+                        id: Date.now().toString(),
+                        from: "bot",
+                        content: prompt.welcomeMessage!,
+                        username: profile?.name || "QwertyChat",
+                        timestamp: new Date(),
+                        read: status?.isOpen && !previous.some(msg => msg.from === "bot" && !msg.read),
+                    }
+                ]);
+            }
             welcomeMessageAddedRef.current = true;
         }
-    }, [prompt?.welcomeMessage]);
+    }, [prompt?.welcomeMessage, setMessagesWithStorage, messages.length]);
 
     function markAllMessagesAsRead() {
-        setMessages(previous => 
+        setMessagesWithStorage(previous => 
             previous.map(message => ({ ...message, read: true }))
         );
     }
 
     function markAllMessagesAsSent() {
-        setMessages(previous => 
+        setMessagesWithStorage(previous => 
             previous.map(message => ({ ...message, sent: true }))
         );
+    }
+
+    function clearMessages() {
+        // Clear messages from state
+        setMessagesWithStorage([]);
+        
+        // Reset welcome message flag to allow it to be shown again
+        welcomeMessageAddedRef.current = false;
+        
+        // Clear LLM messages
+        if (llm) {
+            llm.messages = [];
+        }
     }   
 
     async function flushMessages() {
@@ -186,13 +268,25 @@ export function useMessages(
         }, [] as ChainedMessage[]);
     }, [messages]);
 
-    return { 
+    const messageHook = useMemo(() => ({ 
         messages, 
-        setMessages,
+        setMessages: setMessagesWithStorage,
         sendUserMessage,
         chainedMessages,
         flushMessages,
         isTyping,
         markAllMessagesAsRead,
-    };
+        clearMessages,
+    }), [
+        messages,
+        setMessagesWithStorage,
+        sendUserMessage,
+        chainedMessages,
+        flushMessages,
+        isTyping,
+        markAllMessagesAsRead,
+        clearMessages,
+    ]);
+
+    return messageHook;
 }

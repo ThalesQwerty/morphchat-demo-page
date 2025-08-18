@@ -26,28 +26,36 @@ export function ActionManagementSection() {
                             <div 
                                 key={action.name} 
                                 className={`${styles.actionItem} ${isEnabled ? styles.actionEnabled : styles.actionDisabled}`}
+                                onClick={() => toggleAction(action.name)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        toggleAction(action.name);
+                                    }
+                                }}
                             >
-                                <label className={styles.actionLabel}>
+                                <div className={styles.actionContent}>
                                     <input
                                         type="checkbox"
                                         checked={isEnabled}
                                         onChange={() => toggleAction(action.name)}
                                         className={styles.actionCheckbox}
+                                        onClick={(e) => e.stopPropagation()}
                                     />
-                                    <div className={styles.actionContent}>
-                                        <div className={styles.actionIcon}>
-                                            <Icon name={action.metadata?.icon!} size={28} />
-                                        </div>
-                                        <div className={styles.actionText}>
-                                            <span className={styles.actionDescription}>
-                                                {action.description}
-                                            </span>
-                                            <span className={styles.actionStatus}>
-                                                {isEnabled ? 'Enabled' : 'Disabled'}
-                                            </span>
-                                        </div>
+                                    <div className={styles.actionIcon}>
+                                        <Icon name={action.metadata?.icon!} size={28} />
                                     </div>
-                                </label>
+                                    <div className={styles.actionText}>
+                                        <span className={styles.actionDescription}>
+                                            {action.description}
+                                        </span>
+                                        <span className={styles.actionStatus}>
+                                            {isEnabled ? 'Enabled' : 'Disabled'}
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         );
                     })}
