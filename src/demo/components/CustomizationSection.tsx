@@ -14,10 +14,10 @@ export function CustomizationSection() {
         <section id="customization" className={styles.customizationSection}>
             <div className={styles.customizationContainer}>
                 <h2 className={styles.customizationTitle}>
-                    Customize Your Theme
+                    Customize Theme, Color Mode & Orientation
                 </h2>
                 <p className={styles.customizationSubtitle}>
-                    Choose from our beautiful color palette to match your brand
+                    Choose your preferred theme colors, color mode, and widget position
                 </p>
                 
                 <div className={styles.colorGrid}>

@@ -28,12 +28,10 @@ export function useActions(config: FilledWidgetConfig) {
 
         for (const item of calls ?? []) {
             const action = prompt?.actions?.find(action => action.name === item.function.name);
-            console.log(action);
 
             if (!action) continue;
 
             const args = JSON.parse(item.function.arguments ?? "{}");
-            console.log(args);
 
             promises.push((async () => {
                 const result = await action.function(args);

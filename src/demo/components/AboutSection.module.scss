@@ -1,5 +1,5 @@
 .aboutSection {
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     background: white;
     transition: background-color 0.3s ease;
 
@@ -25,6 +25,12 @@
             &:last-child {
                 margin-bottom: 0;
             }
+        }
+
+        .aboutButtonContainer {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
         }
     }
 }

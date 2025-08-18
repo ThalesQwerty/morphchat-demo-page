@@ -1,5 +1,5 @@
 .customizationSection {
-    padding: 4rem 2rem;
+    padding: 3rem 2rem;
     background: #f9fafb;
     transition: background-color 0.3s ease;
 
@@ -10,7 +10,7 @@
         .customizationTitle {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             color: #1f2937;
             transition: color 0.3s ease;
         }
@@ -19,7 +19,7 @@
             text-align: center;
             font-size: 1.1rem;
             color: #6b7280;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             transition: color 0.3s ease;
         }
 
@@ -97,13 +97,13 @@
         .controlSectionsContainer {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 3rem;
+            gap: 2rem;
+            margin-top: 2rem;
             
             /* Mobile Responsive */
             @media (max-width: 768px) {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
         }
 

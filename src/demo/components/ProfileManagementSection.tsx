@@ -8,10 +8,10 @@ export function ProfileManagementSection() {
         <section id="profiles" className={styles.profileManagementSection}>
             <div className={styles.profileManagementContainer}>
                 <h2 className={styles.profileManagementTitle}>
-                    Profile Management
+                    Customize Profiles
                 </h2>
                 <p className={styles.profileManagementSubtitle}>
-                    Customize the names displayed in the chat widget
+                    Customize the bot and user profiles displayed in the chat widget
                 </p>
 
                 <div className={styles.profilesGrid}>

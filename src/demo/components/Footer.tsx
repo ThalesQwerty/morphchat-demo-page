@@ -1,11 +1,10 @@
-import React from "react";
 import styles from "./Footer.module.scss";
 
 export function Footer() {
     return (
         <footer className={styles.footer}>
             <p>
-                © 2024 MorphChat. All rights reserved.
+                © 2025 ThalesQwerty. All rights reserved.
             </p>
         </footer>
     );

@@ -56,6 +56,5 @@ export class LLM {
 			content: JSON.stringify(result),
 			tool_call_id: call.id
 		});
-		console.log(this.messages);
 	}
 } 

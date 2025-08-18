@@ -1,5 +1,5 @@
 .actionManagementSection {
-    padding: var(--demo-spacing-5xl) var(--demo-spacing-2xl);
+    padding: 3rem 2rem;
     background: var(--demo-background);
     transition: var(--demo-transition-slow);
 
@@ -10,7 +10,7 @@
         .actionManagementTitle {
             text-align: center;
             font-size: var(--demo-text-6xl);
-            margin-bottom: var(--demo-spacing-base);
+            margin-bottom: 0.75rem;
             color: var(--demo-primary);
             transition: var(--demo-transition-slow);
         }
@@ -19,7 +19,7 @@
             text-align: center;
             font-size: var(--demo-text-xl);
             color: var(--demo-secondary);
-            margin-bottom: var(--demo-spacing-4xl);
+            margin-bottom: 2rem;
             transition: var(--demo-transition-slow);
         }
 

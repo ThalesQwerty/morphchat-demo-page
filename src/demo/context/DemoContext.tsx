@@ -16,6 +16,12 @@ interface DemoContextType {
     chatbotPrompt: string;
     setChatbotPrompt: (prompt: string) => void;
 
+    // Intro management
+    introTitle: string;
+    setIntroTitle: (title: string) => void;
+    introSubtitle: string;
+    setIntroSubtitle: (subtitle: string) => void;
+
     // Profile management
     botName: string;
     setBotName: (name: string) => void;
@@ -36,6 +42,7 @@ interface DemoContextType {
     // Site data management
     clearSiteData: () => void;
     setWidgetFunctions: (functions: { clearMessages: () => void; setIsWidgetOpen: (open: boolean) => void }) => void;
+    openGithub: () => void;
 }
 
 const DemoContext = createContext<DemoContextType | undefined>(undefined);
@@ -62,6 +69,10 @@ export function DemoProvider({ children }: DemoProviderProps) {
     const [isMaintenanceMode, setIsMaintenanceMode] = useState(false);
     const [chatbotPrompt, setChatbotPrompt] = useState("You are a helpful AI assistant. Give short and concise answers.");
 
+    // Intro state
+    const [introTitle, setIntroTitle] = useState("Welcome to MorphChat");
+    const [introSubtitle, setIntroSubtitle] = useState("Your AI assistant for all your needs.");
+
     // Profile state
     const [botName, setBotName] = useState("MorphChat");
     const [botAvatar, setBotAvatar] = useState<string | null>(null);
@@ -77,11 +88,11 @@ export function DemoProvider({ children }: DemoProviderProps) {
         parameters: {
             theme: {
                 type: "string",
-                enum: Object.keys(Color)
+                enum: Object.keys(Color).filter(key => key !== "white" && key !== "black" && !key.startsWith("gray")),
+                required: true
             }
         },
         function: (args) => {
-            console.log("Change theme", args);
             const newColor = Color[args.theme as keyof typeof Color];
             if (newColor) {
                 setColorTheme(newColor);
@@ -100,11 +111,11 @@ export function DemoProvider({ children }: DemoProviderProps) {
         parameters: {
             mode: {
                 type: "string",
-                enum: ["light", "dark", "auto"]
+                enum: ["light", "dark", "auto"],
+                required: true
             }
         },
         function: (args) => {
-            console.log("Change color mode", args);
             setTheme(args.mode as "light" | "dark" | "auto");
             return `Color mode changed to ${args.mode}`;
         },
@@ -119,11 +130,11 @@ export function DemoProvider({ children }: DemoProviderProps) {
         parameters: {
             corner: {
                 type: "string",
-                enum: ["left", "right"]
+                enum: ["left", "right"],
+                required: true
             }
         },
         function: (args) => {
-            console.log("Change corner", args);
             setWidgetCorner(args.corner as "left" | "right");
             return `Widget moved to ${args.corner} corner`;
         },
@@ -172,6 +183,8 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setIsOnline(true);
         setIsMaintenanceMode(false);
         setChatbotPrompt("You are a helpful AI assistant. Give short and concise answers.");
+        setIntroTitle("Welcome to MorphChat");
+        setIntroSubtitle("Your AI assistant for all your needs.");
         
         // Reset profile names
         setBotName("MorphChat");
@@ -180,6 +193,11 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setUserName("You");
         setUserAvatar(null);
         setUserShowAvatar(false);
+    };
+
+    // Open GitHub function
+    const openGithub = () => {
+        window.open("https://github.com", "_blank");
     };
 
     const value: DemoContextType = {
@@ -192,6 +210,12 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setIsMaintenanceMode,
         chatbotPrompt,
         setChatbotPrompt,
+        
+        // Intro management
+        introTitle,
+        setIntroTitle,
+        introSubtitle,
+        setIntroSubtitle,
         
         // Profile management
         botName,
@@ -213,6 +237,7 @@ export function DemoProvider({ children }: DemoProviderProps) {
         // Site data management
         clearSiteData,
         setWidgetFunctions,
+        openGithub,
     };
 
     return (

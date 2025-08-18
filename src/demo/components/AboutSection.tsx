@@ -1,7 +1,12 @@
 import React from "react";
+import { Button } from "./Button";
+import { useDemoContext } from "../context/DemoContext";
 import styles from "./AboutSection.module.scss";
+import { IconName } from "../../lib/components/layout/Icon";
 
 export function AboutSection() {
+    const { openGithub } = useDemoContext();
+
     return (
         <section id="about" className={styles.aboutSection}>
             <div className={styles.aboutContainer}>
@@ -17,6 +22,16 @@ export function AboutSection() {
                     Our mission is to make customer support more accessible, efficient, and user-friendly
                     through innovative technology and thoughtful design.
                 </p>
+                <div className={styles.aboutButtonContainer}>
+                    <Button 
+                        variant="outline"   
+                        size="large"
+                        icon={{ name: "GithubLogoIcon", size: 24, position: "left" }}
+                        onClick={openGithub}
+                    >
+                        See on GitHub
+                    </Button>
+                </div>
             </div>
         </section>
     );

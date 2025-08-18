@@ -13,7 +13,6 @@ import { FunctionalitySection } from "./components/FunctionalitySection";
 import { ActionManagementSection } from "./components/ActionManagementSection";
 import { ProfileManagementSection } from "./components/ProfileManagementSection";
 import { AboutSection } from "./components/AboutSection";
-import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
 import { useChatWidget } from "../lib/hooks/useChatWidget";
 
@@ -25,6 +24,8 @@ function AppContent() {
         isOnline, 
         isMaintenanceMode, 
         chatbotPrompt,
+        introTitle,
+        introSubtitle,
         botName,
         botAvatar,
         botShowAvatar,
@@ -50,8 +51,8 @@ function AppContent() {
             showAvatar: userShowAvatar,
         },
         intro: {
-            title: "MorphChat responds instantly",
-            subtitle: "Ask me anything",
+            title: introTitle,
+            subtitle: introSubtitle,
         },
         status: {
             isOnline,
@@ -81,11 +82,10 @@ function AppContent() {
             <HeroSection />
             <FeaturesSection />
             <CustomizationSection />
-            <FunctionalitySection />
-            <ActionManagementSection />
             <ProfileManagementSection />
+            <ActionManagementSection />
+            <FunctionalitySection />
             <AboutSection />
-            <ContactSection />
             <Footer />
 
             { ChatWidgetComponent }

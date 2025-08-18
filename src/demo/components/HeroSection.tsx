@@ -10,8 +10,8 @@ export function HeroSection() {
                     Welcome to MorphChat
                 </h1>
                 <p className={styles.heroSubtitle}>
-                    Experience the future of customer support with our intelligent chat widget.
-                    Get instant responses and seamless communication.
+                    Experience the future of customer support with our highly adaptive and customizable chat widget.
+                    Get instant responses and seamless communication tailored to your needs.
                 </p>
                 <div className={styles.heroButtonContainer}>
                     <Button variant="primary" size="large">

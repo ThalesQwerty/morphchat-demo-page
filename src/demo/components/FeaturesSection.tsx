@@ -25,9 +25,9 @@ const features = [
         icon: "Lightning",
     },
     {
-        title: "Analytics Dashboard",
-        description: "Track conversations and gain insights into customer interactions.",
-        icon: "ChartBar",
+        title: "App Functionality Integration",
+        description: "Integrate your app's features and actions directly into the chat experience.",
+        icon: "PuzzlePiece",
     },
     {
         title: "24/7 Availability",

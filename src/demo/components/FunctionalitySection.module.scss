@@ -1,5 +1,5 @@
 .functionalitySection {
-    padding: var(--demo-spacing-5xl) var(--demo-spacing-2xl);
+    padding: 2rem 2rem;
     background: var(--demo-surface);
     transition: var(--demo-transition-slow);
 
@@ -10,7 +10,7 @@
         .functionalityTitle {
             text-align: center;
             font-size: var(--demo-text-6xl);
-            margin-bottom: var(--demo-spacing-base);
+            margin-bottom: 0.75rem;
             color: var(--demo-primary);
             transition: var(--demo-transition-slow);
         }
@@ -19,13 +19,37 @@
             text-align: center;
             font-size: var(--demo-text-xl);
             color: var(--demo-secondary);
-            margin-bottom: var(--demo-spacing-4xl);
+            margin-bottom: 2rem;
             transition: var(--demo-transition-slow);
+        }
+
+        /* First Row: Instructions and Intro (2 columns) */
+        .firstRow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Second Row: Status Controls (3 columns) */
+        .secondRow {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         /* Prompt Section - Full Width */
         .promptSection {
-            margin-bottom: var(--demo-spacing-4xl);
             // Card component handles the base styling
 
             .promptSectionTitle {
@@ -79,93 +103,43 @@
                     transition: var(--demo-transition-slow);
                 }
             }
-        }
 
-        /* Status Controls Grid */
-        .statusControlsGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--demo-spacing-2xl);
+            .introEditor {
+                display: flex;
+                flex-direction: column;
+                gap: var(--demo-spacing-lg);
 
-            .statusControlCard {
-                // Card component handles the base styling
+                .introInputGroup {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--demo-spacing-sm);
 
-                .statusControlTitle {
-                    font-size: var(--demo-text-2xl);
-                    margin-bottom: var(--demo-spacing-md);
-                    color: var(--demo-primary);
-                    transition: var(--demo-transition-slow);
+                    .introLabel {
+                        font-size: var(--demo-text-sm);
+                        font-weight: 500;
+                        color: var(--demo-primary);
+                        transition: var(--demo-transition-slow);
+                    }
+                }
+
+                .promptInfo {
                     display: flex;
                     align-items: center;
                     gap: var(--demo-spacing-sm);
-                }
-
-                .statusControlDescription {
+                    margin-top: var(--demo-spacing-md);
                     color: var(--demo-secondary);
-                    line-height: var(--demo-leading-relaxed);
-                    margin-bottom: var(--demo-spacing-xl);
+                    font-size: var(--demo-text-xs);
                     transition: var(--demo-transition-slow);
-                }
-
-                .statusButtons,
-                .maintenanceButtons {
-                    display: flex;
-                    justify-content: center;
-                    gap: var(--demo-spacing-base);
-
-                    .statusButton,
-                    .maintenanceButton {
-                        padding: var(--demo-spacing-md) var(--demo-spacing-xl);
-                        border: 2px solid var(--demo-border);
-                        border-radius: var(--demo-radius-md);
-                        background: var(--demo-surface);
-                        color: var(--demo-text);
-                        font-size: var(--demo-text-sm);
-                        font-weight: 500;
-                        cursor: pointer;
-                        transition: var(--demo-transition-normal);
-                        display: flex;
-                        align-items: center;
-                        gap: var(--demo-spacing-sm);
-                        min-width: 140px;
-                        justify-content: center;
-                        
-                        &:hover {
-                            border-color: var(--demo-border-light);
-                            background: var(--demo-background);
-                        }
-                    }
-
-                    .statusButtonSelected,
-                    .maintenanceButtonSelected {
-                        border-color: var(--morphchat-primary);
-                        background: var(--morphchat-primary);
-                        color: white;
-                        
-                        &:hover {
-                            background: var(--morphchat-primary-hover);
-                            border-color: var(--morphchat-primary-hover);
-                        }
-                    }
-
-                    .statusButtonDefault,
-                    .maintenanceButtonDefault {
-                        &:hover {
-                            border-color: var(--morphchat-primary);
-                            color: var(--morphchat-primary);
-                        }
-                    }
                 }
             }
         }
 
-        /* Clear Data Section */
-        .clearDataSection {
-            margin-top: var(--demo-spacing-4xl);
+        /* Status Control Cards */
+        .statusControlCard {
             // Card component handles the base styling
 
-            .clearDataTitle {
-                font-size: var(--demo-text-3xl);
+            .statusControlTitle {
+                font-size: var(--demo-text-2xl);
                 margin-bottom: var(--demo-spacing-md);
                 color: var(--demo-primary);
                 transition: var(--demo-transition-slow);
@@ -174,36 +148,61 @@
                 gap: var(--demo-spacing-sm);
             }
 
-            .clearDataDescription {
+            .statusControlDescription {
                 color: var(--demo-secondary);
                 line-height: var(--demo-leading-relaxed);
                 margin-bottom: var(--demo-spacing-xl);
                 transition: var(--demo-transition-slow);
             }
 
-            .clearDataButton {
-                padding: var(--demo-spacing-md) var(--demo-spacing-xl);
-                border: 2px solid var(--demo-danger);
-                border-radius: var(--demo-radius-md);
-                background: var(--demo-surface);
-                color: var(--demo-danger);
-                font-size: var(--demo-text-sm);
-                font-weight: 500;
-                cursor: pointer;
-                transition: var(--demo-transition-normal);
+            .statusButtons,
+            .maintenanceButtons,
+            .clearDataButtons {
                 display: flex;
-                align-items: center;
-                gap: var(--demo-spacing-sm);
-                
-                &:hover {
-                    background: var(--demo-danger);
-                    color: white;
-                    transform: translateY(-1px);
-                    box-shadow: 0 4px 12px var(--demo-shadow-danger);
+                justify-content: center;
+                gap: var(--demo-spacing-base);
+
+                .statusButton,
+                .maintenanceButton {
+                    padding: var(--demo-spacing-md) var(--demo-spacing-xl);
+                    border: 2px solid var(--demo-border);
+                    border-radius: var(--demo-radius-md);
+                    background: var(--demo-surface);
+                    color: var(--demo-text);
+                    font-size: var(--demo-text-sm);
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: var(--demo-transition-normal);
+                    display: flex;
+                    align-items: center;
+                    gap: var(--demo-spacing-sm);
+                    min-width: 140px;
+                    justify-content: center;
+                    
+                    &:hover {
+                        border-color: var(--demo-border-light);
+                        background: var(--demo-background);
+                    }
                 }
-                
-                &:active {
-                    transform: translateY(0);
+
+                .statusButtonSelected,
+                .maintenanceButtonSelected {
+                    border-color: var(--morphchat-primary);
+                    background: var(--morphchat-primary);
+                    color: white;
+                    
+                    &:hover {
+                        background: var(--morphchat-primary-hover);
+                        border-color: var(--morphchat-primary-hover);
+                    }
+                }
+
+                .statusButtonDefault,
+                .maintenanceButtonDefault {
+                    &:hover {
+                        border-color: var(--morphchat-primary);
+                        color: var(--morphchat-primary);
+                    }
                 }
             }
         }
@@ -254,83 +253,68 @@
                     color: var(--demo-dark-muted);
                 }
             }
-        }
 
-        .statusControlsGrid {
-            .statusControlCard {
-                background: var(--demo-dark-surface);
-                border-color: var(--demo-dark-border);
-
-                &:hover {
-                    box-shadow: 0 4px 12px var(--demo-shadow-dark);
+            .introEditor {
+                .introInputGroup {
+                    .introLabel {
+                        color: var(--demo-dark-primary);
+                    }
                 }
 
-                .statusControlTitle {
-                    color: var(--demo-dark-primary);
-                }
-
-                .statusControlDescription {
-                    color: var(--demo-dark-text);
-                }
-
-                .statusButtons,
-                .maintenanceButtons {
-                    .statusButton,
-                    .maintenanceButton {
-                        border-color: var(--demo-dark-border);
-                        background: var(--demo-dark-surface);
-                        color: var(--demo-dark-text);
-                        
-                        &:hover {
-                            border-color: var(--demo-dark-border-light);
-                            background: var(--demo-dark-border);
-                        }
-                    }
-
-                    .statusButtonSelected,
-                    .maintenanceButtonSelected {
-                        border-color: var(--morphchat-primary);
-                        background: var(--morphchat-primary);
-                        color: white;
-                        
-                        &:hover {
-                            background: var(--morphchat-primary-hover);
-                            border-color: var(--morphchat-primary-hover);
-                        }
-                    }
-
-                    .statusButtonDefault,
-                    .maintenanceButtonDefault {
-                        &:hover {
-                            border-color: var(--morphchat-primary);
-                            color: var(--morphchat-primary);
-                        }
-                    }
+                .promptInfo {
+                    color: var(--demo-dark-muted);
                 }
             }
         }
 
-        /* Clear Data Section - Dark Mode */
-        .clearDataSection {
+        .statusControlCard {
             background: var(--demo-dark-surface);
             border-color: var(--demo-dark-border);
 
-            .clearDataTitle {
+            &:hover {
+                box-shadow: 0 4px 12px var(--demo-shadow-dark);
+            }
+
+            .statusControlTitle {
                 color: var(--demo-dark-primary);
             }
 
-            .clearDataDescription {
+            .statusControlDescription {
                 color: var(--demo-dark-text);
             }
 
-            .clearDataButton {
-                border-color: var(--demo-danger);
-                background: var(--demo-dark-surface);
-                color: var(--demo-danger);
-                
-                &:hover {
-                    background: var(--demo-danger);
+            .statusButtons,
+            .maintenanceButtons {
+                .statusButton,
+                .maintenanceButton {
+                    border-color: var(--demo-dark-border);
+                    background: var(--demo-dark-surface);
+                    color: var(--demo-dark-text);
+                    
+                    &:hover {
+                        border-color: var(--demo-dark-border-light);
+                        background: var(--demo-dark-border);
+                    }
+                }
+
+                .statusButtonSelected,
+                .maintenanceButtonSelected {
+                    border-color: var(--morphchat-primary);
+                    background: var(--morphchat-primary);
                     color: white;
+                    
+                    &:hover {
+                        background: var(--morphchat-primary-hover);
+                        border-color: var(--morphchat-primary-hover);
+                    }
+                }
+
+                .statusButtonDefault,
+                .maintenanceButtonDefault {
+                    &:hover {
+                        border-color: var(--morphchat-primary);
+                        color: var(--morphchat-primary);
+                    }
                 }
             }
         }

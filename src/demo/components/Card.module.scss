@@ -7,15 +7,15 @@
 
 // Size variants
 .small {
-    padding: var(--demo-spacing-base);
+    padding: var(--demo-spacing-sm);
 }
 
 .medium {
-    padding: var(--demo-spacing-xl);
+    padding: var(--demo-spacing-lg);
 }
 
 .large {
-    padding: var(--demo-spacing-2xl);
+    padding: var(--demo-spacing-xl);
 }
 
 // Variant styles
@@ -86,20 +86,6 @@
 // Responsive adjustments
 @media (max-width: var(--demo-bp-md)) {
     .small {
-        padding: var(--demo-spacing-md);
-    }
-
-    .medium {
-        padding: var(--demo-spacing-lg);
-    }
-
-    .large {
-        padding: var(--demo-spacing-xl);
-    }
-}
-
-@media (max-width: var(--demo-bp-sm)) {
-    .small {
         padding: var(--demo-spacing-sm);
     }
 
@@ -109,5 +95,19 @@
 
     .large {
         padding: var(--demo-spacing-lg);
+    }
+}
+
+@media (max-width: var(--demo-bp-sm)) {
+    .small {
+        padding: var(--demo-spacing-xs);
+    }
+
+    .medium {
+        padding: var(--demo-spacing-sm);
+    }
+
+    .large {
+        padding: var(--demo-spacing-base);
     }
 }

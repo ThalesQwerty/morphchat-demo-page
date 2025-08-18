@@ -1,7 +1,10 @@
 import React from "react";
+import { useDemoContext } from "../context/DemoContext";
 import styles from "./Header.module.scss";
 
 export function Header() {
+    const { openGithub } = useDemoContext();
+
     return (
         <header className={styles.header}>
             <nav className={styles.nav}>
@@ -13,7 +16,7 @@ export function Header() {
                     <a href="#functionality" className={styles.navLink}>Functionality</a>
                     <a href="#actions" className={styles.navLink}>Actions</a>
                     <a href="#about" className={styles.navLink}>About</a>
-                    <a href="#contact" className={styles.navLink}>Contact</a>
+                    <button onClick={openGithub} className={styles.githubButton}>GitHub</button>
                 </div>
             </nav>
         </header>

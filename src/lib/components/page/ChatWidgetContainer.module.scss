@@ -33,8 +33,8 @@
     border-radius: var(--morphchat-radius-lg);
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     border: 1px solid var(--morphchat-border);
-    transition: all var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--morphchat-background);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &.right {
         right: var(--morphchat-spacing-2xl);
@@ -76,3 +76,5 @@
         transition: background-color var(--morphchat-transition-normal) ease, border-color var(--morphchat-transition-normal) ease, color var(--morphchat-transition-normal) ease;
     }
 }
+
+

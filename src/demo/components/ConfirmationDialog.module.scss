@@ -1,0 +1,131 @@
+/* ConfirmationDialog Styles */
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--demo-z-modal);
+    animation: backdropFadeIn 0.2s ease-out;
+}
+
+.dialogContainer {
+    max-width: 400px;
+    width: 90%;
+    animation: dialogSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dialog {
+    padding: var(--demo-spacing-2xl);
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--demo-spacing-md);
+    margin-bottom: var(--demo-spacing-xl);
+
+    .iconContainer {
+        width: var(--demo-spacing-2xl);
+        height: var(--demo-spacing-2xl);
+        border-radius: var(--demo-radius-full);
+        background: var(--demo-danger-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--demo-danger);
+    }
+
+    .title {
+        font-size: var(--demo-text-2xl);
+        font-weight: 600;
+        color: var(--demo-primary);
+        margin: 0;
+        transition: var(--demo-transition-slow);
+    }
+}
+
+.message {
+    color: var(--demo-secondary);
+    line-height: var(--demo-leading-relaxed);
+    margin-bottom: var(--demo-spacing-2xl);
+    transition: var(--demo-transition-slow);
+}
+
+.actions {
+    display: flex;
+    gap: var(--demo-spacing-md);
+    justify-content: center;
+
+    @media (max-width: var(--demo-bp-sm)) {
+        flex-direction: column;
+    }
+}
+
+/* Animations */
+@keyframes backdropFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes dialogSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Dark mode styles */
+:global(.theme-dark) .backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+:global(.theme-dark) .dialog {
+    .header {
+        .iconContainer {
+            background: var(--demo-dark-danger-light);
+            color: var(--demo-dark-danger);
+        }
+
+        .title {
+            color: var(--demo-dark-primary);
+        }
+    }
+
+    .message {
+        color: var(--demo-dark-text);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: var(--demo-bp-sm)) {
+    .dialogContainer {
+        width: 95%;
+        margin: var(--demo-spacing-base);
+    }
+
+    .dialog {
+        padding: var(--demo-spacing-xl);
+    }
+
+    .header {
+        .title {
+            font-size: var(--demo-text-xl);
+        }
+    }
+}

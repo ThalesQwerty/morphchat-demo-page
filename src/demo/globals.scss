@@ -8,9 +8,14 @@ html, body {
     overflow-x: hidden;
     width: 100%;
     position: relative;
+    scroll-behavior: smooth;
 }
 body {
     min-height: 100vh;
+}
+
+h3, h4 {
+    margin-top: 0;
 }
 
 /* Demo Color Variables */
@@ -26,6 +31,7 @@ body {
     --demo-surface: #ffffff;
     --demo-text: #374151;
     --demo-danger: #ef4444;
+    --demo-danger-light: #fef2f2;
     --demo-primary-blue: #3b82f6;
     
     /* Dark Mode Colors */
@@ -37,6 +43,8 @@ body {
     --demo-dark-background: #1f2937;
     --demo-dark-surface: #374151;
     --demo-dark-text: #d1d5db;
+    --demo-dark-danger: #fca5a5;
+    --demo-dark-danger-light: #7f1d1d;
     
     /* Shadow Colors */
     --demo-shadow-light: rgba(0, 0, 0, 0.1);

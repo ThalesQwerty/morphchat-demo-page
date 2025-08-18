@@ -1,6 +1,17 @@
 /* MorphChat Widget Global Variables */
 
 :root {
+    /* Color Variables */
+    --morphchat-primary: #3b82f6;
+    --morphchat-primary-hover: #2563eb;
+    --morphchat-secondary: #f3f4f6;
+    --morphchat-contrast: #ffffff;
+    --morphchat-text: #1f2937;
+    --morphchat-text-light: #6b7280;
+    --morphchat-background: #ffffff;
+    --morphchat-border: #e5e7eb;
+    --morphchat-muted: #9ca3af;
+
     /* Spacing Variables */
     --morphchat-spacing-xs: 2px;      /* 2px */
     --morphchat-spacing-sm: 4px;      /* 4px */

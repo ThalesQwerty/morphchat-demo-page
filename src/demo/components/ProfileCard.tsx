@@ -101,28 +101,39 @@ export function ProfileCard({ type }: ProfileCardProps) {
                 <h4 className={styles.avatarSectionTitle}>Avatar Image</h4>
                 <div className={styles.avatarUpload}>
                     <div className={styles.avatarPreview}>
-                        {avatar && (
+                        {avatar ? (
                             <img src={avatar} alt={avatarAlt} className={styles.avatarPreviewImage} />
+                        ) : (
+                            <div className={styles.avatarPreviewPlaceholder}>
+                                <Icon name="User" size={24} />
+                            </div>
                         )}
                     </div>
                     <div className={styles.avatarControls}>
-                        <label className={styles.avatarUploadButton}>
-                            <Button
-                                variant="outline"
-                                size="medium"
-                                icon={{ name: "Upload", size: 16, position: "left" }}
-                                className={styles.avatarUploadButtonContent}
-                            >
-                                {avatar ? 'Change Image' : 'Upload Image'}
-                            </Button>
+                        <div className={styles.avatarUploadButton}>
                             <input
                                 ref={fileInputRef}
                                 type="file"
                                 accept="image/*"
                                 onChange={handleImageUpload}
                                 className={styles.avatarFileInput}
+                                id={`avatar-upload-${type}`}
                             />
-                        </label>
+                            <label htmlFor={`avatar-upload-${type}`}>
+                                <Button
+                                    variant="primary"
+                                    size="medium"
+                                    icon={{ name: "Upload", size: 16, position: "left" }}
+                                    className={styles.avatarUploadButtonContent}
+                                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                        e.stopPropagation();
+                                        fileInputRef.current?.click();
+                                    }}
+                                >
+                                    {avatar ? 'Change Image' : 'Upload Image'}
+                                </Button>
+                            </label>
+                        </div>
                         {avatar && (
                             <Button
                                 variant="danger"
@@ -140,19 +151,20 @@ export function ProfileCard({ type }: ProfileCardProps) {
                         </div>
                     )}
                 </div>
-            </div>
-            <div className={styles.avatarToggle}>
-                <label className={styles.avatarToggleLabel}>
-                    <input
-                        type="checkbox"
-                        checked={showAvatar}
-                        onChange={(e) => setShowAvatar(e.target.checked)}
-                        className={styles.avatarToggleCheckbox}
-                    />
-                    <span className={styles.avatarToggleText}>
-                        {avatarToggleText}
-                    </span>
-                </label>
+
+                <div className={styles.avatarToggle}>
+                    <label className={styles.avatarToggleLabel}>
+                        <input
+                            type="checkbox"
+                            checked={showAvatar}
+                            onChange={(e) => setShowAvatar(e.target.checked)}
+                            className={styles.avatarToggleCheckbox}
+                        />
+                        <span className={styles.avatarToggleText}>
+                            {avatarToggleText}
+                        </span>
+                    </label>
+                </div>
             </div>
         </Card>
     );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./FloatingChatButton.module.scss";
 import { useWidgetContext } from "../../hooks/useWidgetContext";
 
@@ -12,20 +12,29 @@ export const FloatingChatButton: React.FC<FloatingChatButtonProps> = ({
     isVisible,
 }) => {
     const { corner = "right", messages = [] } = useWidgetContext();
+    const [isRippling, setIsRippling] = useState(false);
 
     // Calculate unread messages count with proper null check
     const unreadCount = messages?.filter(message =>
         message.from === "bot" && !message.read
     ).length || 0;
 
-    if (!isVisible) return null;
+    const handleClick = (e: React.MouseEvent) => {
+        setIsRippling(true);
+        onClick();
+        
+        // Reset ripple after animation completes
+        setTimeout(() => {
+            setIsRippling(false);
+        }, 600);
+    };
 
-    const buttonClass = `${styles.chatButton} ${corner === "left" ? styles.left : styles.right}`;
+    const buttonClass = `${styles.chatButton} ${corner === "left" ? styles.left : styles.right} ${isVisible ? styles.visible : styles.hidden}`;
 
     return (
         <button
             className={buttonClass}
-            onClick={onClick}
+            onClick={handleClick}
             aria-label="Open chat"
         >
             <div className={styles.iconContainer}>
@@ -42,6 +51,9 @@ export const FloatingChatButton: React.FC<FloatingChatButtonProps> = ({
                     </div>
                 )}
             </div>
+
+            {/* Ripple effect */}
+            {isRippling && <div className={styles.ripple} />}
         </button>
     );
 };

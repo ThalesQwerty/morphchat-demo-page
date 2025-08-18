@@ -12,10 +12,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     z-index: var(--morphchat-z-fixed);
     background: var(--morphchat-components-chat-button-background, var(--morphchat-primary));
-    animation: growIn var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &.right {
         right: var(--morphchat-spacing-2xl);
@@ -26,18 +25,29 @@
     }
 
     &:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        transform: scale(1.15);
+        background: var(--morphchat-components-chat-button-background-hover, var(--morphchat-primary-hover, var(--morphchat-primary)));
     }
 
     &:active {
         transform: scale(0.95);
+        transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &.visible {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    &.hidden {
+        transform: scale(0);
+        opacity: 0;
     }
 
     /* Mobile Responsive */
     @media (max-width: var(--morphchat-bp-sm)) {
-        width: var(--morphchat-avatar-xl); /* Adjusted to match desktop for now, can be smaller */
-        height: var(--morphchat-avatar-xl); /* Adjusted to match desktop for now, can be smaller */
+        width: var(--morphchat-avatar-xl);
+        height: var(--morphchat-avatar-xl);
         bottom: var(--morphchat-spacing-xl);
         z-index: var(--morphchat-z-fixed);
 
@@ -71,8 +81,47 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: badgeAppear var(--morphchat-transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1);
+    opacity: 1;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Ripple effect */
+.ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    animation: rippleEffect 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
 }
 
 .unreadCount {
@@ -82,61 +131,4 @@
     line-height: var(--morphchat-leading-tight);
     text-align: center;
     user-select: none;
-}
-
-/* Keyframes for animations */
-@keyframes buttonAppear {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
-    }
-    50% {
-        transform: scale(1.2);
-        box-shadow: 0 0 0 10px rgba(99, 102, 241, 0.3);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-}
-
-@keyframes buttonDisappear {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    50% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.4);
-    }
-    100% {
-        transform: scale(0);
-        opacity: 0;
-        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
-    }
-}
-
-@keyframes growIn {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes badgeAppear {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
 }

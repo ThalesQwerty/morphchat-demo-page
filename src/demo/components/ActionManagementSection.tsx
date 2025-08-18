@@ -13,10 +13,10 @@ export function ActionManagementSection() {
         <section id="actions" className={styles.actionManagementSection}>
             <div className={styles.actionManagementContainer}>
                 <h2 className={styles.actionManagementTitle}>
-                    Chat Actions Management
+                    Manage Actions
                 </h2>
                 <p className={styles.actionManagementSubtitle}>
-                    Enable or disable specific chat actions. Only enabled actions will be available in the chat widget.
+                    Enable or disable specific chat actions. You can trigger enabled actions by sending a message to the chatbot asking it to do them.
                 </p>
 
                 <div className={styles.actionsList}>
@@ -65,7 +65,8 @@ export function ActionManagementSection() {
                         </span>
                     </div>
                     <p className={styles.actionsNote}>
-                        Disabled actions will not be available in the chat widget. Users won't be able to use these functions.
+                        Give it a try! Send a message to the chatbot asking it to do some of the enabled actions above.<br/>
+                        (ex: "change the theme to red")
                     </p>
                 </div>
             </div>
