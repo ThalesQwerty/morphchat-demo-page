@@ -61,7 +61,7 @@ function AppContent() {
         prompt: {
             apiKey: import.meta.env.VITE_OPENAI_API_KEY || "",
             instructions: chatbotPrompt,
-            welcomeMessage: "Hello! I'm MorphChat, your AI assistant. How can I help you today?",
+            welcomeMessage: "Hello! I'm MorphChat, your AI assistant. You can customize me to fit your needs. What would you like to change?",
             model: "gpt-4o-mini" as const,
             timeout: 30000,
             actions,
