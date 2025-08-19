@@ -137,6 +137,9 @@
         /* Status Control Cards */
         .statusControlCard {
             // Card component handles the base styling
+            display: flex;
+            flex-direction: column;
+            height: 100%;
 
             .statusControlTitle {
                 font-size: var(--demo-text-2xl);
@@ -153,6 +156,7 @@
                 line-height: var(--demo-leading-relaxed);
                 margin-bottom: var(--demo-spacing-xl);
                 transition: var(--demo-transition-slow);
+                flex-grow: 1;
             }
 
             .statusButtons,
@@ -161,6 +165,7 @@
                 display: flex;
                 justify-content: center;
                 gap: var(--demo-spacing-base);
+                margin-top: auto;
 
                 .statusButton,
                 .maintenanceButton {

@@ -38,7 +38,6 @@ interface DemoContextType {
     actions: (WidgetAction<any, { icon: IconName }>)[]
     
     // Site data management
-    clearSiteData: () => void;      
     openGithub: () => void;
 }
 
@@ -168,31 +167,6 @@ export function DemoProvider({ children }: DemoProviderProps) {
         setActions(newActions as any);
     };
 
-    // Clear site data function
-    const clearSiteData = () => {
-        // Clear localStorage
-        localStorage.removeItem("morphchat_messages");
-        
-        // Reset actions to enabled state
-        setActions([changeTheme, changeColorMode, changeCorner]);
-        
-        // Reset other state if needed
-        setWidgetCorner(initialValues.widgetCorner);
-        setIsOnline(initialValues.isOnline);
-        setIsMaintenanceMode(initialValues.isMaintenanceMode);
-        setChatbotPrompt(initialValues.chatbotPrompt);
-        setIntroTitle(initialValues.introTitle);
-        setIntroSubtitle(initialValues.introSubtitle);
-        
-        // Reset profile names
-        setBotName(initialValues.botName);
-        setBotAvatar(initialValues.botAvatar);
-        setBotShowAvatar(initialValues.botShowAvatar);
-        setUserName(initialValues.userName);
-        setUserAvatar(initialValues.userAvatar);
-        setUserShowAvatar(initialValues.userShowAvatar);
-    };
-
     // Open GitHub function
     const openGithub = () => {
         window.open("https://github.com/ThalesQwerty/morphchat", "_blank");
@@ -233,7 +207,6 @@ export function DemoProvider({ children }: DemoProviderProps) {
         actions,
         
         // Site data management
-        clearSiteData,
         openGithub,
     };
 

@@ -36,7 +36,7 @@ function AppContent() {
         actions,
     } = useDemoContext();
 
-        const { component: ChatWidgetComponent } = useChatWidget({
+    const { component: ChatWidgetComponent, state } = useChatWidget({
         theme: colorTheme,
         mode: resolvedTheme,
         corner,
@@ -77,7 +77,7 @@ function AppContent() {
             <CustomizationSection />
             <ProfileManagementSection />
             <ActionManagementSection />
-            <FunctionalitySection />
+            <FunctionalitySection clearMessages={state?.clearMessages}/>
             <AboutSection />
             <Footer />
 

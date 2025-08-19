@@ -8,7 +8,7 @@ import { Card } from "./Card";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import styles from "./FunctionalitySection.module.scss";
 
-export function FunctionalitySection() {
+export function FunctionalitySection(props: { clearMessages?: () => void }) {
     const [showResetDialog, setShowResetDialog] = useState(false);
     
     const { 
@@ -22,7 +22,6 @@ export function FunctionalitySection() {
         setIsOnline, 
         isMaintenanceMode, 
         setIsMaintenanceMode,
-        clearSiteData
     } = useDemoContext();
     return (
         <section id="functionality" className={styles.functionalitySection}>
@@ -164,7 +163,7 @@ export function FunctionalitySection() {
             <ConfirmationDialog
                 isOpen={showResetDialog}
                 onClose={() => setShowResetDialog(false)}
-                onConfirm={clearSiteData}
+                onConfirm={() => props.clearMessages?.()}
                 title="Reset Chat History"
                 message="Are you sure you want to clear all chat messages? This action cannot be undone."
                 confirmText="Clear All Messages"
