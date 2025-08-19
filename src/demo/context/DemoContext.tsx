@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useRef } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import { useChatAction, Color, Corner, IconName } from "morphchat";
 import { useAppTheme } from "./ThemeContext";
 import { WidgetAction } from "morphchat";
@@ -56,7 +56,7 @@ interface DemoProviderProps {
 }
 
 const initialValues = {
-    widgetCorner: "right" as "left" | "right",
+    widgetCorner: "right" as Corner,
     isOnline: true,
     isMaintenanceMode: false,
     chatbotPrompt: "You are a helpful AI assistant. Give short and concise answers.",
@@ -75,7 +75,7 @@ export function DemoProvider({ children }: DemoProviderProps) {
     const { setColorTheme, setTheme } = useAppTheme();
     
     // Widget state
-    const [widgetCorner, setWidgetCorner] = useState<"left" | "right">(initialValues.widgetCorner);
+    const [widgetCorner, setWidgetCorner] = useState<Corner>(initialValues.widgetCorner);
     const [isOnline, setIsOnline] = useState(initialValues.isOnline);
     const [isMaintenanceMode, setIsMaintenanceMode] = useState(initialValues.isMaintenanceMode);
     const [chatbotPrompt, setChatbotPrompt] = useState(initialValues.chatbotPrompt);
