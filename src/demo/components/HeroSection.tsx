@@ -1,8 +1,9 @@
 import React from "react";
 import { Button } from "./Button";
 import styles from "./HeroSection.module.scss";
+import { useDemoContext } from "../context/DemoContext";
 
-export function HeroSection() {
+export function HeroSection(props: { open?: () => void }) {
     return (
         <section id="home" className={styles.heroSection}>
             <div className={styles.heroContent}>
@@ -14,7 +15,7 @@ export function HeroSection() {
                     Get instant responses and seamless communication tailored to your needs.
                 </p>
                 <div className={styles.heroButtonContainer}>
-                    <Button variant="primary" size="large">
+                    <Button variant="primary" size="large" onClick={props.open}>
                         Get Started
                     </Button>
                 </div>

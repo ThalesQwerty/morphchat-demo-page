@@ -72,7 +72,7 @@ function AppContent() {
     return (
         <div className={styles.appContainer}>
             <Header />
-            <HeroSection />
+            <HeroSection open={() => state?.setIsWidgetOpen(true)} />
             <FeaturesSection />
             <CustomizationSection />
             <ProfileManagementSection />
